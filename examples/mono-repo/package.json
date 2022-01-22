@@ -1,5 +1,5 @@
 {
-  "name": "basic-example",
+  "name": "mono-repo",
   "devDependencies": {
     "@progen/tsconfig": "workspace:*",
     "progen": "workspace:*"

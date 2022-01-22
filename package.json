@@ -1,7 +1,11 @@
 {
   "workspaces": [
     "packages/*",
+    "packages/@progen/*",
     "examples/*"
   ],
-  "packageManager": "yarn@3.1.1"
+  "packageManager": "yarn@3.1.1",
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  }
 }

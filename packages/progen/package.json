@@ -1,3 +1,19 @@
 {
-  "name": "progen"
+  "name": "progen",
+  "bin": "./bin/progen.cjs",
+  "type": "module",
+  "exports": {
+    ".": "./dist/lib/index.js"
+  },
+  "types": "./dist/lib/index.d.ts",
+  "dependencies": {
+    "@swc/core": "^1.2.133",
+    "@swc/register": "^0.1.9",
+    "commander": "^8.3.0",
+    "esbuild": "^0.14.13",
+    "esbuild-register": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.10"
+  }
 }

@@ -1,0 +1,10 @@
+{
+  "name": "@progen/tsconfig",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "tsconfig-type": "1.21.0"
+  }
+}
