@@ -1,7 +1,7 @@
 {
   "name": "basic-example",
   "devDependencies": {
-    "@progen/tsconfig": "workspace:*",
-    "progen": "workspace:*"
+    "@konfik/tsconfig": "workspace:*",
+    "konfik": "workspace:*"
   }
 }

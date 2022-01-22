@@ -1,4 +1,4 @@
-# progen
+# konfik
 
 ## Use cases
 

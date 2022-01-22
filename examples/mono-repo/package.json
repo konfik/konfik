@@ -1,7 +1,7 @@
 {
   "name": "mono-repo",
   "devDependencies": {
-    "@progen/tsconfig": "workspace:*",
-    "progen": "workspace:*"
+    "@konfik/tsconfig": "workspace:*",
+    "konfik": "workspace:*"
   }
 }

@@ -5,9 +5,9 @@ __metadata:
   version: 5
   cacheKey: 8
 
-"@progen/tsconfig@workspace:*, @progen/tsconfig@workspace:packages/@progen/tsconfig":
+"@konfik/tsconfig@workspace:*, @konfik/tsconfig@workspace:packages/@konfik/tsconfig":
   version: 0.0.0-use.local
-  resolution: "@progen/tsconfig@workspace:packages/@progen/tsconfig"
+  resolution: "@konfik/tsconfig@workspace:packages/@konfik/tsconfig"
   dependencies:
     tsconfig-type: 1.21.0
   languageName: unknown
@@ -178,8 +178,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "basic-example@workspace:examples/basic"
   dependencies:
-    "@progen/tsconfig": "workspace:*"
-    progen: "workspace:*"
+    "@konfik/tsconfig": "workspace:*"
+    konfik: "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -397,6 +397,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"konfik@workspace:*, konfik@workspace:packages/konfik":
+  version: 0.0.0-use.local
+  resolution: "konfik@workspace:packages/konfik"
+  dependencies:
+    "@swc/core": ^1.2.133
+    "@swc/register": ^0.1.9
+    "@types/node": ^17.0.10
+    commander: ^8.3.0
+    esbuild: ^0.14.13
+    esbuild-register: ^3.3.2
+  bin:
+    konfik: ./bin/konfik.cjs
+  languageName: unknown
+  linkType: soft
+
 "lodash.clonedeep@npm:^4.5.0":
   version: 4.5.0
   resolution: "lodash.clonedeep@npm:4.5.0"
@@ -408,8 +423,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "mono-repo@workspace:examples/mono-repo"
   dependencies:
-    "@progen/tsconfig": "workspace:*"
-    progen: "workspace:*"
+    "@konfik/tsconfig": "workspace:*"
+    konfik: "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -427,21 +442,6 @@ __metadata:
   checksum: 6b7187d526fd025a2b91e8fd289c78d88c4adc3ea947b9facbe9cb300a896b0ec00f3e77b36a043001695312a8debbf714453495283bd8a4eaad3bc0c38df425
   languageName: node
   linkType: hard
-
-"progen@workspace:*, progen@workspace:packages/progen":
-  version: 0.0.0-use.local
-  resolution: "progen@workspace:packages/progen"
-  dependencies:
-    "@swc/core": ^1.2.133
-    "@swc/register": ^0.1.9
-    "@types/node": ^17.0.10
-    commander: ^8.3.0
-    esbuild: ^0.14.13
-    esbuild-register: ^3.3.2
-  bin:
-    progen: ./bin/progen.cjs
-  languageName: unknown
-  linkType: soft
 
 "root-workspace-0b6124@workspace:.":
   version: 0.0.0-use.local

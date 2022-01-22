@@ -1,14 +1,14 @@
 import {
-  // should `PackageJson` be exposed from `progen` itself,
+  // should `PackageJson` be exposed from `konfik` itself,
   // or through similar means as TS configs?
   PackageJson,
   generate,
   ConfigsFactory,
   _,
-} from 'progen'
-import { Tsconfig, ts } from '@progen/tsconfig'
-import { eslint } from '@progen/eslint'
-import { pkg } from '@progen/pkg'
+} from 'konfik'
+import { Tsconfig, ts } from '@konfik/tsconfig'
+import { eslint } from '@konfik/eslint'
+import { pkg } from '@konfik/pkg'
 
 // import * as otherProject from './packages/other-project/project.ts'
 

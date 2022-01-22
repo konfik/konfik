@@ -1,6 +1,6 @@
 {
-  "name": "progen",
-  "bin": "./bin/progen.cjs",
+  "name": "konfik",
+  "bin": "./bin/konfik.cjs",
   "type": "module",
   "exports": {
     ".": "./dist/lib/index.js"

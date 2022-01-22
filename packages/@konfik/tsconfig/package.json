@@ -1,5 +1,5 @@
 {
-  "name": "@progen/tsconfig",
+  "name": "@konfik/tsconfig",
   "exports": {
     ".": "./dist/index.js"
   },

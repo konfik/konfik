@@ -1,7 +1,7 @@
-import { Config, Command } from 'progen'
-// import { ts } from '@progen/ts'
-import { pkg } from '@progen/pkg'
-import { ts } from '.progen/b6c6d0ac5999b69cc0f16700bb3023471db89d8f/packages/system-next/test/int.test.ts'
+import { Config, Command } from 'konfik'
+// import { ts } from '@konfik/ts'
+import { pkg } from '@konfik/pkg'
+import { ts } from '.konfik/b6c6d0ac5999b69cc0f16700bb3023471db89d8f/packages/system-next/test/int.test.ts'
 import * as path from 'path'
 import * as util from 'some-util'
 
