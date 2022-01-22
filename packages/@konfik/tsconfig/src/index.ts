@@ -1,1 +1,1 @@
-export * from 'tsconfig-type'
+export * from "./config";

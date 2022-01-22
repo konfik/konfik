@@ -197,6 +197,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"conditional-type-checks@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "conditional-type-checks@npm:1.0.5"
+  checksum: 5653cc87d58d15de2985e20c6132bd034f4ef6793164c0a2c5a9b7e90f34dabaee35517649d85bffa374b0190b588c27c80165bb8f4c23e5a073afc7164c3b9c
+  languageName: node
+  linkType: hard
+
 "esbuild-android-arm64@npm:0.14.13":
   version: 0.14.13
   resolution: "esbuild-android-arm64@npm:0.14.13"
@@ -405,6 +412,7 @@ __metadata:
     "@swc/register": ^0.1.9
     "@types/node": ^17.0.10
     commander: ^8.3.0
+    conditional-type-checks: ^1.0.5
     esbuild: ^0.14.13
     esbuild-register: ^3.3.2
   bin:
