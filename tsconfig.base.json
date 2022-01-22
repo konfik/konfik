@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "declarationMap": true,
+    "declaration": true,
+    "moduleResolution": "node",
+    "incremental": true,
+    "composite": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noErrorTruncation": true,
+    "isolatedModules": true,
+    "target": "ES2021",
+    "module": "ESNext",
+    "plugins": [{ "transform": "@effect-ts/tracing-plugin" }],
+    "paths": {
+      "magicdb": ["./packages/magicdb"],
+      "@mytunes/utils/effect/*": ["./packages/@mytunes/utils/src/effect/*"],
+      "@mytunes/*": ["./packages/@mytunes/*"]
+    }
+  },
+  "exclude": ["packages/**/dist", "node_modules", "packages/**/node_modules"]
+}
