@@ -5,6 +5,6 @@
   "references": [
     { "path": "./examples/basic" },
     { "path": "./examples/mono-repo" },
-    { "path": "./packages/node-http-loader" }
+    { "path": "./packages/@konfik/cli" }
   ]
 }

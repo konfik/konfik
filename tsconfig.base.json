@@ -18,9 +18,9 @@
     "module": "ESNext",
     "plugins": [{ "transform": "@effect-ts/tracing-plugin" }],
     "paths": {
-      "magicdb": ["./packages/magicdb"],
-      "@mytunes/utils/effect/*": ["./packages/@mytunes/utils/src/effect/*"],
-      "@mytunes/*": ["./packages/@mytunes/*"]
+      "konfik": ["./packages/konfik"],
+      "@konfik/utils/effect/*": ["./packages/@konfik/utils/effect/*"],
+      "@konfik/*": ["./packages/@konfik/*"]
     }
   },
   "exclude": ["packages/**/dist", "node_modules", "packages/**/node_modules"]

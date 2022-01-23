@@ -9,6 +9,7 @@ import {
 import { Tsconfig, ts } from '@konfik/tsconfig'
 import { eslint } from '@konfik/eslint'
 import { pkg } from '@konfik/pkg'
+import {} from '.konfik/github.com/konfik/package-json'
 
 // import * as otherProject from './packages/other-project/project.ts'
 

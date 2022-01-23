@@ -1,0 +1,15 @@
+{
+  "name": "@konfik/cli",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "dependencies": {
+    "@effect-ts/cli": "^0.6.0",
+    "@effect-ts/figlet": "^0.1.0",
+    "@effect-ts/node": "^0.31.0",
+    "@effect-ts/printer": "^0.11.1",
+    "@effect-ts/process": "^0.2.0",
+    "@konfik/utils": "workspace:*"
+  }
+}
