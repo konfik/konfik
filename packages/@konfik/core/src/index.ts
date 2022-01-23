@@ -1,14 +1,10 @@
-import type { PosixFilePath } from '@konfik/utils'
+import { KonfikFileMap } from './konfik-factory.js'
+export { KonfikFactory, type KonfikFileMap, Konfiks } from './konfik-factory.js'
+export { _ } from './placeholder.js'
 
-import { _, ConfigFactory } from './config-factory.js'
-
-export { ConfigFactory, _ }
-
+// TODO: do we need this intermediate type?
 export type KonfikPlugin = {
   fileMap: KonfikFileMap
 }
 
-export type FileContents = string
-export type KonfikFileMap = Map<PosixFilePath, FileContents>
-
-export type KonfikFileMapEntry = [PosixFilePath, FileContents]
+export type KonfikFileMapEntry = KonfikFileMap extends Map<infer K, infer V> ? [K, V] : never

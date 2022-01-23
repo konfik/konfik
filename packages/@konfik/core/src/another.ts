@@ -1,24 +1,36 @@
-import { ConfigFactory, _ } from './config-factory.js'
-const Config = ConfigFactory<{
+import { KonfikFactory } from './konfik-factory.js'
+import { _ } from './placeholder.js'
+
+const Config = KonfikFactory<{
   a: string
   b: number
-  c: boolean
+  c: {
+    d: {
+      e: boolean
+    }
+  }
 }>({
-  defaultName: '',
+  defaultName: 'my-konfik.json',
   toString(config) {
-    return JSON.stringify(config)
+    return JSON.stringify(config, null, 2)
   },
 })
+
 const A = Config({
-  a: 'A',
+  a: 'HELLO',
   b: _,
   c: _,
 })
+
 const B = A({
-  b: 2,
+  b: 10,
   c: _,
 })
+
 const c = B({
-  c: true,
+  c: {
+    d: {
+      e: true,
+    },
+  },
 })
-console.log(c.synth())
