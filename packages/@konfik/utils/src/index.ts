@@ -6,6 +6,7 @@ export * from './hash.js'
 export * from './time.js'
 export * from './single-item.js'
 export * from './file-paths.js'
+export * from './types'
 // export * from './tracing-effect/index.js'
 
 export { v4 as uuid } from 'uuid'
