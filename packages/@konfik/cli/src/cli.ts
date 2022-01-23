@@ -8,7 +8,9 @@ import { pipe, T, Tagged } from '@konfik/utils/effect'
 import { provideDummyTracing, provideJaegerTracing } from '@konfik/utils/effect/Tracing'
 
 import { provideCwd } from './cwd.js'
-import { getConfig } from './getConfig/index.js'
+import { getPlugins } from './getConfig/index.js'
+import { validatePlugins } from './validate.js'
+import { writeFileForPlugin } from './writeFileForPlugin.js'
 
 // -----------------------------------------------------------------------------
 // Model
@@ -47,7 +49,11 @@ const cli = CliApp.make({
 })
 
 const build = T.gen(function* ($) {
-  const config = yield* $(getConfig({ configPath: undefined }))
+  const plugins = yield* $(getPlugins({ configPath: undefined }))
+
+  yield* $(validatePlugins(plugins))
+
+  yield* $(pipe(plugins, T.forEachPar(writeFileForPlugin)))
 })
 
 const execute = (command: KonfikCliCommand) =>

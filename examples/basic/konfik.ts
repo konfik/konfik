@@ -1,7 +1,7 @@
 import {
   // should `PackageJson` be exposed from `konfik` itself,
   // or through similar means as TS configs?
-  PackageJson,
+  // PackageJson,
   generate,
   ConfigsFactory,
   _,
@@ -9,7 +9,9 @@ import {
 import { Tsconfig, ts } from '@konfik/tsconfig'
 import { eslint } from '@konfik/eslint'
 import { pkg } from '@konfik/pkg'
-import {} from '.konfik/github.com/konfik/package-json'
+import { PackageJson } from '.konfik/github.com/konfik/package-json'
+
+type x = PackageJson['']
 
 // import * as otherProject from './packages/other-project/project.ts'
 
@@ -72,6 +74,7 @@ const configs: Configs = Configs({
   },
 })
 
+export const konfiks = [config] as const
 configs.synth()
 configs.synth() // type error if called a second time
 
