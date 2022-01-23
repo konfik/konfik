@@ -1,4 +1,4 @@
-import { Placeheld, Placeholder, IsPlaceheld, ConfigPhase } from "./config";
+import { Placeheld, Placeholder, IsPlaceheld, ConfigPhase } from "./config_factory";
 import { IsExact, assert } from "conditional-type-checks";
 
 namespace _Types {

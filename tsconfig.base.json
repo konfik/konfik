@@ -18,5 +18,5 @@
     "module": "ESNext",
     "plugins": [{ "transform": "@effect-ts/tracing-plugin" }]
   },
-  "exclude": ["**/*.test.ts", "**/dist", "**/node_modules", "node_modules"]
+  "exclude": ["**/dist", "**/node_modules", "node_modules"]
 }

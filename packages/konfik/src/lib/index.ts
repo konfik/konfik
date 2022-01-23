@@ -1,4 +1,4 @@
-export { _, ConfigFactory } from "./config";
+export { _, ConfigFactory } from "./config_factory";
 
 export interface GenerateConfig {}
 
