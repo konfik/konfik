@@ -2,9 +2,5 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {},
   "include": [],
-  "references": [
-    { "path": "./examples/basic" },
-    { "path": "./examples/mono-repo" },
-    { "path": "./packages/@konfik/cli" }
-  ]
+  "references": [{ "path": "./examples/basic" }, { "path": "./examples/mono-repo" }]
 }

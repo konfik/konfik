@@ -1,4 +1,7 @@
 import type { PosixFilePath } from '@konfik/utils'
+import { ConfigFactory, _ } from './config-factory.js'
+
+export { ConfigFactory, _ }
 
 export type KonfikPlugin = {
   fileMap: KonfikFileMap

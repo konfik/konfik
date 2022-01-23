@@ -23,5 +23,5 @@
       "@konfik/*": ["./packages/@konfik/*"]
     }
   },
-  "exclude": ["packages/**/dist", "node_modules", "packages/**/node_modules"]
+  "exclude": ["**/dist", "**/node_modules", "node_modules"]
 }
