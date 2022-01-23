@@ -1,4 +1,5 @@
-import { _ } from '../../../konfik'
+// TODO: write real tests here
+import { _ } from '@konfik/core'
 import { Ts } from './config.js'
 
 const MyTs = Ts({

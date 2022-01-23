@@ -1,4 +1,4 @@
-export { _, ConfigFactory } from './config_factory'
+export { _, KonfikFactory } from '@konfik/core'
 
 export interface GenerateConfig {}
 

@@ -5,6 +5,7 @@
   },
   "types": "./dist/index.d.ts",
   "dependencies": {
+    "@konfik/core": "workspace:*",
     "tsconfig-type": "1.21.0"
   }
 }

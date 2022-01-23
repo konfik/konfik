@@ -1,5 +1,9 @@
-// TODO: use correct yarn 2 convention to resolve
-import { ConfigFactory, _ } from '../../../konfik'
+import { KonfikFactory, _ } from '@konfik/core'
 import { Tsconfig } from 'tsconfig-type'
 
-export const Ts = ConfigFactory<Tsconfig>()
+export const Ts = KonfikFactory<Tsconfig>({
+  defaultName: 'tsconfig.json',
+  toString(tsconfig) {
+    return JSON.stringify(tsconfig)
+  },
+})

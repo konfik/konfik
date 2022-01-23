@@ -1,7 +1,24 @@
-import { Placeheld, Placeholder, IsPlaceheld, ConfigPhase } from './config-factory.js'
-import { IsExact, assert } from 'conditional-type-checks'
+/**
+ * TODO: FINISH TESTS! Why timing out sometimes?
+ * TODO: create utils to reduce boilerplate in the following tests.
+ * TODO: improve naming consistency.
+ * TODO: more test cases! More deeply-nested cases. Real-world cases.
+ * TODO: TRY TO BREAK IT! Circularity?
+ */
 
-namespace _Child {
+import { KonfikPhase, KonfikFactory, KonfikFactoryProps } from './konfik-factory.js'
+import { _, Placeholder, Placeheld, IsPlaceheld } from './placeholder.js'
+import { IsExact, assert } from 'conditional-type-checks'
+import test from 'ava'
+
+const konfikFactoryTestProps: KonfikFactoryProps<Record<PropertyKey, any>> = {
+  defaultName: 'testing',
+  toString(final) {
+    return JSON.stringify(final)
+  },
+}
+
+test('child', (t) => {
   type Raw = {
     child: number
   }
@@ -12,17 +29,24 @@ namespace _Child {
   type Actual = Placeheld<Raw>
   assert<IsPlaceheld<Actual>>(true)
   assert<IsExact<Expected, Actual>>(true)
-
-  type Phase0 = ConfigPhase<
+  type Phase0 = KonfikPhase<
     Actual,
     {
       child: number
     }
   >
   assert<IsExact<Phase0, {}>>(true)
-}
+  const Konfik = KonfikFactory<Raw>(konfikFactoryTestProps)
+  const actual = Konfik({
+    child: 1,
+  }).config
+  const expected: Raw = {
+    child: 1,
+  }
+  t.deepEqual(expected, actual)
+})
 
-namespace _Children {
+test('children', (t) => {
   type Raw = {
     childA: number
     childB: boolean
@@ -35,8 +59,7 @@ namespace _Children {
   type Actual = Placeheld<Raw>
   assert<IsPlaceheld<Actual>>(true)
   assert<IsExact<Expected, Actual>>(true)
-
-  type Phase0 = ConfigPhase<
+  type Phase0 = KonfikPhase<
     Actual,
     {
       childA: 101
@@ -51,16 +74,29 @@ namespace _Children {
       }
     >
   >(true)
-  type Phase1 = ConfigPhase<
+  const Konfik = KonfikFactory<Raw>(konfikFactoryTestProps)
+  const phase0 = Konfik({
+    childA: 101,
+    childB: _,
+  })
+  type Phase1 = KonfikPhase<
     Phase0,
     {
-      childB: boolean
+      childB: true
     }
   >
   assert<IsExact<Phase1, {}>>(true)
-}
+  const actual = phase0({
+    childB: true,
+  }).config
+  const expected: Raw = {
+    childA: 101,
+    childB: true,
+  }
+  t.deepEqual(expected, actual)
+})
 
-namespace _Optional {
+test('optional', (t) => {
   type Raw = {
     opt?: number
   }
@@ -73,12 +109,19 @@ namespace _Optional {
   // @ts-expect-error
   assert<IsPlaceheld<Actual>>(true)
   assert<IsExact<Expected, Actual>>(true)
-
   // TODO: phase tests once `IsPlaceheld` bug sorted
-}
+  const Konfik = KonfikFactory<Raw>(konfikFactoryTestProps)
+  const actual = Konfik({
+    opt: 1,
+  }).config
+  const expected: Raw = {
+    opt: 1,
+  }
+  t.deepEqual(expected, actual)
+})
 
-namespace _Grandchild {
-  export type Raw = {
+test('grandchild', (t) => {
+  type Raw = {
     child: {
       grandchild: number
     }
@@ -95,7 +138,7 @@ namespace _Grandchild {
   assert<IsPlaceheld<Actual>>(true)
   assert<IsExact<Expected, Actual>>(true)
 
-  type Phase0 = ConfigPhase<
+  type Phase0 = KonfikPhase<
     Actual,
     {
       child: Placeholder
@@ -113,7 +156,7 @@ namespace _Grandchild {
       }
     >
   >(true)
-  type Phase1 = ConfigPhase<
+  type Phase1 = KonfikPhase<
     Phase0,
     {
       child: {
@@ -131,7 +174,7 @@ namespace _Grandchild {
       }
     >
   >(true)
-  type Phase2 = ConfigPhase<
+  type Phase2 = KonfikPhase<
     Phase1,
     {
       child: {
@@ -140,9 +183,10 @@ namespace _Grandchild {
     }
   >
   assert<IsExact<Phase2, {}>>(true)
-}
+  t.is(true, true)
+})
 
-namespace _Grandchildren {
+test('grandchildren', (t) => {
   type Raw = {
     child: {
       grandchildA: number
@@ -174,7 +218,7 @@ namespace _Grandchildren {
   assert<IsPlaceheld<Actual>>(true)
   assert<IsExact<Expected, Actual>>(true)
 
-  type Phase0 = ConfigPhase<
+  type Phase0 = KonfikPhase<
     Actual,
     {
       child: {
@@ -197,7 +241,7 @@ namespace _Grandchildren {
       }
     >
   >(true)
-  type Phase1 = ConfigPhase<
+  type Phase1 = KonfikPhase<
     Phase0,
     {
       child: {
@@ -219,7 +263,7 @@ namespace _Grandchildren {
       }
     >
   >(true)
-  type Phase2 = ConfigPhase<
+  type Phase2 = KonfikPhase<
     Phase1,
     {
       child: {
@@ -230,9 +274,10 @@ namespace _Grandchildren {
     }
   >
   assert<IsExact<Phase2, {}>>(true)
-}
+  t.is(true, true)
+})
 
-namespace _ChildArray {
+test('child array', (t) => {
   type Raw = {
     value: string[]
   }
@@ -244,7 +289,7 @@ namespace _ChildArray {
   assert<IsPlaceheld<Actual>>(true)
   assert<IsExact<Expected, Actual>>(true)
 
-  type Phase0 = ConfigPhase<
+  type Phase0 = KonfikPhase<
     Actual,
     {
       value: Placeholder
@@ -258,11 +303,12 @@ namespace _ChildArray {
       }
     >
   >(true)
-  type Phase1 = ConfigPhase<
+  type Phase1 = KonfikPhase<
     Phase0,
     {
       value: ['Rice crackers!']
     }
   >
   assert<IsExact<Phase1, {}>>(true)
-}
+  t.is(true, true)
+})
