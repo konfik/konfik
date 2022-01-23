@@ -1,78 +1,81 @@
-import { Placeheld, Placeholder, IsPlaceheld, ConfigPhase } from "./config_factory";
-import { IsExact, assert } from "conditional-type-checks";
+import type { IsExact } from 'conditional-type-checks'
+import { assert } from 'conditional-type-checks'
+
+import type { ConfigPhase, IsPlaceheld, Placeheld, Placeholder } from './config_factory'
 
 namespace _Types {
   namespace _Child {
     type Raw = {
-      child: number;
-    };
-    assert<IsPlaceheld<Raw>>(false);
+      child: number
+    }
+    assert<IsPlaceheld<Raw>>(false)
     type Expected = {
-      child: Placeholder | number;
-    };
-    type Actual = Placeheld<Raw>;
-    assert<IsPlaceheld<Actual>>(true);
-    assert<IsExact<Expected, Actual>>(true);
+      child: Placeholder | number
+    }
+    type Actual = Placeheld<Raw>
+    assert<IsPlaceheld<Actual>>(true)
+    assert<IsExact<Expected, Actual>>(true)
 
     type Phase0 = ConfigPhase<
       Actual,
       {
-        child: number;
+        child: number
       }
-    >;
-    assert<IsExact<Phase0, {}>>(true);
+    >
+    assert<IsExact<Phase0, {}>>(true)
   }
 
   namespace _Children {
     type Raw = {
-      childA: number;
-      childB: boolean;
-    };
-    assert<IsPlaceheld<Raw>>(false);
+      childA: number
+      childB: boolean
+    }
+    assert<IsPlaceheld<Raw>>(false)
     type Expected = {
-      childA: Placeholder | number;
-      childB: Placeholder | boolean;
-    };
-    type Actual = Placeheld<Raw>;
-    assert<IsPlaceheld<Actual>>(true);
-    assert<IsExact<Expected, Actual>>(true);
+      childA: Placeholder | number
+      childB: Placeholder | boolean
+    }
+    type Actual = Placeheld<Raw>
+    assert<IsPlaceheld<Actual>>(true)
+    assert<IsExact<Expected, Actual>>(true)
 
     type Phase0 = ConfigPhase<
       Actual,
       {
-        childA: 101;
-        childB: Placeholder;
+        childA: 101
+        childB: Placeholder
       }
-    >;
+    >
     assert<
       IsExact<
         Phase0,
         {
-          childB: Placeholder | boolean;
+          childB: Placeholder | boolean
         }
       >
-    >(true);
+    >(true)
     type Phase1 = ConfigPhase<
       Phase0,
       {
-        childB: boolean;
+        childB: boolean
       }
-    >;
-    assert<IsExact<Phase1, {}>>(true);
+    >
+    assert<IsExact<Phase1, {}>>(true)
   }
 
   namespace _Optional {
     type Raw = {
-      opt?: number;
-    };
-    assert<IsPlaceheld<Raw>>(false);
+      opt?: number
+    }
+    assert<IsPlaceheld<Raw>>(false)
     type Expected = {
-      opt?: Placeholder | number;
-    };
-    type Actual = Placeheld<Raw>;
+      opt?: Placeholder | number
+    }
+    type Actual = Placeheld<Raw>
     // TODO: fix `IsPlaceheld` check on optional fields
-    assert<IsPlaceheld<Actual>>(true);
-    assert<IsExact<Expected, Actual>>(true);
+    // @ts-expect-error (placeholder)
+    assert<IsPlaceheld<Actual>>(true)
+    assert<IsExact<Expected, Actual>>(true)
 
     // TODO: phase tests once `IsPlaceheld` bug sorted
   }
@@ -80,27 +83,27 @@ namespace _Types {
   namespace _Grandchild {
     export type Raw = {
       child: {
-        grandchild: number;
-      };
-    };
-    assert<IsPlaceheld<Raw>>(false);
+        grandchild: number
+      }
+    }
+    assert<IsPlaceheld<Raw>>(false)
     type Expected = {
       child:
         | Placeholder
         | {
-            grandchild: Placeholder | number;
-          };
-    };
-    type Actual = Placeheld<Raw>;
-    assert<IsPlaceheld<Actual>>(true);
-    assert<IsExact<Expected, Actual>>(true);
+            grandchild: Placeholder | number
+          }
+    }
+    type Actual = Placeheld<Raw>
+    assert<IsPlaceheld<Actual>>(true)
+    assert<IsExact<Expected, Actual>>(true)
 
     type Phase0 = ConfigPhase<
       Actual,
       {
-        child: Placeholder;
+        child: Placeholder
       }
-    >;
+    >
     assert<
       IsExact<
         Phase0,
@@ -108,81 +111,81 @@ namespace _Types {
           child:
             | Placeholder
             | Placeheld<{
-                grandchild: number;
-              }>;
+                grandchild: number
+              }>
         }
       >
-    >(true);
+    >(true)
     type Phase1 = ConfigPhase<
       Phase0,
       {
         child: {
-          grandchild: Placeholder;
-        };
+          grandchild: Placeholder
+        }
       }
-    >;
+    >
     assert<
       IsExact<
         Phase1,
         {
           child: {
-            grandchild: Placeholder | number;
-          };
+            grandchild: Placeholder | number
+          }
         }
       >
-    >(true);
+    >(true)
     type Phase2 = ConfigPhase<
       Phase1,
       {
         child: {
-          grandchild: 321;
-        };
+          grandchild: 321
+        }
       }
-    >;
-    assert<IsExact<Phase2, {}>>(true);
+    >
+    assert<IsExact<Phase2, {}>>(true)
   }
 
   namespace _Grandchildren {
     type Raw = {
       child: {
-        grandchildA: number;
+        grandchildA: number
         grandchildB: {
-          greatGrandchild: Date;
-        };
-      };
-    };
-    assert<IsPlaceheld<Raw>>(false);
+          greatGrandchild: Date
+        }
+      }
+    }
+    assert<IsPlaceheld<Raw>>(false)
     type Expected = {
       child:
         | Placeholder
         | {
-            grandchildA: number;
+            grandchildA: number
             grandchildB: {
-              greatGrandchild: Date;
-            };
+              greatGrandchild: Date
+            }
           }
         | {
-            grandchildA: Placeholder | number;
+            grandchildA: Placeholder | number
             grandchildB:
               | Placeholder
               | {
-                  greatGrandchild: Placeholder | Placeheld<Date>;
-                };
-          };
-    };
-    type Actual = Placeheld<Raw>;
-    assert<IsPlaceheld<Actual>>(true);
-    assert<IsExact<Expected, Actual>>(true);
+                  greatGrandchild: Placeholder | Placeheld<Date>
+                }
+          }
+    }
+    type Actual = Placeheld<Raw>
+    assert<IsPlaceheld<Actual>>(true)
+    assert<IsExact<Expected, Actual>>(true)
 
     type Phase0 = ConfigPhase<
       Actual,
       {
         child: {
-          grandchildA: 101;
-          grandchildB: Placeholder;
-        };
+          grandchildA: 101
+          grandchildB: Placeholder
+        }
       }
-    >;
+    >
     assert<
       IsExact<
         Phase0,
@@ -191,79 +194,79 @@ namespace _Types {
             grandchildB:
               | Placeholder
               | Placeheld<{
-                  greatGrandchild: Date;
-                }>;
-          };
+                  greatGrandchild: Date
+                }>
+          }
         }
       >
-    >(true);
+    >(true)
     type Phase1 = ConfigPhase<
       Phase0,
       {
         child: {
           grandchildB: {
-            greatGrandchild: Placeholder;
-          };
-        };
+            greatGrandchild: Placeholder
+          }
+        }
       }
-    >;
+    >
     assert<
       IsExact<
         Phase1,
         {
           child: {
             grandchildB: {
-              greatGrandchild: Placeholder | Placeheld<Date>;
-            };
-          };
+              greatGrandchild: Placeholder | Placeheld<Date>
+            }
+          }
         }
       >
-    >(true);
+    >(true)
     type Phase2 = ConfigPhase<
       Phase1,
       {
         child: {
           grandchildB: {
-            greatGrandchild: Date;
-          };
-        };
+            greatGrandchild: Date
+          }
+        }
       }
-    >;
-    assert<IsExact<Phase2, {}>>(true);
+    >
+    assert<IsExact<Phase2, {}>>(true)
   }
 
   namespace _ChildArray {
     type Raw = {
-      value: string[];
-    };
-    assert<IsPlaceheld<Raw>>(false);
+      value: string[]
+    }
+    assert<IsPlaceheld<Raw>>(false)
     type Expected = {
-      value: Placeholder | string[];
-    };
-    type Actual = Placeheld<Raw>;
-    assert<IsPlaceheld<Actual>>(true);
-    assert<IsExact<Expected, Actual>>(true);
+      value: Placeholder | string[]
+    }
+    type Actual = Placeheld<Raw>
+    assert<IsPlaceheld<Actual>>(true)
+    assert<IsExact<Expected, Actual>>(true)
 
     type Phase0 = ConfigPhase<
       Actual,
       {
-        value: Placeholder;
+        value: Placeholder
       }
-    >;
+    >
     assert<
       IsExact<
         Phase0,
         {
-          value: Placeholder | string[];
+          value: Placeholder | string[]
         }
       >
-    >(true);
+    >(true)
     type Phase1 = ConfigPhase<
       Phase0,
       {
-        value: ["Rice crackers!"];
+        value: ['Rice crackers!']
       }
-    >;
-    assert<IsExact<Phase1, {}>>(true);
+    >
+    assert<IsExact<Phase1, {}>>(true)
   }
 }

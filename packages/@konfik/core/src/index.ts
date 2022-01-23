@@ -1,5 +1,6 @@
 import type { PosixFilePath } from '@konfik/utils'
-import { ConfigFactory, _ } from './config-factory.js'
+
+import { _, ConfigFactory } from './config-factory.js'
 
 export { ConfigFactory, _ }
 
