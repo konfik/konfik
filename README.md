@@ -19,3 +19,15 @@
 ### CLI features
 
 - [ ] watch
+
+## Pros / Cons
+
+### Pros
+
+- Reusablity
+- Type-safety
+- Composable
+
+### Cons
+
+- Can't use `yarn add` etc

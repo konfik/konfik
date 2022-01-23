@@ -5,8 +5,10 @@ import * as Command from '@effect-ts/cli/Command'
 import * as Options from '@effect-ts/cli/Options'
 import { runMain } from '@effect-ts/node/Runtime'
 import { pipe, T, Tagged } from '@konfik/utils/effect'
+import { provideDummyTracing, provideJaegerTracing } from '@konfik/utils/effect/Tracing'
 
-import { runBuild } from './build'
+import { provideCwd } from './cwd.js'
+import { getConfig } from './getConfig/index.js'
 
 // -----------------------------------------------------------------------------
 // Model
@@ -44,13 +46,26 @@ const cli = CliApp.make({
   command: konfikCliCommand,
 })
 
-const execute: (command: KonfikCliCommand) => T.Effect<unknown, never, void> = T.matchTag({
-  Build: () => runBuild(),
+const build = T.gen(function* ($) {
+  const config = yield* $(getConfig({ configPath: undefined }))
 })
+
+const execute = (command: KonfikCliCommand) =>
+  pipe(
+    command,
+    T.matchTag({
+      Build: () => build,
+    }),
+  )
+
+const provideTracing = () =>
+  process.env.KONFIK_OTEL !== undefined ? provideJaegerTracing('konfik-cli') : provideDummyTracing()
 
 export const run = () =>
   pipe(
     T.succeedWith(() => process.argv.slice(2)),
     T.chain((args) => CliApp.run_(cli, args, execute)),
+    provideTracing(),
+    provideCwd,
     runMain,
   )

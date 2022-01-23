@@ -1,6 +1,8 @@
 import type { Clock } from '@effect-ts/core/Effect/Clock'
 import type { Has } from '@effect-ts/core/Has'
 
+export * from './ConsoleService.js'
+
 export * from './EnvVar.js'
 
 export type { _A as OutputOf } from '@effect-ts/core/Utils'
@@ -43,8 +45,8 @@ export type HasClock = Has<Clock>
 export * as Schedule from '@effect-ts/core/Effect/Schedule'
 export * as SC from '@effect-ts/core/Effect/Schedule'
 
-export * as Stream from '@effect-ts/core/Effect/Experimental/Stream'
-export * as S from '@effect-ts/core/Effect/Experimental/Stream'
+export * as Stream from './Stream.js'
+export * as S from './Stream.js'
 
 export * as Either from '@effect-ts/core/Either'
 export * as E from '@effect-ts/core/Either'
