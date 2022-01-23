@@ -1,8 +1,9 @@
 import test from 'ava'
 
 import { KnownEsbuildError } from './esbuild.js'
+import { extractPluginImportPaths, pluginImportPath } from './esbuild-error.js'
 
-test('first', (t) => {
+test('extractPluginImportPaths', (t) => {
   const knownError = new KnownEsbuildError({
     error: {
       errors: [
@@ -49,5 +50,7 @@ test('first', (t) => {
     } as any,
   })
 
-  t.assert(false)
+  const pluginImportPaths = extractPluginImportPaths(knownError)
+
+  t.deepEqual(pluginImportPaths, ['github.com/konfik/eslint', 'github.com/konfik/prettier'].map(pluginImportPath))
 })
