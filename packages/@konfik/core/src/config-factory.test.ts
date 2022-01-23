@@ -8,6 +8,7 @@ test('first', (t) => {
     c: boolean
   }>({})
   console.log(Config)
+  t.is(true, true)
   // const A = Config({
   //   a: 'A',
   //   b: _,

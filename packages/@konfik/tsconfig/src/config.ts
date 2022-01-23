@@ -2,4 +2,4 @@
 import { ConfigFactory, _ } from '../../../konfik'
 import { Tsconfig } from 'tsconfig-type'
 
-export const Ts = ConfigFactory<Tsconfig>()
+export const Ts = ConfigFactory<Tsconfig>({})
