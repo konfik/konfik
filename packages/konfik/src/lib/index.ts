@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 export { _, ConfigFactory } from "./config_factory";
 =======
 export { _, ConfigFactory } from "./config";
@@ -7,6 +8,12 @@ export { _, ConfigFactory } from "./config";
 
 =======
 >>>>>>> bcff76c (move files into core and set up ava)
+=======
+=======
+export { _, ConfigFactory } from "./config_factory";
+
+>>>>>>> 9bc4c39 (fix test exclusion from tsc)
+>>>>>>> 8da8708 (fix test exclusion from tsc)
 export interface GenerateConfig {}
 
 export const generate = async (config: GenerateConfig) => {
