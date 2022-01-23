@@ -67,20 +67,24 @@ type ConfigFactory = <Blueprint extends Record<PropertyKey, any>>(
   props: ConfigFactoryProps<Blueprint>,
 ) => Config<Placeheld<Blueprint>>
 
-export const ConfigFactory: ConfigFactory = ((configOrPartial: any) => {
+export const ConfigFactory: ConfigFactory = () => {
+  return phaseConfig as any
+}
+
+const phaseConfig = (configOrPartial: any) => {
   const visit: any[] = Object.values(configOrPartial)
   while (visit.length) {
     const current = visit.shift()
     if (current === _) {
       return (nextConfigOrPartial: any) => {
-        return ConfigFactory(deepMerge(configOrPartial, nextConfigOrPartial))
+        return phaseConfig(deepMerge(configOrPartial, nextConfigOrPartial))
       }
     } else if (shouldVisit(current)) {
       visit.push(...Object.values(current))
     }
   }
   return new ConfigHandle(configOrPartial)
-}) as any
+}
 
 const deepMerge = (a: any, b: any): any => {
   const next: any = {}

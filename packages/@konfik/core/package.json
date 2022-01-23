@@ -13,7 +13,8 @@
   },
   "ava": {
     "files": [
-      "dist/**/*.test.js"
+      "dist/**/*.test.js",
+      "!dist/**/*-types.test.js"
     ]
   }
 }
