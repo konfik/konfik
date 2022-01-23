@@ -24,17 +24,18 @@ type GetConfigError =
   | ConfigNoDefaultExportError
   | GetKonfikVersionError
 
-export const getConfig = ({
+export const getPlugins = ({
   configPath,
 }: {
   configPath?: string
-}): T.Effect<OT.HasTracer & HasCwd, GetConfigError, KonfikPlugin> =>
+}): T.Effect<OT.HasTracer & HasCwd, GetConfigError, KonfikPlugin[]> =>
   pipe(
     getConfigWatch({ configPath }),
     S.take(1),
     S.runCollect,
     T.map(Chunk.unsafeHead),
     T.rightOrFail,
+    T.map((_) => [_]),
     OT.withSpan('@konfik/core/getConfig:getConfig', { attributes: { configPath } }),
   )
 
