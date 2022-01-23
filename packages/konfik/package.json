@@ -8,6 +8,7 @@
   },
   "types": "./dist/lib/index.d.ts",
   "dependencies": {
+    "@konfik/cli": "workspace:*",
     "@swc/core": "^1.2.133",
     "@swc/register": "^0.1.9",
     "commander": "^8.3.0",

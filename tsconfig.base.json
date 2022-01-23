@@ -16,7 +16,12 @@
     "isolatedModules": true,
     "target": "ES2021",
     "module": "ESNext",
-    "plugins": [{ "transform": "@effect-ts/tracing-plugin" }]
+    "plugins": [{ "transform": "@effect-ts/tracing-plugin" }],
+    "paths": {
+      "konfik": ["./packages/konfik"],
+      "@konfik/utils/effect/*": ["./packages/@konfik/utils/effect/*"],
+      "@konfik/*": ["./packages/@konfik/*"]
+    }
   },
   "exclude": ["**/dist", "**/node_modules", "node_modules"]
 }

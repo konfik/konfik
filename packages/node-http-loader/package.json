@@ -1,8 +1,0 @@
-{
-  "name": "node-http-loader",
-  "main": "dist/index.js",
-  "type": "module",
-  "dependencies": {
-    "undici": "4.12.2"
-  }
-}
