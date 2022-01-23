@@ -216,7 +216,17 @@ __metadata:
     "@effect-ts/node": ^0.31.0
     "@effect-ts/printer": ^0.11.1
     "@effect-ts/process": ^0.2.0
+    "@konfik/core": "workspace:*"
     "@konfik/utils": "workspace:*"
+    "@types/source-map-support": ^0
+    esbuild: ^0.14.13
+    source-map-support: ^0.5.21
+  languageName: unknown
+  linkType: soft
+
+"@konfik/core@workspace:*, @konfik/core@workspace:packages/@konfik/core":
+  version: 0.0.0-use.local
+  resolution: "@konfik/core@workspace:packages/@konfik/core"
   languageName: unknown
   linkType: soft
 
@@ -842,6 +852,15 @@ __metadata:
   version: 17.0.10
   resolution: "@types/node@npm:17.0.10"
   checksum: 979e83d642a2b4f18fa1a4233f884822c05abc7acd0836024aa964187f8446432b21f7913e72fe2b3927c4a811c27a0b6cd60ac7c4ac6a6762cfbab70782aa6a
+  languageName: node
+  linkType: hard
+
+"@types/source-map-support@npm:^0":
+  version: 0.5.4
+  resolution: "@types/source-map-support@npm:0.5.4"
+  dependencies:
+    source-map: ^0.6.0
+  checksum: 160ff77e8a101b18d9915cb5320fd73d484679aef8518ce007b9b5988e333631778730196c4bb15517ff881bee805663fd8640c0ce2ebfab65f061103c452369
   languageName: node
   linkType: hard
 
@@ -2989,7 +3008,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map-support@npm:^0.5.13":
+"source-map-support@npm:^0.5.13, source-map-support@npm:^0.5.21":
   version: 0.5.21
   resolution: "source-map-support@npm:0.5.21"
   dependencies:

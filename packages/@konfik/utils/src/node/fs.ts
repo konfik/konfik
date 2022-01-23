@@ -2,11 +2,12 @@ import { pipe } from '@effect-ts/core'
 import { Tagged } from '@effect-ts/core/Case'
 import * as T from '@effect-ts/core/Effect'
 import * as OT from '@effect-ts/otel'
-import type { Stats } from 'fs'
-import { promises as fs } from 'fs'
-import type { Readable } from 'stream'
+import type { Stats } from 'node:fs'
+import { promises as fs } from 'node:fs'
+import type { Readable } from 'node:stream'
 import type { JsonValue } from 'type-fest'
 
+import type { PosixFilePath } from '../file-paths.js'
 import { errorToString } from '../index.js'
 
 export const fileOrDirExists = (pathLike: string): T.Effect<unknown, StatError, boolean> => {
@@ -128,7 +129,7 @@ export const writeFileJson = ({
     T.chain((contentStr) => writeFile(filePath, contentStr)),
   )
 
-export const mkdirp = (dirPath: string): T.Effect<OT.HasTracer, MkdirError, void> =>
+export const mkdirp = (dirPath: PosixFilePath): T.Effect<OT.HasTracer, MkdirError, void> =>
   OT.withSpan('mkdirp', { attributes: { dirPath } })(
     T.tryCatchPromise(
       () => fs.mkdir(dirPath, { recursive: true }),
