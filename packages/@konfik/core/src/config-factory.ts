@@ -52,14 +52,16 @@ export type Config<Base extends Placeheld<Record<PropertyKey, any>>> = <Supplied
 // Would it make the checker will go kaboom?
 // Would there be any any tangible benefit to the DX?
 export class ConfigHandle {
-  constructor(public config: any) {}
+  constructor(public configFactoryProps: ConfigFactoryProps<Record<PropertyKey, any>>, public config: any) {}
 
-  synth() {
-    // TODO
+  synth(): string {
+    return this.configFactoryProps.toString(this.config)
   }
 }
 
 export interface ConfigFactoryProps<Blueprint extends Record<PropertyKey, any>> {
+  // TODO: determine what the right approach to rooting is
+  defaultName: string
   toString(config: Blueprint): string
 }
 
@@ -67,24 +69,24 @@ type ConfigFactory = <Blueprint extends Record<PropertyKey, any>>(
   props: ConfigFactoryProps<Blueprint>,
 ) => Config<Placeheld<Blueprint>>
 
-export const ConfigFactory: ConfigFactory = () => {
-  return phaseConfig as any
-}
-
-const phaseConfig = (configOrPartial: any) => {
-  const visit: any[] = Object.values(configOrPartial)
-  while (visit.length) {
-    const current = visit.shift()
-    if (current === _) {
-      return (nextConfigOrPartial: any) => {
-        return phaseConfig(deepMerge(configOrPartial, nextConfigOrPartial))
+// TODO: fix typing
+export const ConfigFactory: ConfigFactory = ((props: any) => {
+  const phaseConfig = (configOrPartial: any) => {
+    const visit: any[] = Object.values(configOrPartial)
+    while (visit.length) {
+      const current = visit.shift()
+      if (current === _) {
+        return (nextConfigOrPartial: any) => {
+          return phaseConfig(deepMerge(configOrPartial, nextConfigOrPartial))
+        }
+      } else if (shouldVisit(current)) {
+        visit.push(...Object.values(current))
       }
-    } else if (shouldVisit(current)) {
-      visit.push(...Object.values(current))
     }
+    return new ConfigHandle(props, configOrPartial)
   }
-  return new ConfigHandle(configOrPartial)
-}
+  return phaseConfig
+}) as any
 
 const deepMerge = (a: any, b: any): any => {
   const next: any = {}

@@ -7,8 +7,9 @@ test('first', (t) => {
     b: number
     c: boolean
   }>({
-    toString(_config) {
-      return ''
+    defaultName: '',
+    toString(config) {
+      return JSON.stringify(config)
     },
   })
   const A = Config({
