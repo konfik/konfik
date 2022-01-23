@@ -1,6 +1,6 @@
 import { Branded, T } from '@konfik/utils/effect'
 
-import type { KnownEsbuildError } from './esbuild'
+import type { KnownEsbuildError } from './esbuild.js'
 
 export type PluginImportPath = Branded.Branded<string, 'PluginImportPath'>
 

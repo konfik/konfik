@@ -5,5 +5,6 @@
     "rootDir": "./src",
     "tsBuildInfoFile": "./dist/.tsbuildinfo"
   },
-  "include": ["./src", "../@konfik/core/src/config.test.ts"]
+  "include": ["./src"],
+  "references": [{ "path": "../@konfik/cli" }]
 }

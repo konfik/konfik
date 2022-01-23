@@ -1,5 +1,5 @@
 import { _ } from '../../../konfik'
-import { Ts } from './config'
+import { Ts } from './config.js'
 
 const MyTs = Ts({
   compilerOptions: {

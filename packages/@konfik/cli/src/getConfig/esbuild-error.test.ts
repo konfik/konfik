@@ -1,5 +1,4 @@
 import test from 'ava'
-import * as esbuild from 'esbuild'
 
 import { KnownEsbuildError } from './esbuild.js'
 
