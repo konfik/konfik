@@ -6,10 +6,11 @@ import {
   ConfigsFactory,
   _,
 } from 'konfik'
-import { Tsconfig, ts } from '@konfik/tsconfig'
-import { eslint } from '@konfik/eslint'
-import { pkg } from '@konfik/pkg'
-import { PackageJson } from '.konfik/github.com/konfik/package-json'
+// import { Tsconfig, ts } from '@konfik/tsconfig'
+import { eslint } from '.konfik/github.com/konfik/eslint'
+import { prettier } from '.konfik/github.com/konfik/prettier'
+// import { pkg } from '@konfik/pkg'
+// import { PackageJson } from '.konfik/github.com/konfik/package-json'
 
 type x = PackageJson['']
 
@@ -23,6 +24,7 @@ const Configs = ConfigsFactory({
   bluePrints: {
     ts,
     eslint,
+    prettier,
     pkg,
   },
   subConfigs: [otherProject],

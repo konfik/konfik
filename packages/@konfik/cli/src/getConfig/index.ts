@@ -61,11 +61,9 @@ export const getConfigWatch = ({
           platform: 'node',
           target: 'es2020',
           format: 'esm',
-          // needed in case models are co-located with React components
-          jsx: 'transform',
           bundle: true,
           logLevel: 'silent',
-          plugins: [contentlayerGenPlugin(), makeAllPackagesExternalPlugin(configPath)],
+          // plugins: [contentlayerGenPlugin(), makeAllPackagesExternalPlugin(configPath)],
         }),
         S.mapEffectEitherRight((result) => getConfigFromResult({ result, configPath, outfilePath })),
       ),

@@ -226,6 +226,7 @@ __metadata:
     "@konfik/core": "workspace:*"
     "@konfik/utils": "workspace:*"
     "@types/source-map-support": ^0
+    ava: ^4.0.1
     esbuild: ^0.14.13
     source-map-support: ^0.5.21
   languageName: unknown

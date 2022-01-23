@@ -6,11 +6,12 @@ import * as Options from '@effect-ts/cli/Options'
 import { runMain } from '@effect-ts/node/Runtime'
 import { pipe, T, Tagged } from '@konfik/utils/effect'
 import { provideDummyTracing, provideJaegerTracing } from '@konfik/utils/effect/Tracing'
+import * as os from 'node:os'
 
 import { provideCwd } from './cwd.js'
 import { getPlugins } from './getConfig/index.js'
 import { validatePlugins } from './validate.js'
-import { writeFileForPlugin } from './writeFileForPlugin.js'
+import { writeFile } from './writeFile.js'
 
 // -----------------------------------------------------------------------------
 // Model
@@ -53,7 +54,11 @@ const build = T.gen(function* ($) {
 
   yield* $(validatePlugins(plugins))
 
-  yield* $(pipe(plugins, T.forEachPar(writeFileForPlugin)))
+  const concurrencyLimit = os.cpus().length
+
+  const allFileEntries = plugins.flatMap((_) => Array.from(_.fileMap.entries()))
+
+  yield* $(pipe(allFileEntries, T.forEachParN(concurrencyLimit, writeFile)))
 })
 
 const execute = (command: KonfikCliCommand) =>

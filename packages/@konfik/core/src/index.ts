@@ -9,3 +9,5 @@ export type KonfikPlugin = {
 
 export type FileContents = string
 export type KonfikFileMap = Map<PosixFilePath, FileContents>
+
+export type KonfikFileMapEntry = [PosixFilePath, FileContents]
