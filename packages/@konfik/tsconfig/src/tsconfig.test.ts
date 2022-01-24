@@ -1,14 +1,13 @@
 // TODO: write real tests here
 import { _ } from '@konfik/core'
-import { Ts } from './config.js'
+import { Tsconfig } from './tsconfig.js'
 
-const MyTs = Ts({
+const MyTs = Tsconfig({
   compilerOptions: {
     declaration: true,
     allowJs: false,
     composite: true,
   },
-  exclude: ['node_modules'],
   include: _,
   extends: _,
   watchOptions: _,
