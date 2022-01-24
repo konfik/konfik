@@ -3572,6 +3572,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"new-example@workspace:examples/new":
+  version: 0.0.0-use.local
+  resolution: "new-example@workspace:examples/new"
+  dependencies:
+    "@konfik/core": "workspace:*"
+    "@konfik/tsconfig": "workspace:*"
+  languageName: unknown
+  linkType: soft
+
 "node-fetch@npm:^2.6.1":
   version: 2.6.7
   resolution: "node-fetch@npm:2.6.7"
