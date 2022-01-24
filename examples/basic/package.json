@@ -1,7 +1,8 @@
 {
-  "name": "basic-example",
+  "name": "basic",
   "devDependencies": {
-    "@konfik/tsconfig": "workspace:*",
-    "konfik": "workspace:*"
+    "@konfik/core": "workspace:*",
+    "@konfik/package": "workspace:*",
+    "@konfik/tsconfig": "workspace:*"
   }
 }

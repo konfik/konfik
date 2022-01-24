@@ -9,28 +9,38 @@ export type KonfikPhase<
   Supplied extends Constraint,
 > = KonfikPhase._0<Constraint, Supplied>
 namespace KonfikPhase {
-  export type _0<Constraint extends Record<PropertyKey, any>, Supplied extends Record<PropertyKey, any>> = {
-    [Key in keyof Supplied as IsPlaceheld<Supplied[Key]> extends true ? Key : never]: Key extends keyof Exclude<
-      Constraint,
-      undefined | Placeholder
-    >
-      ? Supplied[Key] extends Placeholder
-        ? Exclude<Constraint, undefined | Placeholder>[Key]
-        : _0<Exclude<Constraint, undefined | Placeholder>[Key], Supplied[Key]>
-      : never
+  // prettier-ignore
+  export type _0<
+    Constraint extends Record<PropertyKey, any>,
+    Supplied extends Record<PropertyKey, any>,
+  > = {
+    // Map over all supplied fields containing placeholders or descendants with placeholders.
+    [Key in keyof Supplied as IsPlaceheld<Supplied[Key]> extends true ? Key : never]:
+      // Alias the version of constraint to recurse without branching.
+      Exclude<Constraint, undefined | Placeholder> extends infer ConstraintSafe
+        // Checker can't infer that `Key` is a key of `X`, so we help it out.
+        ? Key extends keyof ConstraintSafe
+          ? Supplied[Key] extends Placeholder
+            // If the value is placeheld, we return it as is for the next phase.
+            ? ConstraintSafe[Key]
+            // Otherwise we recurse.
+            : _0<ConstraintSafe[Key], Supplied[Key]>
+          : never
+        : never;
   }
 }
 
 export class KonfikHandle<Blueprint extends Record<PropertyKey, any>> {
   name
 
-  constructor(public configFactoryProps: KonfikFactoryProps<Blueprint>, public config: any) {
+  constructor(public configFactoryProps: KonfikFactoryProps<Blueprint>, public config: Blueprint) {
     this.name = configFactoryProps.defaultName
   }
 
-  named(name: string): KonfikHandle<Blueprint> {
+  named(name: string): Exclude<KonfikHandle<Blueprint>, 'name'> {
     this.name = name
-    return this
+    const { named, ...rest } = this
+    return rest as any
   }
 }
 
@@ -45,10 +55,20 @@ export const Konfiks = <KonfikHandles extends KonfikHandle<Record<PropertyKey, a
   }, new Map<PosixFilePath, string>())
 }
 
+// Shout out to @tjjfvi.
+type RestoreDocs<Blueprint, Supplied> = [Blueprint | Supplied] extends [Record<PropertyKey, any>]
+  ? Pick<
+      {
+        [Key in keyof Blueprint]: RestoreDocs<Blueprint[Key], Supplied[Key & keyof Supplied]>
+      },
+      keyof Supplied & keyof Blueprint
+    >
+  : Supplied
+
 export type Konfik<Blueprint extends Record<PropertyKey, any>, Base extends Placeheld<Record<PropertyKey, any>>> = <
   Supplied extends Base,
 >(
-  remainder: Supplied,
+  remainder: [Supplied] extends [unknown] ? RestoreDocs<Blueprint, Supplied> : Supplied,
 ) => IsPlaceheld<Supplied> extends true ? Konfik<Blueprint, KonfikPhase<Base, Supplied>> : KonfikHandle<Blueprint>
 
 export interface KonfikFactoryProps<Blueprint extends Record<PropertyKey, any>> {
@@ -98,7 +118,6 @@ export const KonfikFactory = <Blueprint extends Record<PropertyKey, any>>(
   }
 
   function shouldVisit(e: any): boolean {
-    // TODO: is the ! instanceof ConfigHandle check necessary? Is there another way to do this?
     return !Array.isArray(e) && e !== _ && typeof e === 'object'
   }
 }

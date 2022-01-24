@@ -1,106 +1,25 @@
-import {
-  // should `PackageJson` be exposed from `konfik` itself,
-  // or through similar means as TS configs?
-  // PackageJson,
-  generate,
-  ConfigsFactory,
-  _,
-} from 'konfik'
-// import { Tsconfig, ts } from '@konfik/tsconfig'
-import { eslint } from '.konfik/github.com/konfik/eslint'
-import { prettier } from '.konfik/github.com/konfik/prettier'
-// import { pkg } from '@konfik/pkg'
-// import { PackageJson } from '.konfik/github.com/konfik/package-json'
+import { _ } from '@konfik/core'
+import { Tsconfig } from '@konfik/tsconfig'
+import { Package } from '@konfik/package'
 
-type x = PackageJson['']
-
-// import * as otherProject from './packages/other-project/project.ts'
-
-// What makes a given config factory "special"?
-// - can there be multiple?
-// - how to generate (yaml, json, etc.)
-
-const Configs = ConfigsFactory({
-  bluePrints: {
-    ts,
-    eslint,
-    prettier,
-    pkg,
+const pkg = Package({
+  name: 'new-example',
+  devDependencies: {
+    '@konfik/core': 'workspace:*',
+    '@konfik/package': 'workspace:*',
+    '@konfik/tsconfig': 'workspace:*',
   },
-  subConfigs: [otherProject],
 })
 
-// TODO: how much do we want to generate
-// const somePackage = Pkg({
-//   name: "",
-//   dir: "./something"
-// })
-
-// whateverSynth(somePackage)
-
-// TODO: how to deal with extends?
-const someOtherTsconfig = ts.Config({
-  // ...
-})
-
-const rootTsconfig = ts.Config({
-  files: [],
-  references: [someOtherTsconfig],
-})
-
-const MyTsconfig = ts.Config({
+const tsconfig = Tsconfig({
+  extends: '../../tsconfig.base.json',
   compilerOptions: {
-    // ...
-    module: _,
+    outDir: './dist',
+    rootDir: './src',
+    tsBuildInfoFile: './dist/.tsbuildinfo',
   },
+  include: ['./src'],
+  references: [{ path: '../../packages/@konfik/core' }, { path: '../../packages/@konfik/tsconfig' }],
 })
 
-// Some configs (such as `tsconfigs`) can have multiple instances coexisting.
-// Other configs should be one-of-a-kind.
-const configs: Configs = Configs({
-  pkg: pkg.Config({
-    name: '',
-  }),
-  ts: {
-    ['tsconfig.json']: MyTsconfig({
-      module: ts.ModuleKind.CommonJS,
-    }),
-    ['tsconfig.esm.json']: MyTsconfig({
-      module: ts.ModuleKind.ESModules,
-    }),
-  },
-  eslint: {
-    ['.eslintrc.json']: eslint.Config({
-      // ...
-    }),
-  },
-})
-
-export const konfiks = [config] as const
-configs.synth()
-configs.synth() // type error if called a second time
-
-// What are the atomic units of this DX?
-// - scopes
-// - deps
-// - tasks
-// - configFactories
-
-// const TsconfigFactory = Tsconfig({
-//   compilerOptions: {
-//     lib: [''],
-//     typeRoots: _,
-//   },
-//   includes: _,
-// })
-
-// const tsconfig1 = TsconfigFactory({ includes: ['a'], typeRoots: [] })
-// const tsconfig2 = TsconfigFactory({ includes: ['b'], typeRoots: [] })
-
-const packageJson = PackageJson({
-  name: 'basic-example',
-  dependencies: {},
-  scripts: {},
-})
-
-generate([tsconfig, packageJson])
+export const konfik = [pkg, tsconfig]

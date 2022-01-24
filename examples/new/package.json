@@ -1,7 +1,0 @@
-{
-  "name": "new-example",
-  "devDependencies": {
-    "@konfik/core": "workspace:*",
-    "@konfik/tsconfig": "workspace:*"
-  }
-}
