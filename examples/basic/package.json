@@ -1,5 +1,5 @@
 {
-  "name": "basic",
+  "name": "basic-example",
   "devDependencies": {
     "@konfik/core": "workspace:*",
     "@konfik/package": "workspace:*",

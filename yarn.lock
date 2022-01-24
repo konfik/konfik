@@ -1354,9 +1354,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"basic@workspace:examples/basic":
+"basic-example@workspace:examples/basic":
   version: 0.0.0-use.local
-  resolution: "basic@workspace:examples/basic"
+  resolution: "basic-example@workspace:examples/basic"
   dependencies:
     "@konfik/core": "workspace:*"
     "@konfik/package": "workspace:*"
