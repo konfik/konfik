@@ -61,7 +61,7 @@ export const getConfigWatch = ({
           platform: 'node',
           target: 'es2020',
           format: 'esm',
-          mainFields: ["module", "main"],
+          mainFields: ['module', 'main'],
           bundle: true,
           logLevel: 'silent',
           // plugins: [contentlayerGenPlugin(), makeAllPackagesExternalPlugin(configPath)],

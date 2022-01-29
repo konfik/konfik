@@ -1496,6 +1496,7 @@ __metadata:
   resolution: "basic-example@workspace:examples/basic"
   dependencies:
     konfik: "workspace:*"
+    konfik-package-json: "workspace:*"
     konfik-tsconfig: "workspace:*"
   languageName: unknown
   linkType: soft
@@ -2423,6 +2424,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-plugin-prettier@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "eslint-plugin-prettier@npm:4.0.0"
+  dependencies:
+    prettier-linter-helpers: ^1.0.0
+  peerDependencies:
+    eslint: ">=7.28.0"
+    prettier: ">=2.0.0"
+  peerDependenciesMeta:
+    eslint-config-prettier:
+      optional: true
+  checksum: 03d69177a3c21fa2229c7e427ce604429f0b20ab7f411e2e824912f572a207c7f5a41fd1f0a95b9b8afe121e291c1b1f1dc1d44c7aad4b0837487f9c19f5210d
+  languageName: node
+  linkType: hard
+
 "eslint-plugin-react-hooks@npm:^4.2.0":
   version: 4.3.0
   resolution: "eslint-plugin-react-hooks@npm:4.3.0"
@@ -2714,7 +2730,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-diff@npm:^1.2.0":
+"fast-diff@npm:^1.1.2, fast-diff@npm:^1.2.0":
   version: 1.2.0
   resolution: "fast-diff@npm:1.2.0"
   checksum: 1b5306eaa9e826564d9e5ffcd6ebd881eb5f770b3f977fcbf38f05c824e42172b53c79920e8429c54eb742ce15a0caf268b0fdd5b38f6de52234c4a8368131ae
@@ -2974,7 +2990,6 @@ __metadata:
     "@gitpod/gitpod-protocol": ^0.1.5-test.4
     "@konfik/core": "workspace:*"
     "@types/js-yaml": ^4
-    "@types/prettier": ^2
     js-yaml: ^4.1.0
   languageName: unknown
   linkType: soft
@@ -3639,6 +3654,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"konfik-package-json@workspace:*, konfik-package-json@workspace:plugins/package-json":
+  version: 0.0.0-use.local
+  resolution: "konfik-package-json@workspace:plugins/package-json"
+  dependencies:
+    "@konfik/core": "workspace:*"
+    type-fest: ^2.10.0
+  languageName: unknown
+  linkType: soft
+
 "konfik-tsconfig@workspace:*, konfik-tsconfig@workspace:plugins/tsconfig":
   version: 0.0.0-use.local
   resolution: "konfik-tsconfig@workspace:plugins/tsconfig"
@@ -4253,15 +4277,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"package-json@workspace:plugins/package-json":
-  version: 0.0.0-use.local
-  resolution: "package-json@workspace:plugins/package-json"
-  dependencies:
-    "@konfik/core": "workspace:*"
-    type-fest: ^2.10.0
-  languageName: unknown
-  linkType: soft
-
 "parent-module@npm:^1.0.0":
   version: 1.0.1
   resolution: "parent-module@npm:1.0.1"
@@ -4366,6 +4381,15 @@ __metadata:
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
   checksum: cd192ec0d0a8e4c6da3bb80e4f62afe336df3f76271ac6deb0e6a36187133b6073a19e9727a1ff108cd8b9982e4768850d413baa71214dd80c7979617dca827a
+  languageName: node
+  linkType: hard
+
+"prettier-linter-helpers@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "prettier-linter-helpers@npm:1.0.0"
+  dependencies:
+    fast-diff: ^1.1.2
+  checksum: 00ce8011cf6430158d27f9c92cfea0a7699405633f7f1d4a45f07e21bf78e99895911cbcdc3853db3a824201a7c745bd49bfea8abd5fb9883e765a90f74f8392
   languageName: node
   linkType: hard
 
@@ -4653,6 +4677,7 @@ __metadata:
     eslint-config-prettier: ^8.3.0
     eslint-plugin-import: ^2.24.2
     eslint-plugin-prefer-arrow: ^1.2.3
+    eslint-plugin-prettier: ^4.0.0
     eslint-plugin-react-hooks: ^4.2.0
     eslint-plugin-simple-import-sort: ^7.0.0
     prettier: ^2.5.0

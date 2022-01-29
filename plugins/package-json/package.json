@@ -1,5 +1,5 @@
 {
-  "name": "package-json",
+  "name": "konfik-package-json",
   "exports": {
     ".": "./src/index.ts"
   },

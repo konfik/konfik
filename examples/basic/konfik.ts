@@ -1,9 +1,9 @@
 import { _, Konfiks } from '../../packages/@konfik/core'
-import { Tsconfig } from '.konfik/github.com/konfik/konfik/plugins/tsconfig'
-import { Package } from '.konfik/github.com/konfik/konfik/plugins/package-json'
 import { Eslint } from '.konfik/github.com/konfik/konfik/plugins/eslint'
-import { Prettier } from '.konfik/github.com/konfik/konfik/plugins/prettier'
 import { Gitpod } from '.konfik/github.com/konfik/konfik/plugins/gitpod'
+import { Package } from '.konfik/github.com/konfik/konfik/plugins/package-json'
+import { Prettier } from '.konfik/github.com/konfik/konfik/plugins/prettier'
+import { Tsconfig } from '.konfik/github.com/konfik/konfik/plugins/tsconfig'
 
 const gitpod = Gitpod({
   tasks: [
@@ -14,15 +14,6 @@ const gitpod = Gitpod({
   ],
   vscode: {
     extensions: ['dbaeumer.vscode-eslint'],
-  },
-})
-
-const pkg = Package({
-  name: 'new-example',
-  devDependencies: {
-    '@konfik/core': 'workspace:*',
-    '@konfik/package': 'workspace:*',
-    '@konfik/tsconfig': 'workspace:*',
   },
 })
 
@@ -39,7 +30,7 @@ const eslint = Eslint({
     node: true,
     es6: true,
   },
-  ignorePatterns: ['packages/_archive/*', 'examples/*', '**/dist/*', '**/.nyc_output/*'],
+  ignorePatterns: ['packages/_archive/*', '**/dist/*', '**/.nyc_output/*'],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'simple-import-sort', 'prefer-arrow', 'import'],
   // TODO: can we infer the dependencies & inject them into a generated `package.json`?
@@ -59,6 +50,15 @@ const eslint = Eslint({
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
+  },
+})
+
+const pkg = Package({
+  name: 'basic-example',
+  dependencies: {
+    konfik: 'workspace:*',
+    'konfik-tsconfig': 'workspace:*',
+    'konfik-package-json': 'workspace:*',
   },
 })
 

@@ -2,6 +2,7 @@
   "name": "basic-example",
   "dependencies": {
     "konfik": "workspace:*",
+    "konfik-package-json": "workspace:*",
     "konfik-tsconfig": "workspace:*"
   }
 }

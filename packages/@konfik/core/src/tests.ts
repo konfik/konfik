@@ -6,10 +6,14 @@
  * TODO: TRY TO BREAK IT! Circularity?
  */
 
-import { KonfikPhase, KonfikFactory, KonfikFactoryProps } from './konfik-factory.js'
-import { _, Placeholder, Placeheld, IsPlaceheld } from './placeholder.js'
-import { IsExact, assert } from 'conditional-type-checks'
 import test from 'ava'
+import type { IsExact} from 'conditional-type-checks';
+import { assert } from 'conditional-type-checks'
+
+import type { KonfikFactoryProps,KonfikPhase } from './konfik-factory.js';
+import { KonfikFactory } from './konfik-factory.js'
+import type { IsPlaceheld,Placeheld, Placeholder } from './placeholder.js';
+import { _ } from './placeholder.js'
 
 const konfikFactoryTestProps: KonfikFactoryProps<Record<PropertyKey, any>> = {
   defaultName: 'testing',

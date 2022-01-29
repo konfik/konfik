@@ -1,3 +1,3 @@
-import { run } from "@konfik/cli/cli"
+import { run } from '@konfik/cli/cli'
 
 run()
