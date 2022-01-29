@@ -1,0 +1,10 @@
+{
+  "name": "konfik-gitignore",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@konfik/core": "workspace:*"
+  }
+}

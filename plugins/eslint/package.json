@@ -1,5 +1,5 @@
 {
-  "name": "eslint",
+  "name": "konfik-eslint",
   "exports": {
     ".": "./src/index.ts"
   },

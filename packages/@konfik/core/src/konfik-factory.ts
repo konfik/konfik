@@ -1,7 +1,7 @@
 import type { PosixFilePath } from '@konfik/utils'
 import { posixFilePath } from '@konfik/utils'
 
-import type { KonfikFileMap } from './common.js'
+import type { KonfikFileMap, KonfikPlugin } from './common.js'
 import type { IsPlaceheld, Placeheld, Placeholder } from './placeholder.js'
 import { _ } from './placeholder.js'
 
@@ -45,15 +45,18 @@ export class KonfikHandle<Blueprint extends Record<PropertyKey, any>> {
   }
 }
 
+// TODO: decide on globals (such as formatting per-file type)
 // TODO: decide whether to add type-level validations. If not, no need for the type param.
 export const Konfiks = <KonfikHandles extends KonfikHandle<Record<PropertyKey, any>>[]>(
   ...konfikHandles: KonfikHandles
-): KonfikFileMap => {
-  return konfikHandles.reduce((acc, handle) => {
+): KonfikPlugin => {
+  const fileMap = konfikHandles.reduce((acc, handle) => {
     const contents = handle.configFactoryProps.toString(handle.config)
     acc.set(posixFilePath(handle.name), contents)
     return acc
   }, new Map<PosixFilePath, string>())
+
+  return { fileMap }
 }
 
 // Shout out to @tjjfvi.
@@ -66,6 +69,7 @@ type RestoreDocs<Blueprint, Supplied> = [Blueprint | Supplied] extends [Record<P
     >
   : Supplied
 
+// TODO: optional validation logic included
 export type Konfik<Blueprint extends Record<PropertyKey, any>, Base extends Placeheld<Record<PropertyKey, any>>> = <
   Supplied extends Base,
 >(

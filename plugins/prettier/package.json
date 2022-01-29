@@ -1,5 +1,5 @@
 {
-  "name": "prettier",
+  "name": "konfik-prettier",
   "exports": {
     ".": "./src/index.ts"
   },
