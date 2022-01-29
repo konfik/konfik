@@ -2,11 +2,11 @@
   "name": "basic",
   "devDependencies": {
     "konfik": "workspace:*",
-    "konfik-tsconfig": "workspace:*",
-    "konfik-package-json": "workspace:*",
     "konfik-eslint": "workspace:*",
-    "konfik-prettier": "workspace:*",
+    "konfik-gitignore": "workspace:*",
     "konfik-gitpod": "workspace:*",
-    "konfik-gitignore": "workspace:*"
+    "konfik-package-json": "workspace:*",
+    "konfik-prettier": "workspace:*",
+    "konfik-tsconfig": "workspace:*"
   }
 }

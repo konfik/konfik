@@ -2,9 +2,11 @@ import '@konfik/utils/effect/Tracing/Enable'
 
 import * as CliApp from '@effect-ts/cli/CliApp'
 import * as Command from '@effect-ts/cli/Command'
+import * as Help from '@effect-ts/cli/Help'
 import * as Options from '@effect-ts/cli/Options'
 import { runMain } from '@effect-ts/node/Runtime'
-import { pipe, T, Tagged } from '@konfik/utils/effect'
+import type { O } from '@konfik/utils/effect'
+import { pipe, Show, T, Tagged } from '@konfik/utils/effect'
 import { provideDummyTracing, provideJaegerTracing } from '@konfik/utils/effect/Tracing'
 import * as os from 'node:os'
 
@@ -19,22 +21,29 @@ import { writeFile } from './writeFile.js'
 
 export type KonfikCliCommand = Build
 
-export class Build extends Tagged('Build')<{}> {}
+export interface BuildCommandOptions {
+  readonly configPath: O.Option<string>
+  readonly outDir: O.Option<string>
+}
 
-// -----------------------------------------------------------------------------
-// Args
-// -----------------------------------------------------------------------------
-
-// const taskQs = Object.values(taskQueues).map((_) => Tp.tuple(_.name, _))
-// export const queuesArg = pipe(Args.namedEnumeration('taskQueue', taskQs[0] as any, ...taskQs.slice(1)), Args.repeat)
+export class Build extends Tagged('Build')<BuildCommandOptions> {}
 
 // -----------------------------------------------------------------------------
 // Commands
 // -----------------------------------------------------------------------------
 
+export const configPathOption = pipe(Options.file('config'), Options.alias('c'), Options.optional(Show.string))
+
+export const outDirOption = pipe(Options.directory('outDir'), Options.alias('o'), Options.optional(Show.string))
+
+export const buildOptions = Options.struct({
+  outDir: outDirOption,
+  configPath: configPathOption,
+})
+
 export const buildCommand: Command.Command<KonfikCliCommand> = pipe(
-  Command.make('build', Options.none),
-  Command.map(() => new Build()),
+  Command.make('build', buildOptions),
+  Command.map((_) => new Build(_)),
 )
 
 export const konfikCliCommand = pipe(Command.make('konfik'), Command.subcommands(buildCommand))
@@ -44,28 +53,30 @@ export const konfikCliCommand = pipe(Command.make('konfik'), Command.subcommands
 // -----------------------------------------------------------------------------
 
 const cli = CliApp.make({
-  name: 'test',
+  name: 'konfik',
   version: '0.1.0',
+  summary: Help.text('Scaffold project configuration with a type-safe DSL'),
   command: konfikCliCommand,
 })
 
-const build = T.gen(function* ($) {
-  const plugins = yield* $(getPlugins({ configPath: undefined }))
+const build = (options: BuildCommandOptions) =>
+  T.gen(function* ($) {
+    const plugins = yield* $(getPlugins({ configPath: options.configPath }))
 
-  yield* $(validatePlugins(plugins))
+    yield* $(validatePlugins(plugins))
 
-  const concurrencyLimit = os.cpus().length
+    const concurrencyLimit = os.cpus().length
 
-  const allFileEntries = plugins.flatMap((_) => Array.from(_.fileMap.entries()))
+    const allFileEntries = plugins.flatMap((_) => Array.from(_.fileMap.entries()))
 
-  yield* $(pipe(allFileEntries, T.forEachParN(concurrencyLimit, writeFile)))
-})
+    yield* $(pipe(allFileEntries, T.forEachParN(concurrencyLimit, writeFile(options.outDir))))
+  })
 
 const execute = (command: KonfikCliCommand) =>
   pipe(
     command,
     T.matchTag({
-      Build: () => build,
+      Build: (_) => build(_),
     }),
   )
 

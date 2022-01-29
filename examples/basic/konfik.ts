@@ -1,10 +1,10 @@
 import { _, Konfiks } from 'konfik'
-import { Tsconfig } from 'konfik-tsconfig'
-import { Package } from 'konfik-package-json'
 import { Eslint } from 'konfik-eslint'
-import { Prettier } from 'konfik-prettier'
-import { Gitpod } from 'konfik-gitpod'
 import { Gitignore } from 'konfik-gitignore'
+import { Gitpod } from 'konfik-gitpod'
+import { Package } from 'konfik-package-json'
+import { Prettier } from 'konfik-prettier'
+import { Tsconfig } from 'konfik-tsconfig'
 
 const gitpod = Gitpod({
   tasks: [

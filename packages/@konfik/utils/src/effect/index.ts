@@ -54,6 +54,8 @@ export * as E from '@effect-ts/core/Either'
 export * as Option from '@effect-ts/core/Option'
 export * as O from '@effect-ts/core/Option'
 
+export * as Show from '@effect-ts/core/Show'
+
 export * as Ex from '@effect-ts/core/Effect/Exit'
 
 export * as H from '@effect-ts/core/Effect/Hub'

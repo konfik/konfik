@@ -1,6 +1,6 @@
 import type { KonfikPlugin } from '@konfik/core'
 import type { E } from '@konfik/utils/effect'
-import { Chunk, OT, pipe, S, T } from '@konfik/utils/effect'
+import { Chunk, O, OT, pipe, S, T } from '@konfik/utils/effect'
 // import type { GetKonfikVersionError } from '@konfik/utils/node'
 import { fs } from '@konfik/utils/node'
 import * as path from 'path'
@@ -27,17 +27,19 @@ type GetConfigError =
 export const getPlugins = ({
   configPath,
 }: {
-  configPath?: string
-}): T.Effect<OT.HasTracer & HasCwd, GetConfigError, KonfikPlugin[]> =>
-  pipe(
-    getConfigWatch({ configPath }),
+  configPath: O.Option<string>
+}): T.Effect<OT.HasTracer & HasCwd, GetConfigError, KonfikPlugin[]> => {
+  const targetPath = O.toUndefined(configPath)
+  return pipe(
+    getConfigWatch({ configPath: targetPath }),
     S.take(1),
     S.runCollect,
     T.map(Chunk.unsafeHead),
     T.rightOrFail,
     T.map((_) => [_]),
-    OT.withSpan('@konfik/core/getConfig:getConfig', { attributes: { configPath } }),
+    OT.withSpan('@konfik/core/getConfig:getConfig', { attributes: { configPath: targetPath } }),
   )
+}
 
 export const getConfigWatch = ({
   configPath: configPath_,

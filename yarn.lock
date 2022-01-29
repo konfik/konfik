@@ -1496,7 +1496,11 @@ __metadata:
   resolution: "basic@workspace:examples/basic"
   dependencies:
     konfik: "workspace:*"
+    konfik-eslint: "workspace:*"
+    konfik-gitignore: "workspace:*"
+    konfik-gitpod: "workspace:*"
     konfik-package-json: "workspace:*"
+    konfik-prettier: "workspace:*"
     konfik-tsconfig: "workspace:*"
   languageName: unknown
   linkType: soft
@@ -2973,17 +2977,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gitpod@workspace:plugins/gitpod":
-  version: 0.0.0-use.local
-  resolution: "gitpod@workspace:plugins/gitpod"
-  dependencies:
-    "@gitpod/gitpod-protocol": ^0.1.5-test.4
-    "@konfik/core": "workspace:*"
-    "@types/js-yaml": ^4
-    js-yaml: ^4.1.0
-  languageName: unknown
-  linkType: soft
-
 "glob-parent@npm:^5.1.2, glob-parent@npm:~5.1.2":
   version: 5.1.2
   resolution: "glob-parent@npm:5.1.2"
@@ -3644,12 +3637,51 @@ __metadata:
   languageName: node
   linkType: hard
 
+"konfik-eslint@workspace:*, konfik-eslint@workspace:plugins/eslint":
+  version: 0.0.0-use.local
+  resolution: "konfik-eslint@workspace:plugins/eslint"
+  dependencies:
+    "@konfik/core": "workspace:*"
+    "@types/eslint": ^8
+    eslint: ^8.8.0
+  languageName: unknown
+  linkType: soft
+
+"konfik-gitignore@workspace:*, konfik-gitignore@workspace:plugins/gitignore":
+  version: 0.0.0-use.local
+  resolution: "konfik-gitignore@workspace:plugins/gitignore"
+  dependencies:
+    "@konfik/core": "workspace:*"
+  languageName: unknown
+  linkType: soft
+
+"konfik-gitpod@workspace:*, konfik-gitpod@workspace:plugins/gitpod":
+  version: 0.0.0-use.local
+  resolution: "konfik-gitpod@workspace:plugins/gitpod"
+  dependencies:
+    "@gitpod/gitpod-protocol": ^0.1.5-test.4
+    "@konfik/core": "workspace:*"
+    "@types/js-yaml": ^4
+    js-yaml: ^4.1.0
+  languageName: unknown
+  linkType: soft
+
 "konfik-package-json@workspace:*, konfik-package-json@workspace:plugins/package-json":
   version: 0.0.0-use.local
   resolution: "konfik-package-json@workspace:plugins/package-json"
   dependencies:
     "@konfik/core": "workspace:*"
     type-fest: ^2.10.0
+  languageName: unknown
+  linkType: soft
+
+"konfik-prettier@workspace:*, konfik-prettier@workspace:plugins/prettier":
+  version: 0.0.0-use.local
+  resolution: "konfik-prettier@workspace:plugins/prettier"
+  dependencies:
+    "@konfik/core": "workspace:*"
+    "@types/prettier": ^2
+    prettier: ^2.5.1
   languageName: unknown
   linkType: soft
 
