@@ -7,6 +7,7 @@
   "dependencies": {
     "@konfik/core": "workspace:*",
     "@yarnpkg/core": "^3.2.0-rc.13",
+    "@yarnpkg/fslib": "^2.6.1-rc.8",
     "js-yaml": "^4.1.0"
   },
   "devDependencies": {
