@@ -1,6 +1,8 @@
 # konfik
 
-## Use cases
+## Plugins
+
+- tsconfig
 
 - [ ] TypeScript
   - [ ] tsconfig
@@ -36,10 +38,3 @@
 - Can't use
   - Some Yarn CLI commands: `yarn add`, `yarn upgrade-interactive`
   - Dependabot/Renovate/...
-
-## Design Decisions
-
-- Import plugins from GitHub
-  - chicken-egg problem
-  - Not NPM: Doesn't require `npm publish`
-- `konfik.ts` should work with TS + VSC out of the box - even without a `tsconfig.json`

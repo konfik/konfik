@@ -1,4 +1,4 @@
-import { _ } from 'konfik'
+import { _, Konfiks } from 'konfik'
 import { Tsconfig } from '.konfik/github.com/konfik/konfik/plugins/tsconfig'
 import { Package } from '.konfik/github.com/konfik/konfik/plugins/package-json'
 
@@ -22,4 +22,4 @@ const tsconfig = Tsconfig({
   references: [{ path: '../../packages/@konfik/core' }, { path: '../../packages/@konfik/tsconfig' }],
 })
 
-export const konfik = [pkg, tsconfig]
+export const konfik = [{ fileMap: Konfiks(pkg, tsconfig) }]

@@ -1,8 +1,7 @@
 {
   "name": "konfik",
   "version": "0.1.0",
-  "bin": "./bin/konfik.cjs",
-  "type": "module",
+  "bin": "./bin/konfik",
   "exports": {
     ".": "./dist/lib/index.js"
   },
