@@ -1,8 +1,9 @@
-import { _, Placeholder, Placeheld, IsPlaceheld } from './placeholder.js'
-import { posixFilePath, PosixFilePath } from '@konfik/utils'
+import type { PosixFilePath } from '@konfik/utils'
+import { posixFilePath } from '@konfik/utils'
 
-export type FileContents = string
-export type KonfikFileMap = Map<PosixFilePath, FileContents>
+import type { KonfikFileMap } from './common.js'
+import type { IsPlaceheld, Placeheld, Placeholder } from './placeholder.js'
+import { _ } from './placeholder.js'
 
 export type KonfikPhase<
   Constraint extends Placeheld<Record<PropertyKey, any>>,

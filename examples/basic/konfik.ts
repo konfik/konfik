@@ -1,6 +1,6 @@
-import { _ } from '@konfik/core'
-import { Tsconfig } from '@konfik/tsconfig'
-import { Package } from '@konfik/package'
+import { _ } from 'konfik'
+import { Tsconfig } from '.konfik/github.com/konfik/konfik/plugins/tsconfig'
+import { Package } from '.konfik/github.com/konfik/konfik/plugins/package-json'
 
 const pkg = Package({
   name: 'new-example',

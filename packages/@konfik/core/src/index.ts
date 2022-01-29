@@ -1,5 +1,6 @@
-import { KonfikFileMap } from './konfik-factory.js'
-export { KonfikFactory, type KonfikFileMap, Konfiks } from './konfik-factory.js'
+import type { KonfikFileMap } from './common.js'
+
+export { KonfikFactory, Konfiks } from './konfik-factory.js'
 export { _ } from './placeholder.js'
 
 // TODO: do we need this intermediate type?

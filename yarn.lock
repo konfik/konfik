@@ -240,24 +240,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@konfik/package@workspace:*, @konfik/package@workspace:packages/@konfik/package":
-  version: 0.0.0-use.local
-  resolution: "@konfik/package@workspace:packages/@konfik/package"
-  dependencies:
-    "@konfik/core": "workspace:*"
-    type-fest: ^2.10.0
-  languageName: unknown
-  linkType: soft
-
-"@konfik/tsconfig@workspace:*, @konfik/tsconfig@workspace:packages/@konfik/tsconfig":
-  version: 0.0.0-use.local
-  resolution: "@konfik/tsconfig@workspace:packages/@konfik/tsconfig"
-  dependencies:
-    "@konfik/core": "workspace:*"
-    tsconfig-type: 1.21.0
-  languageName: unknown
-  linkType: soft
-
 "@konfik/utils@workspace:*, @konfik/utils@workspace:packages/@konfik/utils":
   version: 0.0.0-use.local
   resolution: "@konfik/utils@workspace:packages/@konfik/utils"
@@ -1358,9 +1340,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "basic-example@workspace:examples/basic"
   dependencies:
-    "@konfik/core": "workspace:*"
-    "@konfik/package": "workspace:*"
-    "@konfik/tsconfig": "workspace:*"
+    konfik: "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -3236,6 +3216,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"konfik-package-json@workspace:plugins/package-json":
+  version: 0.0.0-use.local
+  resolution: "konfik-package-json@workspace:plugins/package-json"
+  dependencies:
+    "@konfik/core": "workspace:*"
+    type-fest: ^2.10.0
+  languageName: unknown
+  linkType: soft
+
+"konfik-tsconfig@workspace:plugins/tsconfig":
+  version: 0.0.0-use.local
+  resolution: "konfik-tsconfig@workspace:plugins/tsconfig"
+  dependencies:
+    "@konfik/core": "workspace:*"
+    tsconfig-type: 1.21.0
+  languageName: unknown
+  linkType: soft
+
 "konfik@workspace:*, konfik@workspace:packages/konfik":
   version: 0.0.0-use.local
   resolution: "konfik@workspace:packages/konfik"
@@ -3532,7 +3530,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "mono-repo@workspace:examples/mono-repo"
   dependencies:
-    "@konfik/tsconfig": "workspace:*"
     konfik: "workspace:*"
   languageName: unknown
   linkType: soft
@@ -3576,8 +3573,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "new-example@workspace:examples/new"
   dependencies:
-    "@konfik/core": "workspace:*"
-    "@konfik/tsconfig": "workspace:*"
+    konfik: "workspace:*"
   languageName: unknown
   linkType: soft
 

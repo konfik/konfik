@@ -1,7 +1,6 @@
-import { _ } from '@konfik/core'
-import { Ts } from '@konfik/tsconfig'
+import { Tsconfig } from '.konfik/github.com/konfik/konfik/plugins/tsconfig'
 
-const tsconfig = Ts({
+const tsconfig = Tsconfig({
   extends: '../../tsconfig.base.json',
   compilerOptions: {
     outDir: './dist',

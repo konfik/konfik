@@ -1,11 +1,11 @@
 {
-  "name": "@konfik/package",
+  "name": "konfik-tsconfig",
   "exports": {
     ".": "./dist/index.js"
   },
   "types": "./dist/index.d.ts",
   "dependencies": {
     "@konfik/core": "workspace:*",
-    "type-fest": "^2.10.0"
+    "tsconfig-type": "1.21.0"
   }
 }
