@@ -13,6 +13,4 @@ dist
 
 *.log
 
-.env*
-
 .direnv
