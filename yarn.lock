@@ -1494,6 +1494,9 @@ __metadata:
 "basic-example@workspace:examples/basic":
   version: 0.0.0-use.local
   resolution: "basic-example@workspace:examples/basic"
+  dependencies:
+    konfik: "workspace:*"
+    konfik-tsconfig: "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -3636,7 +3639,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"konfik@workspace:packages/konfik":
+"konfik-tsconfig@workspace:*, konfik-tsconfig@workspace:plugins/tsconfig":
+  version: 0.0.0-use.local
+  resolution: "konfik-tsconfig@workspace:plugins/tsconfig"
+  dependencies:
+    "@konfik/core": "workspace:*"
+    tsconfig-type: 1.21.0
+  languageName: unknown
+  linkType: soft
+
+"konfik@workspace:*, konfik@workspace:packages/konfik":
   version: 0.0.0-use.local
   resolution: "konfik@workspace:packages/konfik"
   dependencies:
@@ -3650,7 +3662,7 @@ __metadata:
     esbuild: ^0.14.13
     esbuild-register: ^3.3.2
   bin:
-    konfik: ./bin/konfik
+    konfik: ./bin/konfik.cjs
   languageName: unknown
   linkType: soft
 
@@ -5142,15 +5154,6 @@ __metadata:
   checksum: 505b756933740d112d14576e8681b4a3aecafd4542df551a09e843f41e74d5320210615727b8d78d39fd77dfac5ec49fe7232b2d1c27d2544454cc4a8bc3a49c
   languageName: node
   linkType: hard
-
-"tsconfig@workspace:plugins/tsconfig":
-  version: 0.0.0-use.local
-  resolution: "tsconfig@workspace:plugins/tsconfig"
-  dependencies:
-    "@konfik/core": "workspace:*"
-    tsconfig-type: 1.21.0
-  languageName: unknown
-  linkType: soft
 
 "tslib@npm:^1.8.1":
   version: 1.14.1

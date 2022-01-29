@@ -1,5 +1,5 @@
 {
-  "name": "tsconfig",
+  "name": "konfik-tsconfig",
   "exports": {
     ".": "./src/index.ts"
   },

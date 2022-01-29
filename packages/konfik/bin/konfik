@@ -1,8 +1,3 @@
-#!/usr/bin/env node
+#!/usr/bin/env bash
 
-const main = async () => {
-  const { run } = await import('@konfik/cli/cli')
-  run()
-}
-
-main().catch((e) => console.log(e))
+"$(dirname "${0}")/konfik.cjs"

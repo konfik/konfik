@@ -1,11 +1,15 @@
 {
   "name": "konfik",
   "version": "0.1.0",
-  "bin": "./bin/konfik",
+  "bin": "./bin/konfik.cjs",
+  "type": "module",
   "exports": {
     ".": "./dist/lib/index.js"
   },
   "types": "./dist/lib/index.d.ts",
+  "scripts": {
+    "bundle:cli": "esbuild ./dist/cli/index.js --bundle --platform=node --format=esm --outfile=dist/cli/bundle.js --main-fields=module,main"
+  },
   "dependencies": {
     "@konfik/cli": "workspace:*",
     "@konfik/core": "workspace:*",
