@@ -1,0 +1,15 @@
+{
+  "name": "gitpod",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@gitpod/gitpod-protocol": "^0.1.5-test.4",
+    "@konfik/core": "workspace:*",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4"
+  }
+}

@@ -3,6 +3,19 @@ import { Tsconfig } from '.konfik/github.com/konfik/konfik/plugins/tsconfig'
 import { Package } from '.konfik/github.com/konfik/konfik/plugins/package-json'
 import { Eslint } from '.konfik/github.com/konfik/konfik/plugins/eslint'
 import { Prettier } from '.konfik/github.com/konfik/konfik/plugins/prettier'
+import { Gitpod } from '.konfik/github.com/konfik/konfik/plugins/gitpod'
+
+const gitpod = Gitpod({
+  tasks: [
+    {
+      name: 'init',
+      command: 'yarn install',
+    },
+  ],
+  vscode: {
+    extensions: ['dbaeumer.vscode-eslint'],
+  },
+})
 
 const pkg = Package({
   name: 'new-example',
@@ -29,6 +42,7 @@ const eslint = Eslint({
   ignorePatterns: ['packages/_archive/*', 'examples/*', '**/dist/*', '**/.nyc_output/*'],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'simple-import-sort', 'prefer-arrow', 'import'],
+  // TODO: can we infer the dependencies & inject them into a generated `package.json`?
   extends: ['plugin:react-hooks/recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
   rules: {
     'simple-import-sort/imports': 'error',
@@ -59,4 +73,4 @@ const tsconfig = Tsconfig({
   references: [{ path: '../../packages/@konfik/core' }, { path: '../../packages/@konfik/tsconfig' }],
 })
 
-export const konfik = [{ fileMap: Konfiks(pkg, tsconfig, prettier, eslint) }]
+export const konfik = [{ fileMap: Konfiks(gitpod, pkg, tsconfig, prettier, eslint) }]
