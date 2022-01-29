@@ -240,6 +240,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@konfik/github-downloader@workspace:packages/@konfik/github-downloader":
+  version: 0.0.0-use.local
+  resolution: "@konfik/github-downloader@workspace:packages/@konfik/github-downloader"
+  dependencies:
+    "@konfik/utils": "workspace:*"
+  languageName: unknown
+  linkType: soft
+
 "@konfik/utils@workspace:*, @konfik/utils@workspace:packages/@konfik/utils":
   version: 0.0.0-use.local
   resolution: "@konfik/utils@workspace:packages/@konfik/utils"
@@ -1339,8 +1347,6 @@ __metadata:
 "basic-example@workspace:examples/basic":
   version: 0.0.0-use.local
   resolution: "basic-example@workspace:examples/basic"
-  dependencies:
-    konfik: "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -3216,25 +3222,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"konfik-package-json@workspace:plugins/package-json":
-  version: 0.0.0-use.local
-  resolution: "konfik-package-json@workspace:plugins/package-json"
-  dependencies:
-    "@konfik/core": "workspace:*"
-    type-fest: ^2.10.0
-  languageName: unknown
-  linkType: soft
-
-"konfik-tsconfig@workspace:plugins/tsconfig":
-  version: 0.0.0-use.local
-  resolution: "konfik-tsconfig@workspace:plugins/tsconfig"
-  dependencies:
-    "@konfik/core": "workspace:*"
-    tsconfig-type: 1.21.0
-  languageName: unknown
-  linkType: soft
-
-"konfik@workspace:*, konfik@workspace:packages/konfik":
+"konfik@workspace:packages/konfik":
   version: 0.0.0-use.local
   resolution: "konfik@workspace:packages/konfik"
   dependencies:
@@ -3529,8 +3517,6 @@ __metadata:
 "mono-repo@workspace:examples/mono-repo":
   version: 0.0.0-use.local
   resolution: "mono-repo@workspace:examples/mono-repo"
-  dependencies:
-    konfik: "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -3572,8 +3558,6 @@ __metadata:
 "new-example@workspace:examples/new":
   version: 0.0.0-use.local
   resolution: "new-example@workspace:examples/new"
-  dependencies:
-    konfik: "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -3791,6 +3775,15 @@ __metadata:
   checksum: 3b5303f77eb7722144154288bfd96f799f8ff3e2b2b39330efe38db5dd359e4fb27012464cd85cb0a76e9b7edd1b443568cb3192c22e7cffc34989df0bafd605
   languageName: node
   linkType: hard
+
+"package-json@workspace:plugins/package-json":
+  version: 0.0.0-use.local
+  resolution: "package-json@workspace:plugins/package-json"
+  dependencies:
+    "@konfik/core": "workspace:*"
+    type-fest: ^2.10.0
+  languageName: unknown
+  linkType: soft
 
 "parent-module@npm:^1.0.0":
   version: 1.0.1
@@ -4569,6 +4562,15 @@ __metadata:
   checksum: 505b756933740d112d14576e8681b4a3aecafd4542df551a09e843f41e74d5320210615727b8d78d39fd77dfac5ec49fe7232b2d1c27d2544454cc4a8bc3a49c
   languageName: node
   linkType: hard
+
+"tsconfig@workspace:plugins/tsconfig":
+  version: 0.0.0-use.local
+  resolution: "tsconfig@workspace:plugins/tsconfig"
+  dependencies:
+    "@konfik/core": "workspace:*"
+    tsconfig-type: 1.21.0
+  languageName: unknown
+  linkType: soft
 
 "tslib@npm:^1.8.1":
   version: 1.14.1
