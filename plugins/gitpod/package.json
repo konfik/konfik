@@ -10,7 +10,6 @@
     "js-yaml": "^4.1.0"
   },
   "devDependencies": {
-    "@types/js-yaml": "^4",
-    "@types/prettier": "^2"
+    "@types/js-yaml": "^4"
   }
 }
