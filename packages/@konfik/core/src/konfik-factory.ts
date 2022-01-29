@@ -40,7 +40,7 @@ export class KonfikHandle<Blueprint extends Record<PropertyKey, any>> {
 
   named(name: string): Exclude<KonfikHandle<Blueprint>, 'name'> {
     this.name = name
-    const { named, ...rest } = this
+    const { named: _named, ...rest } = this
     return rest as any
   }
 }

@@ -1,1 +1,1 @@
-export * from './package.js'
+export * from './package-json.js'

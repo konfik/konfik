@@ -4506,12 +4506,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mono-repo@workspace:examples/mono-repo":
-  version: 0.0.0-use.local
-  resolution: "mono-repo@workspace:examples/mono-repo"
-  languageName: unknown
-  linkType: soft
-
 "ms@npm:2.0.0":
   version: 2.0.0
   resolution: "ms@npm:2.0.0"
@@ -4546,12 +4540,6 @@ __metadata:
   checksum: b8ffeb1e262eff7968fc90a2b6767b04cfd9842582a9d0ece0af7049537266e7b2506dfb1d107a32f06dd849ab2aea834d5830f7f4d0e5cb7d36e1ae55d021d9
   languageName: node
   linkType: hard
-
-"new-example@workspace:examples/new":
-  version: 0.0.0-use.local
-  resolution: "new-example@workspace:examples/new"
-  languageName: unknown
-  linkType: soft
 
 "node-fetch@npm:^2.6.1":
   version: 2.6.7
