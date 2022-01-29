@@ -1,9 +1,9 @@
 {
-  "name": "konfik-tsconfig",
+  "name": "tsconfig",
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./src/index.ts"
   },
-  "types": "./dist/index.d.ts",
+  "types": "./src/index.ts",
   "dependencies": {
     "@konfik/core": "workspace:*",
     "tsconfig-type": "1.21.0"

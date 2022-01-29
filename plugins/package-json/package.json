@@ -1,9 +1,9 @@
 {
-  "name": "konfik-package-json",
+  "name": "package-json",
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./src/index.ts"
   },
-  "types": "./dist/index.d.ts",
+  "types": "./src/index.ts",
   "dependencies": {
     "@konfik/core": "workspace:*",
     "type-fest": "^2.10.0"

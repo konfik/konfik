@@ -1,5 +1,5 @@
-import { KonfikFactory, _ } from '@konfik/core'
-import { Tsconfig as TsconfigRaw } from 'tsconfig-type'
+import { _, KonfikFactory } from '@konfik/core'
+import type { Tsconfig as TsconfigRaw } from 'tsconfig-type'
 
 export const Tsconfig = KonfikFactory<TsconfigRaw>({
   defaultName: 'tsconfig.json',
