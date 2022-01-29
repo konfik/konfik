@@ -1,9 +1,10 @@
-import { _, Konfiks } from '../../packages/@konfik/core'
-import { Eslint } from '.konfik/github.com/konfik/konfik/plugins/eslint'
-import { Gitpod } from '.konfik/github.com/konfik/konfik/plugins/gitpod'
-import { Package } from '.konfik/github.com/konfik/konfik/plugins/package-json'
-import { Prettier } from '.konfik/github.com/konfik/konfik/plugins/prettier'
-import { Tsconfig } from '.konfik/github.com/konfik/konfik/plugins/tsconfig'
+import { _, Konfiks } from 'konfik'
+import { Tsconfig } from 'konfik-tsconfig'
+import { Package } from 'konfik-package-json'
+import { Eslint } from 'konfik-eslint'
+import { Prettier } from 'konfik-prettier'
+import { Gitpod } from 'konfik-gitpod'
+import { Gitignore } from 'konfik-gitignore'
 
 const gitpod = Gitpod({
   tasks: [
@@ -16,6 +17,29 @@ const gitpod = Gitpod({
     extensions: ['dbaeumer.vscode-eslint'],
   },
 })
+
+const pkg = Package({
+  name: 'basic',
+  // TODO: can we create a type representing every possible NPM package name and valid versions
+  devDependencies: {
+    konfik: 'workspace:*',
+    'konfik-tsconfig': 'workspace:*',
+    'konfik-package-json': 'workspace:*',
+    'konfik-eslint': 'workspace:*',
+    'konfik-prettier': 'workspace:*',
+    'konfik-gitpod': 'workspace:*',
+    'konfik-gitignore': 'workspace:*',
+  },
+})
+
+const gitignore = Gitignore([
+  '.eslintrc',
+  // TODO: can we make Gitpod aware of this without including in src ctrl?
+  '.gitpod.yml',
+  '.prettierrc',
+  'package.json',
+  'tsconfig.json',
+])
 
 const prettier = Prettier({
   printWidth: 120,
@@ -53,15 +77,6 @@ const eslint = Eslint({
   },
 })
 
-const pkg = Package({
-  name: 'basic-example',
-  dependencies: {
-    konfik: 'workspace:*',
-    'konfik-tsconfig': 'workspace:*',
-    'konfik-package-json': 'workspace:*',
-  },
-})
-
 const tsconfig = Tsconfig({
   extends: '../../tsconfig.base.json',
   compilerOptions: {
@@ -73,4 +88,5 @@ const tsconfig = Tsconfig({
   references: [{ path: '../../packages/@konfik/core' }, { path: '../../packages/@konfik/tsconfig' }],
 })
 
-export const konfik = [{ fileMap: Konfiks(gitpod, pkg, tsconfig, prettier, eslint) }]
+// TODO: how to supply option to generate gitignore
+export default Konfiks(gitpod, pkg, tsconfig, prettier, eslint, gitignore)

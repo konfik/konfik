@@ -1491,9 +1491,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"basic-example@workspace:examples/basic":
+"basic@workspace:examples/basic":
   version: 0.0.0-use.local
-  resolution: "basic-example@workspace:examples/basic"
+  resolution: "basic@workspace:examples/basic"
   dependencies:
     konfik: "workspace:*"
     konfik-package-json: "workspace:*"
@@ -2612,16 +2612,6 @@ __metadata:
   checksum: 41a7e85bf84cf9f2d758ef3e8d08020a39a2836703728b59535684681349bd021c2c6e24174462b844a914870d707d2151e0371198899d957b444de91adaa435
   languageName: node
   linkType: hard
-
-"eslint@workspace:plugins/eslint":
-  version: 0.0.0-use.local
-  resolution: "eslint@workspace:plugins/eslint"
-  dependencies:
-    "@konfik/core": "workspace:*"
-    "@types/eslint": ^8
-    eslint: ^8.8.0
-  languageName: unknown
-  linkType: soft
 
 "espree@npm:^7.3.0, espree@npm:^7.3.1":
   version: 7.3.1
@@ -4401,16 +4391,6 @@ __metadata:
   checksum: 21b9408476ea1c544b0e45d51ceb94a84789ff92095abb710942d780c862d0daebdb29972d47f6b4d0f7ebbfb0ffbf56cc2cfa3e3e9d1cca54864af185b15b66
   languageName: node
   linkType: hard
-
-"prettier@workspace:plugins/prettier":
-  version: 0.0.0-use.local
-  resolution: "prettier@workspace:plugins/prettier"
-  dependencies:
-    "@konfik/core": "workspace:*"
-    "@types/prettier": ^2
-    prettier: ^2.5.1
-  languageName: unknown
-  linkType: soft
 
 "pretty-bytes@npm:^5.6.0":
   version: 5.6.0

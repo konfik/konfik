@@ -3,7 +3,7 @@ import { Tsconfig } from 'tsconfig-type'
 
 export const Ts = KonfikFactory<Tsconfig>({
   defaultName: 'tsconfig.json',
-  toString(tsconfig) {
-    return JSON.stringify(tsconfig)
+  toString(config) {
+    return JSON.stringify(config, null, 2)
   },
 })
