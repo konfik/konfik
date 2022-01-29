@@ -8,6 +8,5 @@
   "types": "./dist/index.d.ts",
   "dependencies": {
     "@konfik/utils": "workspace:*"
-  },
-  "devDependencies": {}
+  }
 }
