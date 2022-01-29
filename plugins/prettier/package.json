@@ -1,0 +1,14 @@
+{
+  "name": "prettier",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@konfik/core": "workspace:*",
+    "prettier": "^2.5.1"
+  },
+  "devDependencies": {
+    "@types/prettier": "^2"
+  }
+}
