@@ -1,12 +1,11 @@
-import { _, Konfiks } from 'konfik'
-import { Eslint } from 'konfik-eslint'
-import { Gitignore } from 'konfik-gitignore'
-import { Gitpod } from 'konfik-gitpod'
-import { Package } from 'konfik-package-json'
-import { Prettier } from 'konfik-prettier'
-import { Tsconfig } from 'konfik-tsconfig'
+import { EslintKonfik } from 'konfik-eslint'
+import { GitignoreKonfik } from 'konfik-gitignore'
+import { GitpodKonfik } from 'konfik-gitpod'
+import { PackageJsonKonfik } from 'konfik-package-json'
+import { PrettierKonfik } from 'konfik-prettier'
+import { TsconfigKonfik } from 'konfik-tsconfig'
 
-const gitpod = Gitpod({
+const gitpodKonfik = GitpodKonfik({
   tasks: [
     {
       name: 'init',
@@ -18,7 +17,7 @@ const gitpod = Gitpod({
   },
 })
 
-const pkg = Package({
+const packageJsonKonfik = PackageJsonKonfik({
   name: 'basic',
   // TODO: can we create a type representing every possible NPM package name and valid versions
   devDependencies: {
@@ -32,7 +31,7 @@ const pkg = Package({
   },
 })
 
-const gitignore = Gitignore([
+const gitignoreKonfik = GitignoreKonfik([
   '.eslintrc',
   // TODO: can we make Gitpod aware of this without including in src ctrl?
   '.gitpod.yml',
@@ -41,14 +40,14 @@ const gitignore = Gitignore([
   'tsconfig.json',
 ])
 
-const prettier = Prettier({
+const prettierKonfik = PrettierKonfik({
   printWidth: 120,
   semi: false,
   trailingComma: 'all',
   singleQuote: true,
 })
 
-const eslint = Eslint({
+const eslintKonfik = EslintKonfik({
   env: {
     browser: true,
     node: true,
@@ -77,7 +76,7 @@ const eslint = Eslint({
   },
 })
 
-const tsconfig = Tsconfig({
+const tsconfigKonfik = TsconfigKonfik({
   extends: '../../tsconfig.base.json',
   compilerOptions: {
     outDir: './dist',
@@ -89,4 +88,11 @@ const tsconfig = Tsconfig({
 })
 
 // TODO: how to supply option to generate gitignore
-export default Konfiks(gitpod, pkg, tsconfig, prettier, eslint, gitignore)
+export default {
+  '.gitpod.yml': gitpodKonfik,
+  'package.json': packageJsonKonfik,
+  'tsconfig.json': tsconfigKonfik,
+  '.prettierrc.json': prettierKonfik,
+  '.eslintrc.json': eslintKonfik,
+  '.gitignore': gitignoreKonfik,
+}

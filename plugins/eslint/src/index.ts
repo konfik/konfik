@@ -1,8 +1,11 @@
-import { Linter } from 'eslint'
 import { KonfikFactory } from '@konfik/core'
+import type { Linter } from 'eslint'
 
-export const Eslint = KonfikFactory<Linter.Config>({
-  defaultName: '.eslintrc.json',
+export const EslintKonfikBrand = Symbol.for('konfik-eslint')
+export type PackageJsonBrand = typeof EslintKonfikBrand
+
+export const EslintKonfik = KonfikFactory<Linter.Config>()({
+  brand: EslintKonfikBrand,
   toString(config) {
     return JSON.stringify(config, null, 2)
   },

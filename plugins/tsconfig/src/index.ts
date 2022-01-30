@@ -1,1 +1,12 @@
-export * from './tsconfig'
+import { KonfikFactory } from '@konfik/core'
+import type { Tsconfig } from 'tsconfig-type'
+
+export const TsconfigKonfikBrand = Symbol.for('konfik-tsconfig')
+export type TsconfigKonfikBrand = typeof TsconfigKonfikBrand
+
+export const TsconfigKonfik = KonfikFactory<Tsconfig>()({
+  brand: TsconfigKonfikBrand,
+  toString(config) {
+    return JSON.stringify(config, null, 2)
+  },
+})

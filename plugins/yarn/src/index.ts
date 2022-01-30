@@ -13,8 +13,11 @@ interface YarnConfig {
   yarnPath: string
 }
 
-export const Yarn = KonfikFactory<YarnConfig>({
-  defaultName: '.yarnrc.yml',
+export const YarnKonfikBrand = Symbol.for('konfik-yarn')
+export type YarnKonfikBrand = typeof YarnKonfikBrand
+
+export const YarnKonfik = KonfikFactory<YarnConfig>()({
+  brand: YarnKonfikBrand,
   toString(config) {
     return dump(config)
   },

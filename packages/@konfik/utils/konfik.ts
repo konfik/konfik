@@ -1,7 +1,7 @@
-import { PackageJson } from 'konfik-package-json'
-import { Tsconfig } from 'konfik-tsconfig'
+import { PackageJsonKonfik } from 'konfik-package-json'
+import { TsconfigKonfik } from 'konfik-tsconfig'
 
-export const packageJsonKonfik = PackageJson({
+export const packageJsonKonfik = PackageJsonKonfik({
   name: '@konfik/utils',
   type: 'module',
   exports: {
@@ -61,7 +61,7 @@ export const packageJsonKonfik = PackageJson({
   },
 })
 
-export const tsconfigKonfik = Tsconfig({
+export const tsconfigKonfik = TsconfigKonfik({
   extends: '../../../tsconfig.base.json',
   compilerOptions: {
     module: 'ES2020',

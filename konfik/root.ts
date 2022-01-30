@@ -1,12 +1,12 @@
-import { Eslint } from 'konfik-eslint'
-import { Gitignore } from 'konfik-gitignore'
-import { Gitpod } from 'konfik-gitpod'
-import { PackageJson } from 'konfik-package-json'
-import { Prettier } from 'konfik-prettier'
-import { Tsconfig } from 'konfik-tsconfig'
-import { Yarn } from 'konfik-yarn'
+import { EslintKonfik } from 'konfik-eslint'
+import { GitignoreKonfik } from 'konfik-gitignore'
+import { GitpodKonfik } from 'konfik-gitpod'
+import { PackageJsonKonfik } from 'konfik-package-json'
+import { PrettierKonfik } from 'konfik-prettier'
+import { TsconfigKonfik } from 'konfik-tsconfig'
+import { YarnKonfik } from 'konfik-yarn'
 
-export const yarnKonfik = Yarn({
+export const yarnKonfik = YarnKonfik({
   nodeLinker: 'node-modules',
   plugins: [
     {
@@ -21,7 +21,7 @@ export const yarnKonfik = Yarn({
   yarnPath: '.yarn/releases/yarn-3.1.1.cjs',
 })
 
-export const gitpodKonfik = Gitpod({
+export const gitpodKonfik = GitpodKonfik({
   tasks: [
     {
       name: 'init',
@@ -33,7 +33,7 @@ export const gitpodKonfik = Gitpod({
   },
 })
 
-export const tsconfigBaseKonfik = Tsconfig({
+export const tsconfigBaseKonfik = TsconfigKonfik({
   compilerOptions: {
     strict: true,
     noUncheckedIndexedAccess: true,
@@ -61,12 +61,12 @@ export const tsconfigBaseKonfik = Tsconfig({
   exclude: ['dist', 'node_modules'],
 })
 
-export const tsconfigAllKonfik = Tsconfig({
+export const tsconfigAllKonfik = TsconfigKonfik({
   extends: './tsconfig.base.json',
   references: [{ path: './packages/konfik' }],
 })
 
-export const packageJsonKonfik = PackageJson({
+export const packageJsonKonfik = PackageJsonKonfik({
   // TODO: do we need to support the following field?
   // @ts-ignore
   packageManager: 'yarn@3.1.1',
@@ -102,7 +102,7 @@ export const packageJsonKonfik = PackageJson({
 })
 
 // TODO: can we use Gitpod without including `.gitpod.yml` in vc?
-export const gitignoreKonfik = Gitignore([
+export const gitignoreKonfik = GitignoreKonfik([
   'node_modules',
   '.idea/',
   '.DS_STORE',
@@ -118,14 +118,14 @@ export const gitignoreKonfik = Gitignore([
   '.eslintrc',
 ])
 
-export const prettierKonfik = Prettier({
+export const prettierKonfik = PrettierKonfik({
   printWidth: 120,
   semi: false,
   trailingComma: 'all',
   singleQuote: true,
 })
 
-export const eslintKonfik = Eslint({
+export const eslintKonfik = EslintKonfik({
   env: {
     browser: true,
     node: true,

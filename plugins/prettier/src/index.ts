@@ -1,8 +1,11 @@
-import { Config as PrettierConfig } from 'prettier'
 import { KonfikFactory } from '@konfik/core'
+import type { Config as PrettierConfig } from 'prettier'
 
-export const Prettier = KonfikFactory<PrettierConfig>({
-  defaultName: '.prettierrc.json',
+export const PrettierKonfikBrand = Symbol.for('konfik-prettier')
+export type PrettierKonfikBrand = typeof PrettierKonfikBrand
+
+export const PrettierKonfik = KonfikFactory<PrettierConfig>()({
+  brand: PrettierKonfikBrand,
   toString(config) {
     return JSON.stringify(config, null, 2)
   },
