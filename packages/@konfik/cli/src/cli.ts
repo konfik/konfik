@@ -67,7 +67,7 @@ const build = (options: BuildCommandOptions) =>
 
     const concurrencyLimit = os.cpus().length
 
-    const allFileEntries = plugins.flatMap((_) => Array.from(_.fileMap.entries()))
+    const allFileEntries = plugins.flatMap((_) => Object.entries(_))
 
     yield* $(pipe(allFileEntries, T.forEachParN(concurrencyLimit, writeFile(options.outDir))))
   })

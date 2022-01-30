@@ -1,6 +1,6 @@
-import { PackageJson } from 'konfik-package-json'
+import { PackageJsonKonfik } from 'konfik-package-json'
 
-export const konfikPkg = PackageJson({
+export const konfikPkg = PackageJsonKonfik({
   name: 'konfik',
   version: '0.1.0',
   bin: './bin/konfik.cjs',

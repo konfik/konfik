@@ -12,9 +12,9 @@ export const writeFile =
         () =>
           pipe(
             T.succeedWith(() => process.cwd()),
-            T.chain((pwd) => fs.writeFile(path.join(pwd, filePath), fileContents)),
+            T.chain((pwd) => fs.writeFile(path.join(pwd, filePath), fileContents.toString())),
           ),
-        (targetDir) => fs.writeFile(path.join(targetDir, filePath), fileContents),
+        (targetDir) => fs.writeFile(path.join(targetDir, filePath), fileContents.toString()),
       ),
     )
   }
