@@ -6,7 +6,5 @@ export type PrettierKonfikBrand = typeof PrettierKonfikBrand
 
 export const PrettierKonfik = KonfikFactory<PrettierConfig>()({
   brand: PrettierKonfikBrand,
-  toString(config) {
-    return JSON.stringify(config, null, 2)
-  },
+  toString: (config) => JSON.stringify(config, null, 2),
 })

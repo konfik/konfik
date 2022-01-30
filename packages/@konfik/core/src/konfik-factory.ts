@@ -9,6 +9,7 @@ const factoryPropsLookup = new Map<any, AnyKonfikFactoryProps>()
 
 // TODO: allow additional constraints to be specified / produce generic factory.
 // This would all ow us to support VSCode extension types.
+// TODO: do we want to allow additional fields (like in package.json)? Make this configurable.
 export const KonfikFactory = <Blueprint>() => {
   return <Brand extends PropertyKey>(factoryProps: KonfikFactoryProps<Brand, Blueprint>) => {
     return <Supplied extends Blueprint>(config: Supplied) => {
@@ -19,7 +20,7 @@ export const KonfikFactory = <Blueprint>() => {
   }
 }
 
-export const getFactoryConfig = (supplied: any): AnyKonfikFactoryProps => {
+export const getFactoryConfig = (supplied: unknown): AnyKonfikFactoryProps => {
   const factoryProps = factoryPropsLookup.get(supplied)
   if (!factoryProps) {
     throw new Error('TODO: throw this the effect-y way.')

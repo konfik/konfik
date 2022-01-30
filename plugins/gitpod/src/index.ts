@@ -7,7 +7,5 @@ export type GitpodKonfikBrand = typeof GitpodKonfikBrand
 
 export const GitpodKonfik = KonfikFactory<GitpodConfig>()({
   brand: GitpodKonfikBrand,
-  toString(config) {
-    return dump(config)
-  },
+  toString: (config) => dump(config),
 })
