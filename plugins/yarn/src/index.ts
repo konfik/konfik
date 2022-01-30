@@ -18,7 +18,5 @@ export type YarnKonfikBrand = typeof YarnKonfikBrand
 
 export const YarnKonfik = KonfikFactory<YarnConfig>()({
   brand: YarnKonfikBrand,
-  toString(config) {
-    return dump(config)
-  },
+  toString: (config) => dump(config),
 })
