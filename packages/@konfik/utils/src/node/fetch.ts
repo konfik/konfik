@@ -1,12 +1,13 @@
 import type { Response } from 'undici'
-import { fetch } from 'undici'
+// NOTE wildcard import needed here since `undici` is still CommonJS only
+import * as undici from 'undici'
 
 import { OT, pipe, T, Tagged } from '../effect/index.js'
 
 export const fetchHead = (url: string | URL): T.Effect<OT.HasTracer, FetchHeadError, Response> =>
   pipe(
     T.tryCatchPromise(
-      () => fetch(url, { method: 'head' }),
+      () => undici.fetch(url, { method: 'head' }),
       (error) => new FetchHeadError({ url, error }),
     ),
     T.tap((res) => OT.addAttribute('http.status', res.status)),
@@ -16,7 +17,7 @@ export const fetchHead = (url: string | URL): T.Effect<OT.HasTracer, FetchHeadEr
 export const fetchText = (url: string | URL): T.Effect<OT.HasTracer, FetchTextError, string> =>
   pipe(
     T.tryCatchPromise(
-      () => fetch(url),
+      () => undici.fetch(url),
       (error) => new FetchTextError({ url, error }),
     ),
     T.tap((res) => OT.addAttribute('http.status', res.status)),
@@ -34,7 +35,7 @@ export const fetchText = (url: string | URL): T.Effect<OT.HasTracer, FetchTextEr
 export const fetchJSON = <T>(url: string | URL): T.Effect<OT.HasTracer, FetchJSONError, T> =>
   pipe(
     T.tryCatchPromise(
-      () => fetch(url),
+      () => undici.fetch(url),
       (error) => new FetchJSONError({ url, error }),
     ),
     T.tap((res) => OT.addAttribute('http.status', res.status)),
@@ -52,7 +53,7 @@ export const fetchJSON = <T>(url: string | URL): T.Effect<OT.HasTracer, FetchJSO
 export const fetchArrayBuffer = (url: string | URL): T.Effect<OT.HasTracer, FetchArrayBufferError, ArrayBuffer> =>
   pipe(
     T.tryCatchPromise(
-      () => fetch(url),
+      () => undici.fetch(url),
       (error) => new FetchArrayBufferError({ url, error }),
     ),
     T.tap((res) => OT.addAttribute('http.status', res.status)),

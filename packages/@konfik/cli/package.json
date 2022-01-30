@@ -13,11 +13,10 @@
     }
   },
   "dependencies": {
-    "@effect-ts/cli": "^0.6.0",
-    "@effect-ts/figlet": "^0.1.0",
-    "@effect-ts/node": "^0.31.0",
-    "@effect-ts/printer": "^0.11.1",
-    "@effect-ts/process": "^0.2.0",
+    "@effect-ts/cli": "^0.7.0",
+    "@effect-ts/figlet": "^0.2.0",
+    "@effect-ts/node": "^0.36.0",
+    "@effect-ts/printer": "^0.12.0",
     "@konfik/core": "workspace:*",
     "@konfik/utils": "workspace:*",
     "esbuild": "^0.14.13",

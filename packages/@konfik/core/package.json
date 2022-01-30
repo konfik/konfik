@@ -9,7 +9,8 @@
   },
   "types": "./dist/index.d.ts",
   "devDependencies": {
-    "ava": "^4.0.1"
+    "ava": "^4.0.1",
+    "conditional-type-checks": "^1.0.5"
   },
   "ava": {
     "files": [

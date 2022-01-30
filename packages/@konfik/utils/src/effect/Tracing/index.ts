@@ -1,5 +1,5 @@
 import type { Clock } from '@effect-ts/core/Effect/Clock'
-import { LiveSimpleProcessor, makeOTLPTraceExporterConfigLayer } from '@effect-ts/otel-exporter-trace-otlp-grpc'
+import { LiveSimpleProcessor, makeOTLPTraceExporterConfigLayer } from '@effect-ts/otel-exporter-trace-otlp-http'
 import * as OTNode from '@effect-ts/otel-sdk-trace-node'
 import { Resource } from '@opentelemetry/resources'
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
@@ -7,7 +7,7 @@ import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
 import type { Has, L } from '../index.js'
 import { OT, T } from '../index.js'
 
-export { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-grpc'
+export { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http'
 export { Resource } from '@opentelemetry/resources'
 export { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
 //

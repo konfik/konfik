@@ -7,11 +7,9 @@ export * from './time.js'
 export * from './single-item.js'
 export * from './file-paths.js'
 export * from './types.js'
-// export * from './tracing-effect/index.js'
 
 export { v4 as uuid } from 'uuid'
 
-export * as pattern from 'ts-pattern'
 import { Tagged } from '@effect-ts/core/Case'
 
 export type Prettify<T> = T extends infer U ? { [K in keyof U]: Prettify<U[K]> } : never

@@ -1,23 +1,11 @@
 import type { OT } from '@konfik/utils/effect'
 import { pipe, T } from '@konfik/utils/effect'
-import { fs } from '@konfik/utils/node'
-import * as path from 'node:path'
-import { fileURLToPath } from 'url'
-
-// use static import once JSON modules are no longer experimental
-// import utilsPkg from '@konfik/utils/package.json'
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
+import type { fs } from '@konfik/utils/node'
+// NOTE for this to work we're relying on the static json import feature of esbuild (this feature will also be supported in Node.js in the future)
+import { version } from '@konfik/utils/package.json'
 
 export const getKonfikVersion = (): T.Effect<OT.HasTracer, GetKonfikVersionError, string> => {
-  // Go one level up for "dist/version.js"
-  const packageJsonFilePath = path.join(__dirname, '..', 'package.json')
-
-  return pipe(
-    fs.readFileJson(packageJsonFilePath),
-    T.map((pkg: any) => pkg.version as string),
-    T.catchTag('node.fs.FileNotFoundError', (e) => T.die(e)),
-  )
+  return pipe(T.succeed(version))
 }
 
 export type GetKonfikVersionError = fs.ReadFileError | fs.JsonParseError
