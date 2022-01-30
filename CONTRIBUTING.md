@@ -21,3 +21,4 @@
 - Generated files are read-only (strongly recommended)
 - Avoid chicken-egg problems
 - Incrementally adoptable
+- No magic
