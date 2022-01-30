@@ -1,4 +1,5 @@
 import { KonfikFactory } from '@konfik/core'
+// TODO: determine what other things need to be generated (`.yarn`)
 // TODO: modify this type so users don't need to interact with `@yarnpkg/fs`
 // import type { ConfigurationValueMap as YarnConfig } from '@yarnpkg/core'
 import { dump } from 'js-yaml'

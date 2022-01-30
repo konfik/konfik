@@ -1,7 +1,7 @@
 import type { PosixFilePath } from '@konfik/utils'
 import { posixFilePath } from '@konfik/utils'
 
-import type { KonfikFileMap, KonfikPlugin } from './common.js'
+import type { KonfikPlugin } from './common.js'
 import type { IsPlaceheld, Placeheld, Placeholder } from './placeholder.js'
 import { _ } from './placeholder.js'
 
