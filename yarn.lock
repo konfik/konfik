@@ -55,15 +55,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@effect-ts/cli@npm:^0.7.0":
-  version: 0.7.0
-  resolution: "@effect-ts/cli@npm:0.7.0"
+"@effect-ts/cli@npm:^0.7.1":
+  version: 0.7.1
+  resolution: "@effect-ts/cli@npm:0.7.1"
   peerDependencies:
     "@effect-ts/core": 0.53.0
     "@effect-ts/figlet": 0.2.0
     "@effect-ts/node": 0.36.0
     "@effect-ts/printer": 0.12.0
-  checksum: fc4f20b9b1e658f3302bdf4e9318323036d373a7cabc5bb5a12f09830ae3351125738fb66bbef2b1a05315f1ad2ad8ffcd1341191f4f2320703f8b9a70596323
+  checksum: d9574bd448aaad21669b593bd103a93d668f869a9631520f6cc486453e4a819ae8bbaae25e56a808e1ffa1e385bef4ec64aaee5a7e5959e3ac0b9711a8075f7f
   languageName: node
   linkType: hard
 
@@ -254,7 +254,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@konfik/cli@workspace:packages/@konfik/cli"
   dependencies:
-    "@effect-ts/cli": ^0.7.0
+    "@effect-ts/cli": ^0.7.1
     "@effect-ts/figlet": ^0.2.0
     "@effect-ts/node": ^0.36.0
     "@effect-ts/printer": ^0.12.0

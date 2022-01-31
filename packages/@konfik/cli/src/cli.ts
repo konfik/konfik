@@ -57,6 +57,7 @@ const cli = CliApp.make({
   version: '0.1.0',
   summary: Help.text('Scaffold project configuration with a type-safe DSL'),
   command: konfikCliCommand,
+  config: { showBanner: false },
 })
 
 const build = (options: BuildCommandOptions) =>
