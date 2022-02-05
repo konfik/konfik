@@ -1,5 +1,7 @@
 # konfik
 
+Abstract over configuration with TypeScript.
+
 ## Plugins
 
 - tsconfig

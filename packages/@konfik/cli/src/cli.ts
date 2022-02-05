@@ -6,6 +6,7 @@ import * as CliExists from '@effect-ts/cli/Exists'
 import * as CliHelp from '@effect-ts/cli/Help'
 import * as CliOptions from '@effect-ts/cli/Options'
 import { runMain } from '@effect-ts/node/Runtime'
+import { flattenKonfikTrie } from '@konfik/core'
 import { unknownToPosixFilePath } from '@konfik/utils'
 import { O, pipe, Show, T, Tagged } from '@konfik/utils/effect'
 import { provideDummyTracing, provideJaegerTracing } from '@konfik/utils/effect/Tracing'
@@ -72,9 +73,9 @@ const build = (options: BuildCommandOptions) =>
 
     yield* $(validatePlugins(plugins))
 
-    const concurrencyLimit = os.cpus().length
+    const concurrencyLimit = yield* $(T.succeedWith(() => os.cpus().length))
 
-    const allFileEntries = plugins.flatMap((_) => Object.entries(_))
+    const allFileEntries = plugins.flatMap((_) => flattenKonfikTrie(_))
 
     yield* $(
       fs.mkdirp(
