@@ -1,14 +1,20 @@
 {
   "name": "konfik",
-  "version": "0.0.0",
-  "bin": "./bin/konfik",
+  "version": "0.0.2-dev.6",
+  "bin": "./dist/cli/bundle.cjs",
   "type": "module",
   "exports": {
     ".": "./dist/lib/index.js"
   },
   "types": "./dist/lib/index.d.ts",
+  "files": [
+    "./dist",
+    "./src",
+    "package.json"
+  ],
   "scripts": {
-    "bundle-cli": "esbuild ./dist/cli/index.js --bundle --platform=node --format=cjs --external:esbuild --outfile=dist/cli/bundle.cjs --main-fields=module,main"
+    "prepublish": "run bundle-cli",
+    "bundle-cli": "esbuild ./dist/cli/index.js --bundle --platform=node --format=cjs --external:esbuild --outfile=dist/cli/bundle.cjs --main-fields=module,main --banner:js=\"#!/usr/bin/env node\""
   },
   "dependencies": {
     "@konfik/core": "workspace:*",

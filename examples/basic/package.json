@@ -1,5 +1,6 @@
 {
   "name": "basic",
+  "private": true,
   "devDependencies": {
     "konfik": "workspace:*",
     "konfik-eslint": "workspace:*",
