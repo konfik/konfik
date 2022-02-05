@@ -2,6 +2,9 @@
   "name": "@konfik/core",
   "version": "0.0.2",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": "./dist/index.js"
   },

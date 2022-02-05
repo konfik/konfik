@@ -2,6 +2,9 @@
   "name": "@konfik/utils",
   "version": "0.0.2",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     "./package.json": {
       "import": "./package.json"

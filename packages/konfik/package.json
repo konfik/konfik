@@ -3,6 +3,9 @@
   "version": "0.0.2",
   "bin": "./dist/cli/bundle.cjs",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": "./dist/lib/index.js"
   },
