@@ -1,5 +1,6 @@
 {
   "name": "konfik-package-json",
+  "version": "0.0.2-dev.0",
   "exports": {
     ".": "./src/index.ts"
   },

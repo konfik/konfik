@@ -10,7 +10,7 @@
     "build:clean": "bash -c 'rm -rf packages/*/dist packages/@konfik/*/dist'",
     "build": "echo TODO",
     "dev:ts": "tsc --build --watch tsconfig.all.json",
-    "release:prerelease": "yarn build && yarn workspaces foreach --verbose --topological-dev --no-private exec npm version prerelease --preid=dev && yarn workspaces foreach --verbose --topological-dev --parallel --no-private npm publish --tolerate-republish --tag=dev",
+    "release:prerelease": "yarn build && yarn workspaces foreach --verbose --topological-dev --no-private exec npm version prerelease --preid=dev && yarn workspaces foreach --verbose --topological-dev --parallel --no-private npm publish --tolerate-republish --tag=dev --access=public",
     "lint:check": "run lint:eslint:check && run lint:prettier:check",
     "lint:fix": "run lint:eslint:fix & run lint:prettier:fix",
     "lint:eslint:fix": "eslint packages --ext .ts --fix",
