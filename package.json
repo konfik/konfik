@@ -8,19 +8,22 @@
   ],
   "scripts": {
     "postinstall": "ts-patch install && ts-patch --persist && ./link.mjs",
+    "build": "yarn build:clean; yarn build:ts",
+    "build:ts": "tsc --build tsconfig.all.json",
     "build:clean": "bash -c 'rm -rf packages/*/dist packages/@konfik/*/dist'",
-    "build": "echo TODO",
-    "dev:ts": "tsc --build --watch tsconfig.all.json",
+    "dev:ts": "yarn build --watch",
     "release:prerelease": "yarn build && yarn workspaces foreach --verbose --topological-dev --no-private exec npm version prerelease --preid=dev && yarn workspaces foreach --verbose --topological-dev --parallel --no-private npm publish --tolerate-republish --tag=dev --access=public",
     "lint:check": "run lint:eslint:check && run lint:prettier:check",
     "lint:fix": "run lint:eslint:fix & run lint:prettier:fix",
     "lint:eslint:fix": "eslint packages --ext .ts --fix",
     "lint:eslint:check": "eslint packages --ext .ts --max-warnings=0",
     "lint:prettier:fix": "prettier packages --write",
-    "lint:prettier:check": "prettier packages --check"
+    "lint:prettier:check": "prettier packages --check",
+    "changeset": "changeset"
   },
   "packageManager": "yarn@3.1.1",
   "devDependencies": {
+    "@changesets/cli": "^2.20.0",
     "@effect-ts/tracing-plugin": "^0.18.0",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
