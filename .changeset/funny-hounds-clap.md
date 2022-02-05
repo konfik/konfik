@@ -1,5 +1,4 @@
 ---
-'basic': patch
 '@konfik/cli': patch
 '@konfik/core': patch
 '@konfik/github-downloader': patch
