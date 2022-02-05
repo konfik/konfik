@@ -90,13 +90,13 @@ const build = (options: BuildCommandOptions) =>
     yield* $(pipe(allFileEntries, T.forEachParN(concurrencyLimit, writeFile(options.outDir))))
   })
 
-const execute = (command: KonfikCliCommand) => ``
-pipe(
-  command,
-  T.matchTag({
-    Build: (_) => build(_),
-  }),
-)
+const execute = (command: KonfikCliCommand) =>
+  pipe(
+    command,
+    T.matchTag({
+      Build: (_) => build(_),
+    }),
+  )
 
 const provideTracing = () =>
   process.env.KONFIK_OTEL !== undefined ? provideJaegerTracing('konfik-cli') : provideDummyTracing()
