@@ -11,28 +11,9 @@ export const writeFile =
   (outDir: O.Option<string>) =>
   ([filePath, fileContents]: [string, string]) => {
     return pipe(
-      outDir,
-      O.fold(
-        () =>
-          pipe(
-            T.succeedWith(() => process.cwd()),
-            T.chain((pwd) => {
-              const fullyQualifiedFilePath = path.join(pwd, filePath)
-
-              return pipe(
-                createDirOfFile(fullyQualifiedFilePath),
-                T.zipRight(fs.writeFile(fullyQualifiedFilePath, fileContents)),
-              )
-            }),
-          ),
-        (targetDir) => {
-          const fullyQualifiedFilePath = path.join(targetDir, filePath)
-
-          return pipe(
-            createDirOfFile(fullyQualifiedFilePath),
-            T.zipRight(fs.writeFile(fullyQualifiedFilePath, fileContents)),
-          )
-        },
-      ),
+      O.isSome(outDir)
+        ? T.succeed(path.join(outDir.value, filePath))
+        : T.succeedWith(() => path.join(process.cwd(), filePath)),
+      T.chain((fullPath) => T.zipRight_(createDirOfFile(fullPath), fs.writeFile(fullPath, fileContents))),
     )
   }
