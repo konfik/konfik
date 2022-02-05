@@ -29,6 +29,8 @@ export * as Tp from '@effect-ts/core/Collections/Immutable/Tuple'
 
 export * as Array from '@effect-ts/core/Collections/Immutable/Array'
 
+export * as Map from '@effect-ts/core/Collections/Immutable/Map'
+
 export * as Chunk from './Chunk.js'
 
 export * as Fiber from '@effect-ts/core/Effect/Fiber'
