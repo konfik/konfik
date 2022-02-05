@@ -8,12 +8,14 @@ import * as CliOptions from '@effect-ts/cli/Options'
 import { runMain } from '@effect-ts/node/Runtime'
 import { flattenKonfikTrie } from '@konfik/core'
 import { unknownToPosixFilePath } from '@konfik/utils'
-import { O, pipe, Show, T, Tagged } from '@konfik/utils/effect'
+import { Map, O, pipe, Show, T, Tagged } from '@konfik/utils/effect'
 import { provideDummyTracing, provideJaegerTracing } from '@konfik/utils/effect/Tracing'
 import { fs } from '@konfik/utils/node'
+import { createPatch } from 'diff'
 import * as os from 'node:os'
+import * as path from 'node:path'
 
-import { provideCwd } from './cwd.js'
+import { getCwd, provideCwd } from './cwd.js'
 import { getPlugins } from './getConfig/index.js'
 import { validatePlugins } from './validate.js'
 import { writeFile } from './writeFile.js'
@@ -22,14 +24,22 @@ import { writeFile } from './writeFile.js'
 // Model
 // -----------------------------------------------------------------------------
 
-export type KonfikCliCommand = Build
+export type KonfikCliCommand = Build | Diff
 
-export interface BuildCommandOptions {
+export interface CommonCliOptions {
+  readonly configPath: O.Option<string>
+}
+
+export interface BuildCommandOptions extends CommonCliOptions {
   readonly configPath: O.Option<string>
   readonly outDir: O.Option<string>
 }
 
 export class Build extends Tagged('Build')<BuildCommandOptions> {}
+
+export interface DiffCommandOptions extends CommonCliOptions {}
+
+export class Diff extends Tagged('Diff')<DiffCommandOptions> {}
 
 // -----------------------------------------------------------------------------
 // Commands
@@ -44,8 +54,8 @@ export const outDirOption = pipe(
 )
 
 export const buildOptions = CliOptions.struct({
-  outDir: outDirOption,
   configPath: configPathOption,
+  outDir: outDirOption,
 })
 
 export const buildCommand: CliCommand.Command<KonfikCliCommand> = pipe(
@@ -53,7 +63,16 @@ export const buildCommand: CliCommand.Command<KonfikCliCommand> = pipe(
   CliCommand.map((_) => new Build(_)),
 )
 
-export const konfikCliCommand = pipe(CliCommand.make('konfik'), CliCommand.subcommands(buildCommand))
+export const diffOptions = CliOptions.struct({
+  configPath: configPathOption,
+})
+
+export const diffCommand: CliCommand.Command<KonfikCliCommand> = pipe(
+  CliCommand.make('diff', diffOptions),
+  CliCommand.map((_) => new Diff(_)),
+)
+
+export const konfikCliCommand = pipe(CliCommand.make('konfik'), CliCommand.subcommands(buildCommand, diffCommand))
 
 // -----------------------------------------------------------------------------
 // Application
@@ -90,11 +109,46 @@ const build = (options: BuildCommandOptions) =>
     yield* $(pipe(allFileEntries, T.forEachParN(concurrencyLimit, writeFile(options.outDir))))
   })
 
+const diff = (options: DiffCommandOptions) =>
+  T.gen(function* ($) {
+    const plugins = yield* $(getPlugins({ configPath: options.configPath }))
+
+    yield* $(validatePlugins(plugins))
+
+    const fileMap = Map.make(plugins.flatMap((_) => flattenKonfikTrie(_)))
+    const filePaths = fileMap.keys()
+
+    const cwd = yield* $(getCwd)
+
+    yield* $(
+      pipe(
+        filePaths,
+        T.forEach((filePath) => {
+          const absolutePath = path.join(cwd, filePath)
+          return pipe(
+            fs.readFile(absolutePath),
+            T.chain((oldContents) =>
+              pipe(
+                Map.lookup_(fileMap, filePath),
+                O.fold(
+                  () => T.fail(`Could not find a Konfik for ${filePath}`),
+                  (newContents) =>
+                    T.succeedWith(() => console.log(createPatch(absolutePath, oldContents, newContents))),
+                ),
+              ),
+            ),
+          )
+        }),
+      ),
+    )
+  })
+
 const execute = (command: KonfikCliCommand) =>
   pipe(
     command,
     T.matchTag({
       Build: (_) => build(_),
+      Diff: (_) => diff(_),
     }),
   )
 

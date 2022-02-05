@@ -20,15 +20,18 @@
     "@effect-ts/printer": "^0.12.0",
     "@konfik/core": "workspace:*",
     "@konfik/utils": "workspace:*",
+    "diff": "^5.0.0",
     "esbuild": "^0.14.13",
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {
+    "@types/diff": "^5",
     "@types/source-map-support": "^0",
     "ava": "^4.0.1"
   },
   "scripts": {
-    "test": "ava"
+    "test": "ava",
+    "cli": "node ./dist/cli.js"
   },
   "ava": {
     "files": [
