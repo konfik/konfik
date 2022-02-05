@@ -3859,7 +3859,7 @@ __metadata:
     "@types/node": ^17.0.10
     esbuild: ^0.14.13
   bin:
-    konfik: ./bin/konfik
+    konfik: ./dist/cli/bundle.cjs
   languageName: unknown
   linkType: soft
 
