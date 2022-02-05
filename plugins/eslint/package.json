@@ -1,6 +1,6 @@
 {
   "name": "@konfik-plugin/eslint",
-  "version": "0.0.2-dev.8",
+  "version": "0.0.2",
   "exports": {
     ".": "./src/index.ts"
   },
