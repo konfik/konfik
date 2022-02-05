@@ -2,8 +2,8 @@ import { PackageJsonKonfik } from 'konfik-package-json'
 
 export const konfikPkg = PackageJsonKonfik({
   name: 'konfik',
-  version: '0.1.0',
-  bin: './bin/konfik.cjs',
+  version: '0.0.0',
+  bin: './bin/konfik',
   type: 'module',
   exports: {
     '.': './dist/lib/index.js',
@@ -14,16 +14,11 @@ export const konfikPkg = PackageJsonKonfik({
       'esbuild ./dist/cli/index.js --bundle --platform=node --format=esm --outfile=dist/cli/bundle.js --main-fields=module,main',
   },
   dependencies: {
-    '@konfik/cli': 'workspace:*',
     '@konfik/core': 'workspace:*',
-    '@swc/core': '^1.2.133',
-    '@swc/register': '^0.1.9',
-    commander: '^8.3.0',
     esbuild: '^0.14.13',
-    'esbuild-register': '^3.3.2',
   },
   devDependencies: {
+    '@konfik/cli': 'workspace:*',
     '@types/node': '^17.0.10',
-    'conditional-type-checks': '^1.0.5',
   },
 })
