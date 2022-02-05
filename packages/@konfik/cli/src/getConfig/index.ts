@@ -64,6 +64,9 @@ export const getConfigWatch = ({
           target: 'es2020',
           format: 'esm',
           mainFields: ['module', 'main'],
+          banner: {
+            js: `import { createRequire as topLevelCreateRequire } from 'module'; const require = topLevelCreateRequire(import.meta.url); const __dirname = '__SET_BY_ESBUILD__';`,
+          },
           bundle: true,
           logLevel: 'silent',
           // plugins: [contentlayerGenPlugin(), makeAllPackagesExternalPlugin(configPath)],

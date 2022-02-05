@@ -1,4 +1,3 @@
-import type { KonfikFileMapEntry } from '@konfik/core'
 import { getFactoryConfig } from '@konfik/core'
 import { O, pipe, T } from '@konfik/utils/effect'
 import { fs } from '@konfik/utils/node'
@@ -6,7 +5,7 @@ import * as path from 'path'
 
 export const writeFile =
   (outDir: O.Option<string>) =>
-  ([filePath, fileContents]: KonfikFileMapEntry) => {
+  ([filePath, fileContents]: [string, object]) => {
     const content = getFactoryConfig(fileContents).toString(fileContents)
 
     return pipe(

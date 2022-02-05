@@ -8,7 +8,7 @@
   },
   "types": "./dist/lib/index.d.ts",
   "scripts": {
-    "bundle-cli": "esbuild ./dist/cli/index.js --bundle --platform=node --format=cjs --external:esbuild --outfile=dist/cli/bundle.cjs --main-fields=module,main --banner:js=\"import { createRequire as topLevelCreateRequire } from 'module'; const require = topLevelCreateRequire(import.meta.url); const __dirname = '__SET_BY_ESBUILD__';\""
+    "bundle-cli": "esbuild ./dist/cli/index.js --bundle --platform=node --format=cjs --external:esbuild --outfile=dist/cli/bundle.cjs --main-fields=module,main"
   },
   "dependencies": {
     "@konfik/core": "workspace:*",
