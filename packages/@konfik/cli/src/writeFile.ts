@@ -3,9 +3,7 @@ import { O, pipe, T } from '@konfik/utils/effect'
 import { fs } from '@konfik/utils/node'
 import * as path from 'path'
 
-export const createDirOfFile = (filePath: string) => {
-  return fs.mkdirp(unknownToPosixFilePath(path.join(filePath, '..')))
-}
+export const createDirOfFile = (filePath: string) => fs.mkdirp(unknownToPosixFilePath(path.join(filePath, '..')))
 
 export const writeFile =
   (outDir: O.Option<string>) =>
