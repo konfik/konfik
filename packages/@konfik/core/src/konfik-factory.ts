@@ -28,7 +28,6 @@ export const getFactoryConfig = (supplied: unknown): AnyKonfikFactoryProps => {
   // console.log(globalTh[FactoryPropsLookupKey])
   const factoryProps = globalTh[FactoryPropsLookupKey].get(supplied)
   if (!factoryProps) {
-    console.log({ supplied })
     throw new Error('TODO: throw this the effect-y way.')
   }
   return factoryProps
