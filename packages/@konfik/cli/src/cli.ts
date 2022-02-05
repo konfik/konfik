@@ -9,7 +9,7 @@ import { runMain } from '@effect-ts/node/Runtime'
 import { unknownToPosixFilePath } from '@konfik/utils'
 import { O, pipe, Show, T, Tagged } from '@konfik/utils/effect'
 import { provideDummyTracing, provideJaegerTracing } from '@konfik/utils/effect/Tracing'
-import { fs } from '@konfik/utils/src/node/index.js'
+import { fs } from '@konfik/utils/node'
 import * as os from 'node:os'
 
 import { provideCwd } from './cwd.js'
@@ -76,11 +76,13 @@ const build = (options: BuildCommandOptions) =>
 
     const allFileEntries = plugins.flatMap((_) => Object.entries(_))
 
-    fs.mkdirp(
-      pipe(
-        options.outDir,
-        O.getOrElse(() => '.'),
-        unknownToPosixFilePath,
+    yield* $(
+      fs.mkdirp(
+        pipe(
+          options.outDir,
+          O.getOrElse(() => '.'),
+          unknownToPosixFilePath,
+        ),
       ),
     )
 
