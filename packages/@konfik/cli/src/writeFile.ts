@@ -9,11 +9,10 @@ export const createDirOfFile = (filePath: string) => {
 
 export const writeFile =
   (outDir: O.Option<string>) =>
-  ([filePath, fileContents]: [string, string]) => {
-    return pipe(
+  ([filePath, fileContents]: [string, string]) =>
+    pipe(
       O.isSome(outDir)
         ? T.succeed(path.join(outDir.value, filePath))
         : T.succeedWith(() => path.join(process.cwd(), filePath)),
       T.chain((fullPath) => T.zipRight_(createDirOfFile(fullPath), fs.writeFile(fullPath, fileContents))),
     )
-  }
