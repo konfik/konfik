@@ -1,5 +1,5 @@
 {
-  "name": "konfik-gitignore",
+  "name": "@konfik-plugin/gitignore",
   "version": "0.0.2-dev.7",
   "exports": {
     ".": "./src/index.ts"

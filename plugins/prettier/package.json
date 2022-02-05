@@ -1,5 +1,5 @@
 {
-  "name": "konfik-prettier",
+  "name": "@konfik-plugin/prettier",
   "version": "0.0.2-dev.7",
   "exports": {
     ".": "./src/index.ts"
