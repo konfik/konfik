@@ -20,7 +20,8 @@
     "lint:eslint:check": "eslint packages --ext .ts --max-warnings=0",
     "lint:prettier:fix": "prettier packages --write",
     "lint:prettier:check": "prettier packages --check",
-    "changeset": "changeset"
+    "changeset": "changeset",
+    "release": "changeset publish"
   },
   "packageManager": "yarn@3.1.1",
   "devDependencies": {
