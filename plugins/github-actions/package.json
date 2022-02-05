@@ -1,0 +1,11 @@
+{
+  "name": "konfik-github-actions",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@actions/github": "^5.0.0",
+    "@konfik/core": "workspace:*"
+  }
+}
