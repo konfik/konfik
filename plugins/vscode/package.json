@@ -1,6 +1,6 @@
 {
   "name": "@konfik-plugin/vscode",
-  "version": "0.0.2-dev.7",
+  "version": "0.0.2-dev.8",
   "exports": {
     ".": "./src/index.ts"
   },

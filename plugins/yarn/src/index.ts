@@ -13,7 +13,7 @@ interface YarnConfig {
   yarnPath: string
 }
 
-export const YarnKonfikBrand = Symbol.for('konfik-yarn')
+export const YarnKonfikBrand = Symbol.for('@konfik-plugin/yarn')
 export type YarnKonfikBrand = typeof YarnKonfikBrand
 
 export const YarnKonfik = KonfikFactory<YarnConfig>()({

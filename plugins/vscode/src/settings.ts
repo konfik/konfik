@@ -1,6 +1,6 @@
 import { KonfikFactory } from '@konfik/core'
 
-export const VscodeSettingsKonfikBrand = Symbol.for('konfik-vscode-settings')
+export const VscodeSettingsKonfikBrand = Symbol.for('@konfik-plugin/vscode-settings')
 export type VscodeSettingsKonfikBrand = typeof VscodeSettingsKonfikBrand
 
 // TODO: swap out with narrow settings type (BUT AUGMENTABLE / accounting for extensions)

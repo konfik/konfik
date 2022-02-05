@@ -1,10 +1,10 @@
-import { EslintKonfik } from 'konfik-eslint'
-import { GitignoreKonfik } from 'konfik-gitignore'
-import { GitpodKonfik } from 'konfik-gitpod'
-import { PackageJsonKonfik } from 'konfik-package-json'
-import { PrettierKonfik } from 'konfik-prettier'
-import { TsconfigKonfik } from 'konfik-tsconfig'
-import { YarnKonfik } from 'konfik-yarn'
+import { EslintKonfik } from '@konfik-plugin/eslint'
+import { GitignoreKonfik } from '@konfik-plugin/gitignore'
+import { GitpodKonfik } from '@konfik-plugin/gitpod'
+import { PackageJsonKonfik } from '@konfik-plugin/package-json'
+import { PrettierKonfik } from '@konfik-plugin/prettier'
+import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
+import { YarnKonfik } from '@konfik-plugin/yarn'
 
 export const yarnKonfik = YarnKonfik({
   nodeLinker: 'node-modules',

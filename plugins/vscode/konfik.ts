@@ -1,8 +1,8 @@
-import { PackageJsonKonfik } from 'konfik-package-json'
-import { TsconfigKonfik } from 'konfik-tsconfig'
+import { PackageJsonKonfik } from '@konfik-plugin/package-json'
+import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
 export const packageJsonKonfik = PackageJsonKonfik({
-  name: 'konfik-vscode',
+  name: '@konfik-plugin/vscode',
   exports: {
     '.': './src/index.ts',
   },

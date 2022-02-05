@@ -250,6 +250,82 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@konfik-plugin/eslint@workspace:*, @konfik-plugin/eslint@workspace:plugins/eslint":
+  version: 0.0.0-use.local
+  resolution: "@konfik-plugin/eslint@workspace:plugins/eslint"
+  dependencies:
+    "@konfik/core": "workspace:*"
+    "@types/eslint": ^8
+    eslint: ^8.8.0
+  languageName: unknown
+  linkType: soft
+
+"@konfik-plugin/gitignore@workspace:*, @konfik-plugin/gitignore@workspace:plugins/gitignore":
+  version: 0.0.0-use.local
+  resolution: "@konfik-plugin/gitignore@workspace:plugins/gitignore"
+  dependencies:
+    "@konfik/core": "workspace:*"
+  languageName: unknown
+  linkType: soft
+
+"@konfik-plugin/gitpod@workspace:*, @konfik-plugin/gitpod@workspace:plugins/gitpod":
+  version: 0.0.0-use.local
+  resolution: "@konfik-plugin/gitpod@workspace:plugins/gitpod"
+  dependencies:
+    "@gitpod/gitpod-protocol": ^0.1.5-test.4
+    "@konfik/core": "workspace:*"
+    "@types/js-yaml": ^4
+    js-yaml: ^4.1.0
+  languageName: unknown
+  linkType: soft
+
+"@konfik-plugin/package-json@workspace:*, @konfik-plugin/package-json@workspace:plugins/package-json":
+  version: 0.0.0-use.local
+  resolution: "@konfik-plugin/package-json@workspace:plugins/package-json"
+  dependencies:
+    "@konfik/core": "workspace:*"
+    type-fest: ^2.10.0
+  languageName: unknown
+  linkType: soft
+
+"@konfik-plugin/prettier@workspace:*, @konfik-plugin/prettier@workspace:plugins/prettier":
+  version: 0.0.0-use.local
+  resolution: "@konfik-plugin/prettier@workspace:plugins/prettier"
+  dependencies:
+    "@konfik/core": "workspace:*"
+    "@types/prettier": ^2
+    prettier: ^2.5.1
+  languageName: unknown
+  linkType: soft
+
+"@konfik-plugin/tsconfig@workspace:*, @konfik-plugin/tsconfig@workspace:plugins/tsconfig":
+  version: 0.0.0-use.local
+  resolution: "@konfik-plugin/tsconfig@workspace:plugins/tsconfig"
+  dependencies:
+    "@konfik/core": "workspace:*"
+    tsconfig-type: 1.21.0
+  languageName: unknown
+  linkType: soft
+
+"@konfik-plugin/vscode@workspace:plugins/vscode":
+  version: 0.0.0-use.local
+  resolution: "@konfik-plugin/vscode@workspace:plugins/vscode"
+  dependencies:
+    "@konfik/core": "workspace:*"
+  languageName: unknown
+  linkType: soft
+
+"@konfik-plugin/yarn@workspace:plugins/yarn":
+  version: 0.0.0-use.local
+  resolution: "@konfik-plugin/yarn@workspace:plugins/yarn"
+  dependencies:
+    "@konfik/core": "workspace:*"
+    "@types/js-yaml": ^4
+    "@yarnpkg/core": ^3.2.0-rc.13
+    js-yaml: ^4.1.0
+  languageName: unknown
+  linkType: soft
+
 "@konfik/cli@workspace:*, @konfik/cli@workspace:packages/@konfik/cli":
   version: 0.0.0-use.local
   resolution: "@konfik/cli@workspace:packages/@konfik/cli"
@@ -367,9 +443,9 @@ __metadata:
   linkType: hard
 
 "@opentelemetry/api@npm:^1.0.3":
-  version: 1.0.4
-  resolution: "@opentelemetry/api@npm:1.0.4"
-  checksum: 793e9b5c21666b647a60c58c46c3e00ad1dac38505102b026ad0ef617571d637aca54a18533a73c1e288c95b5ac77e2db17f96467f11833ac1165338e1184260
+  version: 1.1.0
+  resolution: "@opentelemetry/api@npm:1.1.0"
+  checksum: 8be8e8dd20a473639a9bb9b4185b8984f537f86e49829ba1d4c4e909f4480309cb22696b7eb7122882878dac0b5f4ce799d66ed72248568bafed085d6269e1bc
   languageName: node
   linkType: hard
 
@@ -502,21 +578,21 @@ __metadata:
   linkType: hard
 
 "@opentelemetry/resource-detector-aws@npm:~1.0.0":
-  version: 1.0.2
-  resolution: "@opentelemetry/resource-detector-aws@npm:1.0.2"
+  version: 1.0.3
+  resolution: "@opentelemetry/resource-detector-aws@npm:1.0.3"
   dependencies:
     "@opentelemetry/core": ^1.0.0
     "@opentelemetry/resources": ^1.0.0
     "@opentelemetry/semantic-conventions": ^1.0.0
   peerDependencies:
     "@opentelemetry/api": ^1.0.2
-  checksum: f5cd0c1e6a2be78fee6b33936d07d4cc382fff76fa0a1a7a9d03c0c6440abf9a991e145670b69498fd000997bd5b9ead440d16f1649ebfce8e1de8f40b9a8b6c
+  checksum: 7f49d53d1177a440e5f3b29aad0a597d4f4bdb99562ef6858cbe69e3e316e42f93cf6a3ec556292ea538d64c82553d2003d3f21a0621b46e69431d855f90c244
   languageName: node
   linkType: hard
 
 "@opentelemetry/resource-detector-gcp@npm:~0.26.0":
-  version: 0.26.1
-  resolution: "@opentelemetry/resource-detector-gcp@npm:0.26.1"
+  version: 0.26.2
+  resolution: "@opentelemetry/resource-detector-gcp@npm:0.26.2"
   dependencies:
     "@opentelemetry/resources": ^1.0.0
     "@opentelemetry/semantic-conventions": ^1.0.0
@@ -524,7 +600,7 @@ __metadata:
     semver: 7.3.5
   peerDependencies:
     "@opentelemetry/api": ^1.0.2
-  checksum: 18ddad8aa1c5b1a9712c490ad68573f1f6b6d248473016ae1110bbaca601ae1fd2f130e44ca208c012fb9f8aa2fd62364896f28913987ecf453e107306bd72a3
+  checksum: 2b3194b8e889740f25e65503d1274291ea387663674910decf8ba7999c0e138b9396f9431126fd1f20394e4b707562410b138b47742f3838ebd0a5bcbefa91c4
   languageName: node
   linkType: hard
 
@@ -771,10 +847,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
-  version: 17.0.13
-  resolution: "@types/node@npm:17.0.13"
-  checksum: 8b87c850c1604c65e3474bd03d122914464b7970caed20f65f4a7706ab429353b896a3916be4d2581164eccda9e3dd95c338fbccf686ff85a824c40d15e8f3fa
+"@types/node@npm:*, @types/node@npm:^17.0.10":
+  version: 17.0.15
+  resolution: "@types/node@npm:17.0.15"
+  checksum: aa64ecf4fbcf9888e794dcdc20e98c49cdcb102b17e57c44ca56943904732d6cc250e766f8448a3cd71d6a40a4b597bd83c565e5bd9b982733fa3f9813d5c291
   languageName: node
   linkType: hard
 
@@ -786,16 +862,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:^16.6":
-  version: 16.11.21
-  resolution: "@types/node@npm:16.11.21"
-  checksum: 75b679dc6375cf09bc14a2d1b344be6f3fd8ea50f212b0d60970dc9e175cef45e44c284c716eb9e766ffa52d0c83b689adb3d1911b6dd8649c560b8f77442a22
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^17.0.10":
-  version: 17.0.10
-  resolution: "@types/node@npm:17.0.10"
-  checksum: 979e83d642a2b4f18fa1a4233f884822c05abc7acd0836024aa964187f8446432b21f7913e72fe2b3927c4a811c27a0b6cd60ac7c4ac6a6762cfbab70782aa6a
+  version: 16.11.22
+  resolution: "@types/node@npm:16.11.22"
+  checksum: 9d879b9b0427e21a11e3162917553d5bc3c7d68d1ef4aa631512144801fe59bc3b4da5965e7ea7c2db99394487b543d4f2499b318e12392574802ac4f975b7c4
   languageName: node
   linkType: hard
 
@@ -1177,14 +1246,14 @@ __metadata:
   linkType: hard
 
 "ajv@npm:^8.0.1":
-  version: 8.9.0
-  resolution: "ajv@npm:8.9.0"
+  version: 8.10.0
+  resolution: "ajv@npm:8.10.0"
   dependencies:
     fast-deep-equal: ^3.1.1
     json-schema-traverse: ^1.0.0
     require-from-string: ^2.0.2
     uri-js: ^4.2.2
-  checksum: 756c048bfa917b43bb84c8a0a53e6a489123203bc4bdec8cbeb8ec2d715674f5e61d49560a1a6ec83268af4f33bed324f5cb6d9c76d96849fd58ed7089b8e7f3
+  checksum: 3594728ef1e31219ef97bfacb203d0d72db8ad5c35d6d0578e38ee453e4537c2bf927dad144bb84b0c893f661d71b58337d4643e8ee2f2a6e1d63b041c92fe82
   languageName: node
   linkType: hard
 
@@ -1456,13 +1525,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "basic@workspace:examples/basic"
   dependencies:
+    "@konfik-plugin/eslint": "workspace:*"
+    "@konfik-plugin/gitignore": "workspace:*"
+    "@konfik-plugin/gitpod": "workspace:*"
+    "@konfik-plugin/package-json": "workspace:*"
+    "@konfik-plugin/prettier": "workspace:*"
+    "@konfik-plugin/tsconfig": "workspace:*"
     konfik: "workspace:*"
-    konfik-eslint: "workspace:*"
-    konfik-gitignore: "workspace:*"
-    konfik-gitpod: "workspace:*"
-    konfik-package-json: "workspace:*"
-    konfik-prettier: "workspace:*"
-    konfik-tsconfig: "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -2067,9 +2136,9 @@ __metadata:
   linkType: hard
 
 "emittery@npm:^0.10.0":
-  version: 0.10.0
-  resolution: "emittery@npm:0.10.0"
-  checksum: 2616a802df51e3f412b9b33f1b43161f7bc96037142cada6ecdbf35ddef1368e30d4f8e47fddc10b0753ccf91d3483b20ebca535b4b1e47526440e13150e2bc7
+  version: 0.10.1
+  resolution: "emittery@npm:0.10.1"
+  checksum: 75b27db7696aec22fb9b6a92cebd1ba407e13f5dedb512f0f40b896090fe6d4a949329b198d3f5a570abeb45d48651714b9c2f16e910cfacd3a043e419ffa8b9
   languageName: node
   linkType: hard
 
@@ -2195,154 +2264,154 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild-android-arm64@npm:0.14.13":
-  version: 0.14.13
-  resolution: "esbuild-android-arm64@npm:0.14.13"
+"esbuild-android-arm64@npm:0.14.18":
+  version: 0.14.18
+  resolution: "esbuild-android-arm64@npm:0.14.18"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"esbuild-darwin-64@npm:0.14.13":
-  version: 0.14.13
-  resolution: "esbuild-darwin-64@npm:0.14.13"
+"esbuild-darwin-64@npm:0.14.18":
+  version: 0.14.18
+  resolution: "esbuild-darwin-64@npm:0.14.18"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"esbuild-darwin-arm64@npm:0.14.13":
-  version: 0.14.13
-  resolution: "esbuild-darwin-arm64@npm:0.14.13"
+"esbuild-darwin-arm64@npm:0.14.18":
+  version: 0.14.18
+  resolution: "esbuild-darwin-arm64@npm:0.14.18"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"esbuild-freebsd-64@npm:0.14.13":
-  version: 0.14.13
-  resolution: "esbuild-freebsd-64@npm:0.14.13"
+"esbuild-freebsd-64@npm:0.14.18":
+  version: 0.14.18
+  resolution: "esbuild-freebsd-64@npm:0.14.18"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"esbuild-freebsd-arm64@npm:0.14.13":
-  version: 0.14.13
-  resolution: "esbuild-freebsd-arm64@npm:0.14.13"
+"esbuild-freebsd-arm64@npm:0.14.18":
+  version: 0.14.18
+  resolution: "esbuild-freebsd-arm64@npm:0.14.18"
   conditions: os=freebsd & cpu=arm64
   languageName: node
   linkType: hard
 
-"esbuild-linux-32@npm:0.14.13":
-  version: 0.14.13
-  resolution: "esbuild-linux-32@npm:0.14.13"
+"esbuild-linux-32@npm:0.14.18":
+  version: 0.14.18
+  resolution: "esbuild-linux-32@npm:0.14.18"
   conditions: os=linux & cpu=ia32
   languageName: node
   linkType: hard
 
-"esbuild-linux-64@npm:0.14.13":
-  version: 0.14.13
-  resolution: "esbuild-linux-64@npm:0.14.13"
+"esbuild-linux-64@npm:0.14.18":
+  version: 0.14.18
+  resolution: "esbuild-linux-64@npm:0.14.18"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"esbuild-linux-arm64@npm:0.14.13":
-  version: 0.14.13
-  resolution: "esbuild-linux-arm64@npm:0.14.13"
+"esbuild-linux-arm64@npm:0.14.18":
+  version: 0.14.18
+  resolution: "esbuild-linux-arm64@npm:0.14.18"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"esbuild-linux-arm@npm:0.14.13":
-  version: 0.14.13
-  resolution: "esbuild-linux-arm@npm:0.14.13"
+"esbuild-linux-arm@npm:0.14.18":
+  version: 0.14.18
+  resolution: "esbuild-linux-arm@npm:0.14.18"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"esbuild-linux-mips64le@npm:0.14.13":
-  version: 0.14.13
-  resolution: "esbuild-linux-mips64le@npm:0.14.13"
+"esbuild-linux-mips64le@npm:0.14.18":
+  version: 0.14.18
+  resolution: "esbuild-linux-mips64le@npm:0.14.18"
   conditions: os=linux & cpu=mips64el
   languageName: node
   linkType: hard
 
-"esbuild-linux-ppc64le@npm:0.14.13":
-  version: 0.14.13
-  resolution: "esbuild-linux-ppc64le@npm:0.14.13"
+"esbuild-linux-ppc64le@npm:0.14.18":
+  version: 0.14.18
+  resolution: "esbuild-linux-ppc64le@npm:0.14.18"
   conditions: os=linux & cpu=ppc64
   languageName: node
   linkType: hard
 
-"esbuild-linux-s390x@npm:0.14.13":
-  version: 0.14.13
-  resolution: "esbuild-linux-s390x@npm:0.14.13"
+"esbuild-linux-s390x@npm:0.14.18":
+  version: 0.14.18
+  resolution: "esbuild-linux-s390x@npm:0.14.18"
   conditions: os=linux & cpu=s390x
   languageName: node
   linkType: hard
 
-"esbuild-netbsd-64@npm:0.14.13":
-  version: 0.14.13
-  resolution: "esbuild-netbsd-64@npm:0.14.13"
+"esbuild-netbsd-64@npm:0.14.18":
+  version: 0.14.18
+  resolution: "esbuild-netbsd-64@npm:0.14.18"
   conditions: os=netbsd & cpu=x64
   languageName: node
   linkType: hard
 
-"esbuild-openbsd-64@npm:0.14.13":
-  version: 0.14.13
-  resolution: "esbuild-openbsd-64@npm:0.14.13"
+"esbuild-openbsd-64@npm:0.14.18":
+  version: 0.14.18
+  resolution: "esbuild-openbsd-64@npm:0.14.18"
   conditions: os=openbsd & cpu=x64
   languageName: node
   linkType: hard
 
-"esbuild-sunos-64@npm:0.14.13":
-  version: 0.14.13
-  resolution: "esbuild-sunos-64@npm:0.14.13"
+"esbuild-sunos-64@npm:0.14.18":
+  version: 0.14.18
+  resolution: "esbuild-sunos-64@npm:0.14.18"
   conditions: os=sunos & cpu=x64
   languageName: node
   linkType: hard
 
-"esbuild-windows-32@npm:0.14.13":
-  version: 0.14.13
-  resolution: "esbuild-windows-32@npm:0.14.13"
+"esbuild-windows-32@npm:0.14.18":
+  version: 0.14.18
+  resolution: "esbuild-windows-32@npm:0.14.18"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"esbuild-windows-64@npm:0.14.13":
-  version: 0.14.13
-  resolution: "esbuild-windows-64@npm:0.14.13"
+"esbuild-windows-64@npm:0.14.18":
+  version: 0.14.18
+  resolution: "esbuild-windows-64@npm:0.14.18"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"esbuild-windows-arm64@npm:0.14.13":
-  version: 0.14.13
-  resolution: "esbuild-windows-arm64@npm:0.14.13"
+"esbuild-windows-arm64@npm:0.14.18":
+  version: 0.14.18
+  resolution: "esbuild-windows-arm64@npm:0.14.18"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
 "esbuild@npm:^0.14.13":
-  version: 0.14.13
-  resolution: "esbuild@npm:0.14.13"
+  version: 0.14.18
+  resolution: "esbuild@npm:0.14.18"
   dependencies:
-    esbuild-android-arm64: 0.14.13
-    esbuild-darwin-64: 0.14.13
-    esbuild-darwin-arm64: 0.14.13
-    esbuild-freebsd-64: 0.14.13
-    esbuild-freebsd-arm64: 0.14.13
-    esbuild-linux-32: 0.14.13
-    esbuild-linux-64: 0.14.13
-    esbuild-linux-arm: 0.14.13
-    esbuild-linux-arm64: 0.14.13
-    esbuild-linux-mips64le: 0.14.13
-    esbuild-linux-ppc64le: 0.14.13
-    esbuild-linux-s390x: 0.14.13
-    esbuild-netbsd-64: 0.14.13
-    esbuild-openbsd-64: 0.14.13
-    esbuild-sunos-64: 0.14.13
-    esbuild-windows-32: 0.14.13
-    esbuild-windows-64: 0.14.13
-    esbuild-windows-arm64: 0.14.13
+    esbuild-android-arm64: 0.14.18
+    esbuild-darwin-64: 0.14.18
+    esbuild-darwin-arm64: 0.14.18
+    esbuild-freebsd-64: 0.14.18
+    esbuild-freebsd-arm64: 0.14.18
+    esbuild-linux-32: 0.14.18
+    esbuild-linux-64: 0.14.18
+    esbuild-linux-arm: 0.14.18
+    esbuild-linux-arm64: 0.14.18
+    esbuild-linux-mips64le: 0.14.18
+    esbuild-linux-ppc64le: 0.14.18
+    esbuild-linux-s390x: 0.14.18
+    esbuild-netbsd-64: 0.14.18
+    esbuild-openbsd-64: 0.14.18
+    esbuild-sunos-64: 0.14.18
+    esbuild-windows-32: 0.14.18
+    esbuild-windows-64: 0.14.18
+    esbuild-windows-arm64: 0.14.18
   dependenciesMeta:
     esbuild-android-arm64:
       optional: true
@@ -2382,7 +2451,7 @@ __metadata:
       optional: true
   bin:
     esbuild: bin/esbuild
-  checksum: c2cb12942ac6fa6b628249cb46deb1eeb6202c7dfc69e6d1de5c9cbb90527f865e288511dc4d980b16422cf83e6a250678c367fbd7578a06367fd73f7c552ce8
+  checksum: 6a14033e1776fd9d0672b6bd268e266a00da7ff374c35e21c05cc2781487a64e3ec5c7c78b0a7f3052cbc42e4abbf9fdba235093cd7f4a39e2d06179394ca47c
   languageName: node
   linkType: hard
 
@@ -2443,12 +2512,12 @@ __metadata:
   linkType: hard
 
 "eslint-module-utils@npm:^2.7.2":
-  version: 2.7.2
-  resolution: "eslint-module-utils@npm:2.7.2"
+  version: 2.7.3
+  resolution: "eslint-module-utils@npm:2.7.3"
   dependencies:
     debug: ^3.2.7
     find-up: ^2.1.0
-  checksum: 3e6407461d12b1568556fc9a84668415693ecce92d17d7407353defcfcafec5d3d8dfa2d9eda3743b3b53ef04101d8aa69072b3d634d92e766c3dfa10505542d
+  checksum: 77048263f309167a1e6a1e1b896bfb5ddd1d3859b2e2abbd9c32c432aee13d610d46e6820b1ca81b37fba437cf423a404bc6649be64ace9148a3062d1886a678
   languageName: node
   linkType: hard
 
@@ -2881,9 +2950,9 @@ __metadata:
   linkType: hard
 
 "flatted@npm:^3.1.0":
-  version: 3.2.4
-  resolution: "flatted@npm:3.2.4"
-  checksum: 7d33846428ab337ec81ef9b8b9103894c1c81f5f67feb32bd4ed106fbc47da60d56edb42efd36c9f1f30a010272aeccd34ec1ffacfe9dfdff19673b1d4df481b
+  version: 3.2.5
+  resolution: "flatted@npm:3.2.5"
+  checksum: 3c436e9695ccca29620b4be5671dd72e5dd0a7500e0856611b7ca9bd8169f177f408c3b9abfa78dfe1493ee2d873e2c119080a8a9bee4e1a186a9e60ca6c89f1
   languageName: node
   linkType: hard
 
@@ -3086,11 +3155,11 @@ __metadata:
   linkType: hard
 
 "globals@npm:^13.6.0, globals@npm:^13.9.0":
-  version: 13.12.0
-  resolution: "globals@npm:13.12.0"
+  version: 13.12.1
+  resolution: "globals@npm:13.12.1"
   dependencies:
     type-fest: ^0.20.2
-  checksum: 1f959abb11117916468a1afcba527eead152900cad652c8383c4e8976daea7ec55e1ee30c086f48d1b8655719f214e9d92eca083c3a43b5543bc4056e7e5fccf
+  checksum: cf7877629c8f2a293b0a7d09d1dcce7f2d426ec2528600c481c5b3f3d070b0a120eb2499439ac0404990fb8a5742c0165b1bf1f52603364001ddc89bea3dda24
   languageName: node
   linkType: hard
 
@@ -3759,11 +3828,11 @@ __metadata:
   linkType: hard
 
 "keyv@npm:^4.0.0":
-  version: 4.0.5
-  resolution: "keyv@npm:4.0.5"
+  version: 4.1.0
+  resolution: "keyv@npm:4.1.0"
   dependencies:
     json-buffer: 3.0.1
-  checksum: 968ec062e66a660bd1c403b2932f602948ea76b17f8419bb04166491c1f186da1c3b39db4ccd1fdb6a19a4dcb374334455dd3ac31e13a70000c81e2daa866117
+  checksum: 3f2f15b3e47fb2ac4bcf0323c814db18f92596d0cd7ec938dbe89947e54ce64ab4fac87ec87404213a410b50493648613c30afcf313acf98bcd47f052b8ea831
   languageName: node
   linkType: hard
 
@@ -3773,82 +3842,6 @@ __metadata:
   checksum: 3ab01e7b1d440b22fe4c31f23d8d38b4d9b91d9f291df683476576493d5dfd2e03848a8b05813dd0c3f0e835bc63f433007ddeceb71f05cb25c45ae1b19c6d3b
   languageName: node
   linkType: hard
-
-"konfik-eslint@workspace:*, konfik-eslint@workspace:plugins/eslint":
-  version: 0.0.0-use.local
-  resolution: "konfik-eslint@workspace:plugins/eslint"
-  dependencies:
-    "@konfik/core": "workspace:*"
-    "@types/eslint": ^8
-    eslint: ^8.8.0
-  languageName: unknown
-  linkType: soft
-
-"konfik-gitignore@workspace:*, konfik-gitignore@workspace:plugins/gitignore":
-  version: 0.0.0-use.local
-  resolution: "konfik-gitignore@workspace:plugins/gitignore"
-  dependencies:
-    "@konfik/core": "workspace:*"
-  languageName: unknown
-  linkType: soft
-
-"konfik-gitpod@workspace:*, konfik-gitpod@workspace:plugins/gitpod":
-  version: 0.0.0-use.local
-  resolution: "konfik-gitpod@workspace:plugins/gitpod"
-  dependencies:
-    "@gitpod/gitpod-protocol": ^0.1.5-test.4
-    "@konfik/core": "workspace:*"
-    "@types/js-yaml": ^4
-    js-yaml: ^4.1.0
-  languageName: unknown
-  linkType: soft
-
-"konfik-package-json@workspace:*, konfik-package-json@workspace:plugins/package-json":
-  version: 0.0.0-use.local
-  resolution: "konfik-package-json@workspace:plugins/package-json"
-  dependencies:
-    "@konfik/core": "workspace:*"
-    type-fest: ^2.10.0
-  languageName: unknown
-  linkType: soft
-
-"konfik-prettier@workspace:*, konfik-prettier@workspace:plugins/prettier":
-  version: 0.0.0-use.local
-  resolution: "konfik-prettier@workspace:plugins/prettier"
-  dependencies:
-    "@konfik/core": "workspace:*"
-    "@types/prettier": ^2
-    prettier: ^2.5.1
-  languageName: unknown
-  linkType: soft
-
-"konfik-tsconfig@workspace:*, konfik-tsconfig@workspace:plugins/tsconfig":
-  version: 0.0.0-use.local
-  resolution: "konfik-tsconfig@workspace:plugins/tsconfig"
-  dependencies:
-    "@konfik/core": "workspace:*"
-    tsconfig-type: 1.21.0
-  languageName: unknown
-  linkType: soft
-
-"konfik-vscode@workspace:plugins/vscode":
-  version: 0.0.0-use.local
-  resolution: "konfik-vscode@workspace:plugins/vscode"
-  dependencies:
-    "@konfik/core": "workspace:*"
-  languageName: unknown
-  linkType: soft
-
-"konfik-yarn@workspace:plugins/yarn":
-  version: 0.0.0-use.local
-  resolution: "konfik-yarn@workspace:plugins/yarn"
-  dependencies:
-    "@konfik/core": "workspace:*"
-    "@types/js-yaml": ^4
-    "@yarnpkg/core": ^3.2.0-rc.13
-    js-yaml: ^4.1.0
-  languageName: unknown
-  linkType: soft
 
 "konfik@workspace:*, konfik@workspace:packages/konfik":
   version: 0.0.0-use.local
@@ -5040,9 +5033,9 @@ __metadata:
   linkType: hard
 
 "signal-exit@npm:^3.0.0, signal-exit@npm:^3.0.2":
-  version: 3.0.6
-  resolution: "signal-exit@npm:3.0.6"
-  checksum: b819ac81ba757af559dad0804233ae31bf6f054591cd8a671e9cbcf09f21c72ec3076fe87d1e04861f5b33b47d63f0694b568de99c99cd733ee2060515beb6d5
+  version: 3.0.7
+  resolution: "signal-exit@npm:3.0.7"
+  checksum: a2f098f247adc367dffc27845853e9959b9e88b01cb301658cfe4194352d8d2bb32e18467c786a7fe15f1d44b233ea35633d076d5e737870b7139949d1ab6318
   languageName: node
   linkType: hard
 
@@ -5527,9 +5520,9 @@ __metadata:
   linkType: hard
 
 "type-fest@npm:^2.10.0, type-fest@npm:^2.5.4":
-  version: 2.10.0
-  resolution: "type-fest@npm:2.10.0"
-  checksum: a14df0691efc38fe2d0c88ed28182a979c662b71b9e9776638cbaf0ba081f5afcd95ce23c3085f67367a5555b1984b6db828df57cf3b2ae2d61c01b10fa5bc40
+  version: 2.11.1
+  resolution: "type-fest@npm:2.11.1"
+  checksum: fcbf57ab65eafa517432ba4ec60e83e283ab88e21e3ac60d6081be515a6488de322660a86048f13ec5f0ba655092d680ced780e0cb86dd6fec59e04b4b6061b5
   languageName: node
   linkType: hard
 
@@ -5575,9 +5568,9 @@ __metadata:
   linkType: hard
 
 "undici@npm:^4.12.2":
-  version: 4.12.2
-  resolution: "undici@npm:4.12.2"
-  checksum: e53e144e96afdd097e3289f92ec9baad856dbe162cbb9c0e50b9105244cc7c0867cad3ef444274c78700b3ffc0a96603b26516f59a709008f8dd93eb1482567f
+  version: 4.13.0
+  resolution: "undici@npm:4.13.0"
+  checksum: 7bb4b432e1f94473eb6aec3c72cda774f29c4e02a534d199bdecab12c3a17f1ad829d2b187eddfeb2320d5c6690a5bc483b0e3a02f52febe623712298f900b7e
   languageName: node
   linkType: hard
 

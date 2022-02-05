@@ -1,7 +1,7 @@
 import { KonfikFactory } from '@konfik/core'
 import type { Linter } from 'eslint'
 
-export const EslintKonfikBrand = Symbol.for('konfik-eslint')
+export const EslintKonfikBrand = Symbol.for('@konfik-plugin/eslint')
 export type EslintKonfikBrand = typeof EslintKonfikBrand
 
 export const EslintKonfik = KonfikFactory<Linter.Config>()({

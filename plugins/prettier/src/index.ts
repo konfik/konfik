@@ -5,7 +5,7 @@ import { format } from 'prettier'
 
 export { PrettierConfig }
 
-export const PrettierKonfikBrand = Symbol.for('konfik-prettier')
+export const PrettierKonfikBrand = Symbol.for('@konfik-plugin/prettier')
 export type PrettierKonfikBrand = typeof PrettierKonfikBrand
 
 export const PrettierKonfik = KonfikFactory<PrettierConfig>()({

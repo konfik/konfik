@@ -1,7 +1,7 @@
 import { KonfikFactory } from '@konfik/core'
 import type { Tsconfig } from 'tsconfig-type'
 
-export const TsconfigKonfikBrand = Symbol.for('konfik-tsconfig')
+export const TsconfigKonfikBrand = Symbol.for('@konfik-plugin/tsconfig')
 export type TsconfigKonfikBrand = typeof TsconfigKonfikBrand
 
 export const TsconfigKonfik = KonfikFactory<Tsconfig>()({

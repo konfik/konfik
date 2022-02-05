@@ -1,6 +1,6 @@
 {
   "name": "@konfik/github-downloader",
-  "version": "0.0.2-dev.7",
+  "version": "0.0.2-dev.8",
   "type": "module",
   "exports": {
     ".": "./dist/index.js"

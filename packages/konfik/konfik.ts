@@ -1,4 +1,4 @@
-import { PackageJsonKonfik } from 'konfik-package-json'
+import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 
 export const konfikPkg = PackageJsonKonfik({
   name: 'konfik',

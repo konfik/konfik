@@ -174,14 +174,14 @@ const getConfigFromResult = ({
  * (e.g. when co-locating document type definitions with React components).
  */
 const contentlayerGenPlugin = (): esbuild.Plugin => ({
-  name: 'konfik-gen',
+  name: '@konfik-plugin/gen',
   setup(build) {
     build.onResolve({ filter: /^\.konfik\// }, (args) => ({
       path: args.path,
-      namespace: 'konfik-gen',
+      namespace: '@konfik-plugin/gen',
     }))
 
-    build.onLoad({ filter: /.*/, namespace: 'konfik-gen' }, () => ({
+    build.onLoad({ filter: /.*/, namespace: '@konfik-plugin/gen' }, () => ({
       contents: '// empty',
     }))
   },

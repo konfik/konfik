@@ -99,7 +99,7 @@ const execute = (command: KonfikCliCommand) =>
   )
 
 const provideTracing = () =>
-  process.env.KONFIK_OTEL !== undefined ? provideJaegerTracing('konfik-cli') : provideDummyTracing()
+  process.env.KONFIK_OTEL !== undefined ? provideJaegerTracing('@konfik-plugin/cli') : provideDummyTracing()
 
 export const run = () =>
   pipe(
