@@ -1,6 +1,6 @@
 import type { KonfikPlugin } from '@konfik/core'
 import type { E } from '@konfik/utils/effect'
-import { Chunk, O, OT, pipe, S, T } from '@konfik/utils/effect'
+import { Chunk, identity, O, OT, pipe, S, T } from '@konfik/utils/effect'
 // import type { GetKonfikVersionError } from '@konfik/utils/node'
 import { fs } from '@konfik/utils/node'
 import * as path from 'path'
@@ -24,11 +24,18 @@ type GetConfigError =
   | ConfigNoDefaultExportError
   | GetKonfikVersionError
 
+export type KonfikResult = {
+  plugin: KonfikPlugin
+  prettyPrint: PrettyPrint
+}
+
+export type PrettyPrint = (str: string) => string
+
 export const getPlugins = ({
   configPath,
 }: {
   configPath: O.Option<string>
-}): T.Effect<OT.HasTracer & HasCwd, GetConfigError, KonfikPlugin[]> => {
+}): T.Effect<OT.HasTracer & HasCwd, GetConfigError, KonfikResult> => {
   const targetPath = O.toUndefined(configPath)
   return pipe(
     getConfigWatch({ configPath: targetPath }),
@@ -36,7 +43,6 @@ export const getPlugins = ({
     S.runCollect,
     T.map(Chunk.unsafeHead),
     T.rightOrFail,
-    T.map((_) => [_]),
     OT.withSpan('@konfik/core/getConfig:getConfig', { attributes: { configPath: targetPath } }),
   )
 }
@@ -45,7 +51,7 @@ export const getConfigWatch = ({
   configPath: configPath_,
 }: {
   configPath?: string
-}): S.Stream<OT.HasTracer & HasCwd, never, E.Either<GetConfigError, KonfikPlugin>> => {
+}): S.Stream<OT.HasTracer & HasCwd, never, E.Either<GetConfigError, KonfikResult>> => {
   const resolveParams = pipe(
     T.structPar({ configPath: resolveConfigPath({ configPath: configPath_ }) }),
     T.chainMergeObject(() => makeTmpDirAndResolveEntryPoint),
@@ -117,7 +123,7 @@ const getConfigFromResult = ({
   /** configPath only needed for error message */
   configPath: string
   outfilePath: string
-}): T.Effect<OT.HasTracer, never, E.Either<ConfigReadError | ConfigNoDefaultExportError, KonfikPlugin>> =>
+}): T.Effect<OT.HasTracer, never, E.Either<ConfigReadError | ConfigNoDefaultExportError, KonfikResult>> =>
   pipe(
     T.gen(function* ($) {
       const unknownWarnings = result.warnings.filter(
@@ -156,14 +162,16 @@ const getConfigFromResult = ({
       }
 
       // Note currently `makeSource` returns a Promise but we should reconsider that design decision
-      const config = yield* $(
+      const plugin: KonfikPlugin = yield* $(
         T.tryCatchPromise(
           async () => exports.default,
           (error) => new ConfigReadError({ error, configPath }),
         ),
       )
 
-      return config as KonfikPlugin
+      const prettyPrint: PrettyPrint = exports.prettyPrint ?? identity
+
+      return { plugin, prettyPrint }
     }),
     OT.withSpan('@konfik/core/getConfig:getConfigFromResult', { attributes: { configPath, outfilePath } }),
     T.either,

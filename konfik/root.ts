@@ -68,7 +68,6 @@ export const tsconfigAllKonfik = TsconfigKonfik({
 
 export const packageJsonKonfik = PackageJsonKonfik({
   // TODO: do we need to support the following field?
-  // @ts-ignore
   packageManager: 'yarn@3.1.1',
   workspaces: ['packages/*', 'plugins/*', 'packages/@konfik/*', 'examples/*'],
   scripts: {
@@ -118,12 +117,14 @@ export const gitignoreKonfik = GitignoreKonfik([
   '.eslintrc',
 ])
 
-export const prettierKonfik = PrettierKonfik({
+export const prettierOptions = {
   printWidth: 120,
   semi: false,
   trailingComma: 'all',
   singleQuote: true,
-})
+} as const
+
+export const prettierKonfik = PrettierKonfik(prettierOptions)
 
 export const eslintKonfik = EslintKonfik({
   env: {

@@ -1,3 +1,5 @@
+import { format } from 'prettier'
+
 import * as cli from '../packages/@konfik/cli/konfik.js'
 import * as core from '../packages/@konfik/core/konfik.js'
 import * as ghDownloader from '../packages/@konfik/github-downloader/konfik.js'
@@ -12,6 +14,10 @@ import * as tsconfig from '../plugins/tsconfig/konfik.js'
 import * as vscode from '../plugins/vscode/konfik.js'
 import * as yarn from '../plugins/yarn/konfik.js'
 import * as root from './root.js'
+
+export const prettyPrint = (uglyString: string): string => {
+  return format(uglyString, { ...root.prettierOptions, parser: 'babel-ts' })
+}
 
 // TODO: how to supply option to generate gitignore
 export default {

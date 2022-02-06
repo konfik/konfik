@@ -89,13 +89,16 @@ const cli = CliApp.make({
 
 const build = (options: BuildCommandOptions) =>
   T.gen(function* ($) {
-    const plugins = yield* $(getPlugins({ configPath: options.configPath }))
+    const { plugin, prettyPrint } = yield* $(getPlugins({ configPath: options.configPath }))
 
-    yield* $(validatePlugins(plugins))
+    yield* $(validatePlugins([plugin]))
 
     const concurrencyLimit = yield* $(T.succeedWith(() => os.cpus().length))
 
-    const allFileEntries = plugins.flatMap((_) => flattenKonfikTrie(_))
+    const allFileEntries = flattenKonfikTrie(plugin).map<[string, string]>(([filePath, contents]) => [
+      filePath,
+      prettyPrint(contents),
+    ])
 
     yield* $(
       fs.mkdirp(
@@ -112,11 +115,13 @@ const build = (options: BuildCommandOptions) =>
 
 const diff = (options: DiffCommandOptions) =>
   T.gen(function* ($) {
-    const plugins = yield* $(getPlugins({ configPath: options.configPath }))
+    const { plugin, prettyPrint } = yield* $(getPlugins({ configPath: options.configPath }))
 
-    yield* $(validatePlugins(plugins))
+    yield* $(validatePlugins([plugin]))
 
-    const fileMap = Map.make(plugins.flatMap((_) => flattenKonfikTrie(_)))
+    const fileMap = Map.make(
+      flattenKonfikTrie(plugin).map<[string, string]>(([filePath, contents]) => [filePath, prettyPrint(contents)]),
+    )
     const filePaths = fileMap.keys()
 
     const cwd = yield* $(getCwd)

@@ -12,7 +12,7 @@ export type KonfikPlugin = KonfikFileMap
 // export type KonfikFileMapEntry = [string, FileContents]
 
 // TODO: revisit typings
-export const flattenKonfikTrie = (konfikTrie: object, currentDir = ''): [string, string][] => {
+export const flattenKonfikTrie = (konfikTrie: object, currentDir = ''): [filePath: string, contents: string][] => {
   const current: [string, string][] = []
   const entries = Object.entries(konfikTrie)
   entries.forEach(([k, v]) => {
