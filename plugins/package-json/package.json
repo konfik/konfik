@@ -6,7 +6,7 @@
   },
   "types": "./src/index.ts",
   "dependencies": {
-    "@konfik/core": "0.0.3",
+    "@konfik/core": "0.0.4",
     "type-fest": "^2.10.0"
   },
   "publishConfig": {
