@@ -3,6 +3,7 @@ import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
 export const packageJsonKonfik = PackageJsonKonfik({
   name: '@konfik-plugin/package-json',
+  version: '0.0.2',
   exports: {
     '.': './src/index.ts',
   },
@@ -10,6 +11,9 @@ export const packageJsonKonfik = PackageJsonKonfik({
   dependencies: {
     '@konfik/core': 'workspace:*',
     'type-fest': '^2.10.0',
+  },
+  publishConfig: {
+    access: 'public',
   },
 })
 

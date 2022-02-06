@@ -3,21 +3,24 @@ import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
 export const packageJsonKonfik = PackageJsonKonfik({
   name: '@konfik/core',
-  scripts: {
-    test: 'ava',
-  },
   type: 'module',
+  version: '0.0.2',
   exports: {
     '.': './dist/index.js',
   },
   types: './dist/index.d.ts',
+  scripts: {
+    test: 'ava',
+  },
   devDependencies: {
     ava: '^4.0.1',
+    'conditional-type-checks': '^1.0.5',
   },
-  // TODO: widen index signature
-  // @ts-ignore
   ava: {
     files: ['dist/tests.js'],
+  },
+  publishConfig: {
+    access: 'public',
   },
 })
 

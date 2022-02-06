@@ -1,8 +1,5 @@
 {
   "name": "@konfik-plugin/package-json",
-  "publishConfig": {
-    "access": "public"
-  },
   "version": "0.0.2",
   "exports": {
     ".": "./src/index.ts"
@@ -11,5 +8,8 @@
   "dependencies": {
     "@konfik/core": "workspace:*",
     "type-fest": "^2.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -1,9 +1,6 @@
 {
   "name": "@konfik-plugin/eslint",
   "version": "0.0.2",
-  "publishConfig": {
-    "access": "public"
-  },
   "exports": {
     ".": "./src/index.ts"
   },
@@ -14,5 +11,8 @@
   },
   "devDependencies": {
     "@types/eslint": "^8"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

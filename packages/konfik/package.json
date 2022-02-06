@@ -1,11 +1,8 @@
 {
   "name": "konfik",
+  "type": "module",
   "version": "0.0.2",
   "bin": "./dist/cli/bundle.cjs",
-  "type": "module",
-  "publishConfig": {
-    "access": "public"
-  },
   "exports": {
     ".": "./dist/lib/index.js"
   },
@@ -26,5 +23,8 @@
   "devDependencies": {
     "@konfik/cli": "workspace:*",
     "@types/node": "^17.0.10"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

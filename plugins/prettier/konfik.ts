@@ -3,6 +3,7 @@ import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
 export const packageJsonKonfik = PackageJsonKonfik({
   name: '@konfik-plugin/prettier',
+  version: '0.0.2',
   exports: {
     '.': './src/index.ts',
   },
@@ -13,6 +14,9 @@ export const packageJsonKonfik = PackageJsonKonfik({
   },
   devDependencies: {
     '@types/prettier': '^2',
+  },
+  publishConfig: {
+    access: 'public',
   },
 })
 

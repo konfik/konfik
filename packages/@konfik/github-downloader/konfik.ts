@@ -4,12 +4,16 @@ import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 export const packageJsonKonfik = PackageJsonKonfik({
   name: '@konfik/github-downloader',
   type: 'module',
+  version: '0.0.2',
   exports: {
     '.': './dist/index.js',
   },
   types: './dist/index.d.ts',
   dependencies: {
     '@konfik/utils': 'workspace:*',
+  },
+  publishConfig: {
+    access: 'public',
   },
 })
 

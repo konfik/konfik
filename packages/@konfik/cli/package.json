@@ -1,7 +1,6 @@
 {
   "name": "@konfik/cli",
   "private": true,
-  "version": "0.0.1",
   "type": "module",
   "exports": {
     "./cli": "./dist/cli.js"
@@ -12,9 +11,6 @@
         "./dist/cli.d.ts"
       ]
     }
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "@effect-ts/cli": "^0.7.2",
@@ -35,6 +31,9 @@
   "scripts": {
     "test": "ava",
     "cli": "node ./dist/cli.js"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "ava": {
     "files": [

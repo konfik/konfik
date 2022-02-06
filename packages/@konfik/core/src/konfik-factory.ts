@@ -1,4 +1,4 @@
-export type FileType = 'ts' | 'js' | 'json' | 'plain' | 'yaml'
+export type FileType = 'ts' | 'js' | 'json' | 'json-stringify' | 'plain' | 'yaml'
 
 export interface KonfikFactoryProps<Brand extends PropertyKey, Blueprint> {
   brand: Brand

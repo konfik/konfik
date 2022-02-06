@@ -6,7 +6,7 @@
     "sourceMap": true,
     "declarationMap": true,
     "declaration": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "incremental": true,
     "composite": true,
     "allowJs": true,
@@ -16,12 +16,16 @@
     "isolatedModules": true,
     "target": "ES2021",
     "module": "ESNext",
-    "plugins": [{ "transform": "@effect-ts/tracing-plugin" }],
+    "plugins": [
+      {
+        "name": "@effect-ts/tracing-plugin"
+      }
+    ],
     "paths": {
       "konfik": ["./packages/konfik"],
       "@konfik/utils/effect/*": ["./packages/@konfik/utils/effect/*"],
       "@konfik/*": ["./packages/@konfik/*"]
     }
   },
-  "exclude": ["**/dist", "**/node_modules", "node_modules"]
+  "exclude": ["**/dist", "**/node_modules"]
 }

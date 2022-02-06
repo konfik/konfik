@@ -3,12 +3,16 @@ import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
 export const packageJsonKonfik = PackageJsonKonfik({
   name: '@konfik-plugin/gitignore',
+  version: '0.0.2',
   exports: {
     '.': './src/index.ts',
   },
   types: './src/index.ts',
   dependencies: {
     '@konfik/core': 'workspace:*',
+  },
+  publishConfig: {
+    access: 'public',
   },
 })
 

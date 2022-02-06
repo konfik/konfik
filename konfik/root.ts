@@ -4,30 +4,26 @@ import { GitpodKonfik } from '@konfik-plugin/gitpod'
 import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 import { PrettierKonfik } from '@konfik-plugin/prettier'
 import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
-import { YarnKonfik } from '@konfik-plugin/yarn'
+// import { YarnKonfik } from '@konfik-plugin/yarn'
 
-export const yarnKonfik = YarnKonfik({
-  nodeLinker: 'node-modules',
-  plugins: [
-    {
-      path: '.yarn/plugins/@yarnpkg/plugin-typescript.cjs',
-      spec: '@yarnpkg/plugin-typescript',
-    },
-    {
-      path: '.yarn/plugins/@yarnpkg/plugin-interactive-tools.cjs',
-      spec: '@yarnpkg/plugin-interactive-tools',
-    },
-  ],
-  yarnPath: '.yarn/releases/yarn-3.1.1.cjs',
-})
+// export const yarnKonfik = YarnKonfik({
+//   nodeLinker: 'node-modules',
+//   plugins: [
+//     {
+//       path: '.yarn/plugins/@yarnpkg/plugin-typescript.cjs',
+//       spec: '@yarnpkg/plugin-typescript',
+//     },
+//     {
+//       path: '.yarn/plugins/@yarnpkg/plugin-interactive-tools.cjs',
+//       spec: '@yarnpkg/plugin-interactive-tools',
+//     },
+//   ],
+//   yarnPath: '.yarn/releases/yarn-3.1.1.cjs',
+// })
 
+// See https://www.gitpod.io/docs/config-gitpod-file
 export const gitpodKonfik = GitpodKonfik({
-  tasks: [
-    {
-      name: 'init',
-      command: 'yarn install',
-    },
-  ],
+  tasks: [{ init: 'yarn install' }],
   vscode: {
     extensions: ['dbaeumer.vscode-eslint'],
   },
@@ -58,46 +54,70 @@ export const tsconfigBaseKonfik = TsconfigKonfik({
       '@konfik/*': ['./packages/@konfik/*'],
     },
   },
-  exclude: ['dist', 'node_modules'],
+  exclude: ['**/dist', '**/node_modules'],
 })
 
 export const tsconfigAllKonfik = TsconfigKonfik({
   extends: './tsconfig.base.json',
-  references: [{ path: './packages/konfik' }],
+  compilerOptions: {},
+  include: [],
+  references: [
+    { path: './packages/konfik' },
+    // TODO "generate" the list below
+    { path: './plugins/eslint' },
+    { path: './plugins/gitignore' },
+    { path: './plugins/gitpod' },
+    { path: './plugins/package-json' },
+    { path: './plugins/prettier' },
+    { path: './plugins/tsconfig' },
+    { path: './plugins/vscode' },
+    { path: './plugins/yarn' },
+  ],
 })
 
 export const packageJsonKonfik = PackageJsonKonfik({
-  // TODO: do we need to support the following field?
-  packageManager: 'yarn@3.1.1',
+  private: true,
   workspaces: ['packages/*', 'plugins/*', 'packages/@konfik/*', 'examples/*'],
   scripts: {
-    'build:clean': "bash -c 'rm -rf packages/*/dist packages/@konfik/*/dist'",
-    'dev:ts': 'tsc --build --watch tsconfig.all.json',
-    'lint:check': `run lint:eslint:check && run lint:prettier:check`,
-    'lint:eslint:check': 'eslint packages --ext .ts --max-warnings=0',
-    'lint:eslint:fix': 'eslint packages --ext .ts --fix',
-    'lint:fix': 'run lint:eslint:fix & run lint:prettier:fix',
-    'lint:prettier:check': 'prettier packages --check',
-    'lint:prettier:fix': 'prettier packages --write',
     postinstall: 'ts-patch install && ts-patch --persist && ./link.mjs',
+    build: 'yarn build:clean; yarn build:ts',
+    'build:ts': 'tsc --build tsconfig.all.json',
+    'build:clean': "bash -c 'rm -rf packages/*/dist packages/@konfik/*/dist'",
+    'dev:ts': 'yarn build:ts --watch',
+    'dev:bundle-cli': 'yarn workspace konfik bundle-cli --watch',
+    'release:prerelease':
+      'yarn build && yarn workspaces foreach --verbose --topological-dev --no-private exec npm version prerelease --preid=dev && yarn workspaces foreach --verbose --topological-dev --parallel --no-private npm publish --tolerate-republish --tag=dev --access=public',
+    'lint:check': 'run lint:eslint:check && run lint:prettier:check',
+    'lint:fix': 'run lint:eslint:fix & run lint:prettier:fix',
+    'lint:eslint:fix': 'eslint packages --ext .ts --fix',
+    'lint:eslint:check': 'eslint packages --ext .ts --max-warnings=0',
+    'lint:prettier:fix': 'prettier packages --write',
+    'lint:prettier:check': 'prettier packages --check',
+    'gen:konfik': 'konfik build --config konfik/index.ts --outDir tmp/gen',
+    changeset: 'changeset',
+    release: 'changeset publish',
   },
   // TODO: can we create a type representing every possible NPM package name and valid versions
   devDependencies: {
-    '@effect-ts/tracing-plugin': '^0.14.21',
+    '@changesets/changelog-github': '^0.4.2',
+    '@changesets/cli': '^2.20.0',
+    '@effect-ts/tracing-plugin': '^0.18.0',
     '@typescript-eslint/eslint-plugin': '^4.31.1',
     '@typescript-eslint/parser': '^4.31.1',
+    eslint: '^7.21.0',
     'eslint-config-prettier': '^8.3.0',
     'eslint-plugin-import': '^2.24.2',
     'eslint-plugin-prefer-arrow': '^1.2.3',
     'eslint-plugin-prettier': '^4.0.0',
     'eslint-plugin-react-hooks': '^4.2.0',
     'eslint-plugin-simple-import-sort': '^7.0.0',
-    'ts-patch': '^1.4.5',
-    eslint: '^7.21.0',
     prettier: '^2.5.0',
+    'ts-patch': '^1.4.5',
     typescript: '^4.5.5',
     zx: '^4.3.0',
   },
+  // TODO: do we need to support the following field?
+  packageManager: 'yarn@3.1.1',
 })
 
 // TODO: can we use Gitpod without including `.gitpod.yml` in vc?
@@ -105,16 +125,20 @@ export const gitignoreKonfik = GitignoreKonfik([
   'node_modules',
   '.idea/',
   '.DS_STORE',
+  '',
   'tmp',
   'dist',
+  '',
   '/.yarn/*',
   '!/.yarn/releases',
   '!/.yarn/patches',
   '!/.yarn/plugins',
   '!/.yarn/sdks',
+  '',
   '*.log',
+  '',
   '.direnv',
-  '.eslintrc',
+  '',
 ])
 
 export const prettierOptions = {

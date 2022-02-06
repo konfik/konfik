@@ -26,6 +26,8 @@ export const prettyPrint = (uglyString: string, fileType: FileType): string => {
 
 const mapFileTypeToParser = (fileType: FileType): BuiltInParserName | undefined => {
   switch (fileType) {
+    case 'json-stringify':
+      return 'json-stringify'
     case 'json':
       return 'json'
     case 'yaml':
@@ -43,7 +45,7 @@ export default {
   'prettier.config.js': root.prettierKonfik,
   '.eslintrc': root.eslintKonfik,
   '.gitignore': root.gitignoreKonfik,
-  '.yarnrc.yml': root.yarnKonfik,
+  // '.yarnrc.yml': root.yarnKonfik,
   '.gitpod.yml': root.gitpodKonfik,
   'tsconfig.all.json': root.tsconfigAllKonfik,
   'tsconfig.base.json': root.tsconfigBaseKonfik,
