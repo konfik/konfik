@@ -22,7 +22,7 @@ export const konfikPkg = PackageJsonKonfik({
     esbuild: '^0.14.13',
   },
   devDependencies: {
-    '@konfik/cli': version,
+    '@konfik/cli': 'workspace:*',
     '@types/node': '^17.0.10',
   },
   publishConfig: {
