@@ -136,7 +136,7 @@ export const eslintKonfik = EslintKonfik({
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'simple-import-sort', 'prefer-arrow', 'import'],
   // TODO: can we infer the dependencies & inject them into a generated `package.json`?
-  extends: ['plugin:react-hooks/recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
+  extends: ['plugin:react-hooks/recommended', 'plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
   rules: {
     'simple-import-sort/imports': 'error',
     'import/no-duplicates': 'warn',

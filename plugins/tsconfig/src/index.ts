@@ -6,6 +6,6 @@ export type TsconfigKonfikBrand = typeof TsconfigKonfikBrand
 
 export const TsconfigKonfik = KonfikFactory<Tsconfig>()({
   brand: TsconfigKonfikBrand,
-  toString: (config) => JSON.stringify(config, null, 2),
+  toString: (config) => JSON.stringify(config),
   fileType: 'json',
 })
