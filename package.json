@@ -20,6 +20,7 @@
     "lint:eslint:check": "eslint packages --ext .ts --max-warnings=0",
     "lint:prettier:fix": "prettier packages --write",
     "lint:prettier:check": "prettier packages --check",
+    "gen:konfik": "konfik build --config konfik/index.ts --outDir tmp/gen",
     "changeset": "changeset",
     "release": "changeset publish"
   },

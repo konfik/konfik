@@ -18,6 +18,7 @@ import * as path from 'node:path'
 import { getCwd, provideCwd } from './cwd.js'
 import { getPlugins } from './getConfig/index.js'
 import { validatePlugins } from './validate.js'
+import { version } from './version.js'
 import { writeFile } from './writeFile.js'
 
 // -----------------------------------------------------------------------------
@@ -80,7 +81,7 @@ export const konfikCliCommand = pipe(CliCommand.make('konfik'), CliCommand.subco
 
 const cli = CliApp.make({
   name: 'konfik',
-  version: '0.1.0',
+  version,
   summary: CliHelp.text('Scaffold project configuration with a type-safe DSL'),
   command: konfikCliCommand,
   config: { showBanner: false },
