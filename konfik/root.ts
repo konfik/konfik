@@ -83,6 +83,7 @@ export const packageJsonKonfik = PackageJsonKonfik({
     build: 'yarn build:clean; yarn build:ts',
     'build:ts': 'tsc --build tsconfig.all.json',
     'build:clean': "bash -c 'rm -rf packages/*/dist packages/@konfik/*/dist'",
+    'build:konfik': 'konfik build --config konfik/index.ts',
     'dev:ts': 'yarn build:ts --watch',
     'dev:bundle-cli': 'yarn workspace konfik bundle-cli --watch',
     'release:prerelease':
@@ -93,7 +94,6 @@ export const packageJsonKonfik = PackageJsonKonfik({
     'lint:eslint:check': 'eslint packages --ext .ts --max-warnings=0',
     'lint:prettier:fix': 'prettier packages --write',
     'lint:prettier:check': 'prettier packages --check',
-    'gen:konfik': 'konfik build --config konfik/index.ts --outDir tmp/gen',
     changeset: 'changeset',
     release: 'changeset publish',
   },

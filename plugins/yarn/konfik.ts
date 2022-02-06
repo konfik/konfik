@@ -12,8 +12,8 @@ export const packageJsonKonfik = PackageJsonKonfik({
   types: './src/index.ts',
   dependencies: {
     '@konfik/core': version,
-    '@yarnpkg/core': '^3.2.0-rc.13',
     '@types/js-yaml': '^4',
+    '@yarnpkg/core': '^3.2.0-rc.13',
     'js-yaml': '^4.1.0',
   },
   publishConfig: {
