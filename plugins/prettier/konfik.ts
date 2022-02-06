@@ -10,10 +10,8 @@ export const packageJsonKonfik = PackageJsonKonfik({
   types: './src/index.ts',
   dependencies: {
     '@konfik/core': 'workspace:*',
-    prettier: '^2.5.1',
-  },
-  devDependencies: {
     '@types/prettier': '^2',
+    prettier: '^2.5.1',
   },
   publishConfig: {
     access: 'public',

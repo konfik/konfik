@@ -10,10 +10,8 @@ export const packageJsonKonfik = PackageJsonKonfik({
   types: './src/index.ts',
   dependencies: {
     '@konfik/core': 'workspace:*',
-    eslint: '^8.8.0',
-  },
-  devDependencies: {
     '@types/eslint': '^8',
+    eslint: '^8.8.0',
   },
   publishConfig: {
     access: 'public',
