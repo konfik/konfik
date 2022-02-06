@@ -15,6 +15,7 @@ import { createPatch } from 'diff'
 import * as os from 'node:os'
 import * as path from 'node:path'
 
+import { ArtifactsDir } from './ArtifactsDir.js'
 import { getCwd, provideCwd } from './cwd.js'
 import { getPlugins } from './getConfig/index.js'
 import { validatePlugins } from './validate.js'
@@ -32,6 +33,7 @@ export interface CommonCliOptions {
 }
 
 export interface BuildCommandOptions extends CommonCliOptions {
+  readonly clearCache: boolean
   readonly configPath: O.Option<string>
   readonly outDir: O.Option<string>
 }
@@ -48,6 +50,8 @@ export class Diff extends Tagged('Diff')<DiffCommandOptions> {}
 
 export const configPathOption = pipe(CliOptions.file('config'), CliOptions.alias('c'), CliOptions.optional(Show.string))
 
+export const clearCacheOption = CliOptions.boolean('clearCache')
+
 export const outDirOption = pipe(
   CliOptions.directory('outDir', CliExists.either),
   CliOptions.alias('o'),
@@ -55,6 +59,7 @@ export const outDirOption = pipe(
 )
 
 export const buildOptions = CliOptions.struct({
+  clearCache: clearCacheOption,
   configPath: configPathOption,
   outDir: outDirOption,
 })
@@ -89,16 +94,19 @@ const cli = CliApp.make({
 
 const build = (options: BuildCommandOptions) =>
   T.gen(function* ($) {
-    const { plugin, prettyPrint } = yield* $(getPlugins({ configPath: options.configPath }))
+    const artifactsDir = yield* $(ArtifactsDir.makeTmpDirAndResolveEntryPoint)
+
+    if (options.clearCache) {
+      yield* $(fs.rm(artifactsDir, { recursive: true }))
+    }
+
+    const { plugin, prettyPrint } = yield* $(getPlugins({ configPath: options.configPath, artifactsDir }))
 
     yield* $(validatePlugins([plugin]))
 
     const concurrencyLimit = yield* $(T.succeedWith(() => os.cpus().length))
 
-    const allFileEntries = flattenKonfikTrie(plugin).map<[string, string]>(([filePath, contents]) => [
-      filePath,
-      prettyPrint(contents),
-    ])
+    const allFileEntries = flattenKonfikTrie(plugin, prettyPrint)
 
     yield* $(
       fs.mkdirp(
@@ -115,13 +123,13 @@ const build = (options: BuildCommandOptions) =>
 
 const diff = (options: DiffCommandOptions) =>
   T.gen(function* ($) {
-    const { plugin, prettyPrint } = yield* $(getPlugins({ configPath: options.configPath }))
+    const artifactsDir = yield* $(ArtifactsDir.makeTmpDirAndResolveEntryPoint)
+
+    const { plugin, prettyPrint } = yield* $(getPlugins({ configPath: options.configPath, artifactsDir }))
 
     yield* $(validatePlugins([plugin]))
 
-    const fileMap = Map.make(
-      flattenKonfikTrie(plugin).map<[string, string]>(([filePath, contents]) => [filePath, prettyPrint(contents)]),
-    )
+    const fileMap = Map.make(flattenKonfikTrie(plugin, prettyPrint))
     const filePaths = fileMap.keys()
 
     const cwd = yield* $(getCwd)

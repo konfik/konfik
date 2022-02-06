@@ -1,6 +1,9 @@
+export type FileType = 'ts' | 'js' | 'json' | 'plain' | 'yaml'
+
 export interface KonfikFactoryProps<Brand extends PropertyKey, Blueprint> {
   brand: Brand
   toString(config: Blueprint): string
+  fileType: FileType
   // TODO: what else here?
 }
 type AnyKonfikFactoryProps = KonfikFactoryProps<PropertyKey, any>

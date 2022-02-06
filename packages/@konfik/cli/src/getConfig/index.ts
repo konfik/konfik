@@ -1,11 +1,10 @@
-import type { KonfikPlugin } from '@konfik/core'
+import type { KonfikPlugin, PrettyPrint } from '@konfik/core'
 import type { E } from '@konfik/utils/effect'
 import { Chunk, identity, O, OT, pipe, S, T } from '@konfik/utils/effect'
 // import type { GetKonfikVersionError } from '@konfik/utils/node'
 import { fs } from '@konfik/utils/node'
 import * as path from 'path'
 
-import { ArtifactsDir } from '../ArtifactsDir.js'
 import type { HasCwd } from '../cwd.js'
 import { getCwd } from '../cwd.js'
 import type { EsbuildBinNotFoundError } from '../errors.js'
@@ -29,16 +28,16 @@ export type KonfikResult = {
   prettyPrint: PrettyPrint
 }
 
-export type PrettyPrint = (str: string) => string
-
 export const getPlugins = ({
   configPath,
+  artifactsDir,
 }: {
   configPath: O.Option<string>
+  artifactsDir: string
 }): T.Effect<OT.HasTracer & HasCwd, GetConfigError, KonfikResult> => {
   const targetPath = O.toUndefined(configPath)
   return pipe(
-    getConfigWatch({ configPath: targetPath }),
+    getConfigWatch({ configPath: targetPath, artifactsDir }),
     S.take(1),
     S.runCollect,
     T.map(Chunk.unsafeHead),
@@ -49,22 +48,20 @@ export const getPlugins = ({
 
 export const getConfigWatch = ({
   configPath: configPath_,
+  artifactsDir,
 }: {
   configPath?: string
+  artifactsDir: string
 }): S.Stream<OT.HasTracer & HasCwd, never, E.Either<GetConfigError, KonfikResult>> => {
-  const resolveParams = pipe(
-    T.structPar({ configPath: resolveConfigPath({ configPath: configPath_ }) }),
-    T.chainMergeObject(() => makeTmpDirAndResolveEntryPoint),
-    T.either,
-  )
+  const resolveParams = pipe(T.structPar({ configPath: resolveConfigPath({ configPath: configPath_ }) }), T.either)
 
   return pipe(
     S.fromEffect(resolveParams),
-    S.chainMapEitherRight(({ configPath, outfilePath }) =>
+    S.chainMapEitherRight(({ configPath }) =>
       pipe(
         esbuild.makeAndSubscribe({
           entryPoints: [configPath],
-          outfile: outfilePath,
+          outfile: artifactsDir,
           sourcemap: true,
           platform: 'node',
           target: 'es2020',
@@ -77,7 +74,7 @@ export const getConfigWatch = ({
           logLevel: 'silent',
           // plugins: [contentlayerGenPlugin(), makeAllPackagesExternalPlugin(configPath)],
         }),
-        S.mapEffectEitherRight((result) => getConfigFromResult({ result, configPath, outfilePath })),
+        S.mapEffectEitherRight((result) => getConfigFromResult({ result, configPath, outfilePath: artifactsDir })),
       ),
     ),
   )
@@ -108,11 +105,6 @@ const resolveConfigPath = ({
 
     return yield* $(T.fail(new NoConfigFoundError({ cwd, configPath })))
   })
-
-const makeTmpDirAndResolveEntryPoint = pipe(
-  ArtifactsDir.mkdirCache,
-  T.map((cacheDir) => ({ outfilePath: path.join(cacheDir, 'compiled-konfik-config.mjs') })),
-)
 
 const getConfigFromResult = ({
   result,

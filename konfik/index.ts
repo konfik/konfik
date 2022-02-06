@@ -1,3 +1,5 @@
+import type { FileType } from '@konfik/core'
+import type { BuiltInParserName } from 'prettier'
 import { format } from 'prettier'
 
 import * as cli from '../packages/@konfik/cli/konfik.js'
@@ -15,8 +17,25 @@ import * as vscode from '../plugins/vscode/konfik.js'
 import * as yarn from '../plugins/yarn/konfik.js'
 import * as root from './root.js'
 
-export const prettyPrint = (uglyString: string): string => {
-  return format(uglyString, { ...root.prettierOptions, parser: 'babel-ts' })
+export const prettyPrint = (uglyString: string, fileType: FileType): string => {
+  const parser = mapFileTypeToParser(fileType)
+  if (parser === undefined) return uglyString
+
+  return format(uglyString, { ...root.prettierOptions, parser })
+}
+
+const mapFileTypeToParser = (fileType: FileType): BuiltInParserName | undefined => {
+  switch (fileType) {
+    case 'json':
+      return 'json'
+    case 'yaml':
+      return 'yaml'
+    case 'js':
+    case 'ts':
+      return 'babel-ts'
+    case 'plain':
+      return undefined
+  }
 }
 
 // TODO: how to supply option to generate gitignore

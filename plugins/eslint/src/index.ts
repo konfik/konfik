@@ -7,4 +7,5 @@ export type EslintKonfikBrand = typeof EslintKonfikBrand
 export const EslintKonfik = KonfikFactory<Linter.Config>()({
   brand: EslintKonfikBrand,
   toString: (config) => JSON.stringify(config, null, 2),
+  fileType: 'json',
 })

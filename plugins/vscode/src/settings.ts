@@ -7,4 +7,5 @@ export type VscodeSettingsKonfikBrand = typeof VscodeSettingsKonfikBrand
 export const VscodeSettingsKonfik = KonfikFactory<Record<string, any>>()({
   brand: VscodeSettingsKonfikBrand,
   toString: (config) => JSON.stringify(config, null, 2),
+  fileType: 'json',
 })

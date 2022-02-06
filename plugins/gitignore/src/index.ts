@@ -6,4 +6,5 @@ export type GitignoreKonfikBrand = typeof GitignoreKonfikBrand
 export const GitignoreKonfik = KonfikFactory<string[]>()({
   brand: GitignoreKonfikBrand,
   toString: (config) => config.join('\n'),
+  fileType: 'plain',
 })

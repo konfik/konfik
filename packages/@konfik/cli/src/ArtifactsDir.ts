@@ -3,6 +3,7 @@ import { filePathJoin } from '@konfik/utils'
 import type { OT } from '@konfik/utils/effect'
 import { pipe, T } from '@konfik/utils/effect'
 import { fs } from '@konfik/utils/node'
+import * as path from 'node:path'
 
 import type { HasCwd } from './cwd.js'
 import { getCwd } from './cwd.js'
@@ -35,5 +36,14 @@ export namespace ArtifactsDir {
   export const mkdirCache: T.Effect<OT.HasTracer & HasCwd, fs.MkdirError | GetKonfikVersionError, PosixFilePath> = pipe(
     getCacheDirPath,
     T.tap(fs.mkdirp),
+  )
+
+  export const makeTmpDirAndResolveEntryPoint: T.Effect<
+    OT.HasTracer & HasCwd,
+    fs.MkdirError | GetKonfikVersionError,
+    string
+  > = pipe(
+    ArtifactsDir.mkdirCache,
+    T.map((cacheDir) => path.join(cacheDir, 'compiled-konfik-config.mjs')),
   )
 }
