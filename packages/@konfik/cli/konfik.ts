@@ -1,6 +1,8 @@
 import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
+import { version } from '../../../konfik/common.js'
+
 export const packageJsonKonfik = PackageJsonKonfik({
   name: '@konfik/cli',
   // NOTE this module doesn't need a version as it's not published on NPM
@@ -19,8 +21,8 @@ export const packageJsonKonfik = PackageJsonKonfik({
     '@effect-ts/figlet': '^0.2.0',
     '@effect-ts/node': '^0.36.0',
     '@effect-ts/printer': '^0.12.0',
-    '@konfik/core': 'workspace:*',
-    '@konfik/utils': 'workspace:*',
+    '@konfik/core': version,
+    '@konfik/utils': version,
     diff: '^5.0.0',
     esbuild: '^0.14.13',
     'source-map-support': '^0.5.21',

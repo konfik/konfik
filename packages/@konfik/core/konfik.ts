@@ -1,10 +1,12 @@
 import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
+import { version } from '../../../konfik/common.js'
+
 export const packageJsonKonfik = PackageJsonKonfik({
   name: '@konfik/core',
   type: 'module',
-  version: '0.0.2',
+  version,
   exports: {
     '.': './dist/index.js',
   },

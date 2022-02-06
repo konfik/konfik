@@ -1,15 +1,17 @@
 import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
+import { version } from '../../konfik/common.js'
+
 export const packageJsonKonfik = PackageJsonKonfik({
   name: '@konfik-plugin/gitignore',
-  version: '0.0.2',
+  version,
   exports: {
     '.': './src/index.ts',
   },
   types: './src/index.ts',
   dependencies: {
-    '@konfik/core': 'workspace:*',
+    '@konfik/core': version,
   },
   publishConfig: {
     access: 'public',
