@@ -8,4 +8,5 @@ export type GitpodKonfikBrand = typeof GitpodKonfikBrand
 export const GitpodKonfik = KonfikFactory<GitpodConfig>()({
   brand: GitpodKonfikBrand,
   toString: (config) => dump(config),
+  fileType: 'yaml',
 })

@@ -19,4 +19,5 @@ export type YarnKonfikBrand = typeof YarnKonfikBrand
 export const YarnKonfik = KonfikFactory<YarnConfig>()({
   brand: YarnKonfikBrand,
   toString: (config) => dump(config),
+  fileType: 'yaml',
 })

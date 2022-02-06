@@ -1,15 +1,21 @@
 import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
+import { version } from '../../../konfik/common.js'
+
 export const packageJsonKonfik = PackageJsonKonfik({
   name: '@konfik/github-downloader',
   type: 'module',
+  version,
   exports: {
     '.': './dist/index.js',
   },
   types: './dist/index.d.ts',
   dependencies: {
-    '@konfik/utils': 'workspace:*',
+    '@konfik/utils': version,
+  },
+  publishConfig: {
+    access: 'public',
   },
 })
 

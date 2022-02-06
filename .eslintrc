@@ -1,9 +1,5 @@
 {
-  "env": {
-    "browser": true,
-    "node": true,
-    "es6": true
-  },
+  "env": { "browser": true, "node": true, "es6": true },
   "ignorePatterns": ["packages/_archive/*", "**/dist/*", "**/.nyc_output/*"],
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "simple-import-sort", "prefer-arrow", "import"],
@@ -11,7 +7,6 @@
   "rules": {
     "simple-import-sort/imports": "error",
     "import/no-duplicates": "warn",
-    // "func-style": ["warn", "expression"],
     "import/no-extraneous-dependencies": "error",
     "import/no-named-as-default": "warn",
     "import/no-named-as-default-member": "warn",

@@ -1,19 +1,23 @@
 import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
+import { version } from '../../konfik/common.js'
+
 export const packageJsonKonfik = PackageJsonKonfik({
   name: '@konfik-plugin/yarn',
+  version,
   exports: {
     '.': './src/index.ts',
   },
   types: './src/index.ts',
   dependencies: {
-    '@konfik/core': 'workspace:*',
+    '@konfik/core': version,
     '@yarnpkg/core': '^3.2.0-rc.13',
+    '@types/js-yaml': '^4',
     'js-yaml': '^4.1.0',
   },
-  devDependencies: {
-    '@types/js-yaml': '^4',
+  publishConfig: {
+    access: 'public',
   },
 })
 

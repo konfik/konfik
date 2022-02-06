@@ -1,6 +1,6 @@
 {
   "name": "@konfik-plugin/gitpod",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publishConfig": {
     "access": "public"
   },
@@ -10,10 +10,8 @@
   "types": "./src/index.ts",
   "dependencies": {
     "@gitpod/gitpod-protocol": "^0.1.5-test.4",
-    "@konfik/core": "workspace:*",
+    "@konfik/core": "0.0.3",
+    "@types/js-yaml": "^4",
     "js-yaml": "^4.1.0"
-  },
-  "devDependencies": {
-    "@types/js-yaml": "^4"
   }
 }

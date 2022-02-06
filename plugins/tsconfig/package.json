@@ -1,15 +1,15 @@
 {
   "name": "@konfik-plugin/tsconfig",
-  "version": "0.0.2",
-  "publishConfig": {
-    "access": "public"
-  },
+  "version": "0.0.3",
   "exports": {
     ".": "./src/index.ts"
   },
   "types": "./src/index.ts",
   "dependencies": {
-    "@konfik/core": "workspace:*",
+    "@konfik/core": "0.0.3",
     "tsconfig-type": "1.21.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

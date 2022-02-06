@@ -2,5 +2,33 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {},
   "include": [],
-  "references": [{ "path": "./packages/konfik" }]
+  "references": [
+    {
+      "path": "./packages/konfik"
+    },
+    {
+      "path": "./plugins/eslint"
+    },
+    {
+      "path": "./plugins/gitignore"
+    },
+    {
+      "path": "./plugins/gitpod"
+    },
+    {
+      "path": "./plugins/package-json"
+    },
+    {
+      "path": "./plugins/prettier"
+    },
+    {
+      "path": "./plugins/tsconfig"
+    },
+    {
+      "path": "./plugins/vscode"
+    },
+    {
+      "path": "./plugins/yarn"
+    }
+  ]
 }

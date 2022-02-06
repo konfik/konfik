@@ -1,10 +1,16 @@
 import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
+import { version } from '../../../konfik/common.js'
+
 export const packageJsonKonfik = PackageJsonKonfik({
   name: '@konfik/utils',
+  version,
   type: 'module',
   exports: {
+    './package.json': {
+      import: './package.json',
+    },
     '.': {
       import: './dist/index.js',
     },
@@ -25,22 +31,24 @@ export const packageJsonKonfik = PackageJsonKonfik({
   typesVersions: {
     '*': {
       effect: ['./dist/effect'],
+      'package.json': ['./package.json'],
       'effect/Tracing': ['./dist/effect/Tracing'],
       'effect/Tracing/Enable': ['./dist/effect/Tracing/Enable'],
       node: ['./dist/node'],
     },
   },
+  sideEffects: ['./dist/effect/Tracing/Enable.js'],
   scripts: {
     test: 'echo No tests yet',
   },
   dependencies: {
-    '@effect-ts/core': '^0.48.5',
-    '@effect-ts/otel': '^0.9.1',
-    '@effect-ts/otel-exporter-trace-otlp-grpc': '^0.9.1',
-    '@effect-ts/otel-sdk-trace-node': '^0.9.1',
+    '@effect-ts/core': '^0.55.1',
+    '@effect-ts/otel': '^0.11.6',
+    '@effect-ts/otel-exporter-trace-otlp-http': '^0.11.6',
+    '@effect-ts/otel-sdk-trace-node': '^0.11.6',
     '@opentelemetry/api': '^1.0.3',
     '@opentelemetry/core': '^1.0.1',
-    '@opentelemetry/exporter-trace-otlp-grpc': '0.27.0',
+    '@opentelemetry/exporter-trace-otlp-http': '0.27.0',
     '@opentelemetry/node': '^0.24.0',
     '@opentelemetry/resources': '1.0.1',
     '@opentelemetry/sdk-node': '^0.27.0',
@@ -50,7 +58,6 @@ export const packageJsonKonfik = PackageJsonKonfik({
     '@opentelemetry/tracing': '^0.24.0',
     'hash-wasm': '^4.9.0',
     'pretty-bytes': '^5.6.0',
-    'ts-pattern': '^3.3.3',
     'type-fest': '^2.5.4',
     undici: '^4.12.2',
     uuid: '^8.3.2',
@@ -58,6 +65,9 @@ export const packageJsonKonfik = PackageJsonKonfik({
   devDependencies: {
     '@types/inflection': '^1.13.0',
     '@types/uuid': '^8.3.3',
+  },
+  publishConfig: {
+    access: 'public',
   },
 })
 

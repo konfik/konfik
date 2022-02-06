@@ -1,7 +1,6 @@
 {
   "name": "@konfik/cli",
   "private": true,
-  "version": "0.0.1",
   "type": "module",
   "exports": {
     "./cli": "./dist/cli.js"
@@ -13,16 +12,13 @@
       ]
     }
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "@effect-ts/cli": "^0.7.2",
     "@effect-ts/figlet": "^0.2.0",
     "@effect-ts/node": "^0.36.0",
     "@effect-ts/printer": "^0.12.0",
-    "@konfik/core": "workspace:*",
-    "@konfik/utils": "workspace:*",
+    "@konfik/core": "0.0.3",
+    "@konfik/utils": "0.0.3",
     "diff": "^5.0.0",
     "esbuild": "^0.14.13",
     "source-map-support": "^0.5.21"
@@ -35,6 +31,9 @@
   "scripts": {
     "test": "ava",
     "cli": "node ./dist/cli.js"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "ava": {
     "files": [

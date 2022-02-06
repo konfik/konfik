@@ -1,3 +1,7 @@
+import type { FileType } from '@konfik/core'
+import type { BuiltInParserName } from 'prettier'
+import { format } from 'prettier'
+
 import * as cli from '../packages/@konfik/cli/konfik.js'
 import * as core from '../packages/@konfik/core/konfik.js'
 import * as ghDownloader from '../packages/@konfik/github-downloader/konfik.js'
@@ -13,12 +17,35 @@ import * as vscode from '../plugins/vscode/konfik.js'
 import * as yarn from '../plugins/yarn/konfik.js'
 import * as root from './root.js'
 
+export const prettyPrint = (uglyString: string, fileType: FileType): string => {
+  const parser = mapFileTypeToParser(fileType)
+  if (parser === undefined) return uglyString
+
+  return format(uglyString, { ...root.prettierOptions, parser })
+}
+
+const mapFileTypeToParser = (fileType: FileType): BuiltInParserName | undefined => {
+  switch (fileType) {
+    case 'json-stringify':
+      return 'json-stringify'
+    case 'json':
+      return 'json'
+    case 'yaml':
+      return 'yaml'
+    case 'js':
+    case 'ts':
+      return 'babel-ts'
+    case 'plain':
+      return undefined
+  }
+}
+
 // TODO: how to supply option to generate gitignore
 export default {
   'prettier.config.js': root.prettierKonfik,
   '.eslintrc': root.eslintKonfik,
   '.gitignore': root.gitignoreKonfik,
-  '.yarnrc.yml': root.yarnKonfik,
+  // '.yarnrc.yml': root.yarnKonfik,
   '.gitpod.yml': root.gitpodKonfik,
   'tsconfig.all.json': root.tsconfigAllKonfik,
   'tsconfig.base.json': root.tsconfigBaseKonfik,
