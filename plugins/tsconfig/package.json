@@ -1,12 +1,12 @@
 {
   "name": "@konfik-plugin/tsconfig",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "exports": {
     ".": "./src/index.ts"
   },
   "types": "./src/index.ts",
   "dependencies": {
-    "@konfik/core": "0.0.5",
+    "@konfik/core": "0.0.6",
     "tsconfig-type": "1.21.0"
   },
   "publishConfig": {

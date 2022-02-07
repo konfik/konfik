@@ -1,12 +1,12 @@
 {
   "name": "@konfik-plugin/yarn",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "exports": {
     ".": "./src/index.ts"
   },
   "types": "./src/index.ts",
   "dependencies": {
-    "@konfik/core": "0.0.5",
+    "@konfik/core": "0.0.6",
     "@types/js-yaml": "^4",
     "@yarnpkg/core": "^3.2.0-rc.13",
     "js-yaml": "^4.1.0"

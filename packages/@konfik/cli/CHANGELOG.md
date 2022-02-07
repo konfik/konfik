@@ -4,6 +4,14 @@
 
 ### Patch Changes
 
+- Updated dependencies [[`be4d60e`](https://github.com/konfik/konfik/commit/be4d60e8267ad0eaccc86ea76f226d21ae3e66bf)]:
+  - @konfik/core@0.0.6
+  - @konfik/utils@0.0.6
+
+## null
+
+### Patch Changes
+
 - [`50a88b2`](https://github.com/konfik/konfik/commit/50a88b2e77d2f72b32ce23bbf65c92ad766a9389) Thanks [@schickling](https://github.com/schickling)! - Fix release
 
 - Updated dependencies [[`50a88b2`](https://github.com/konfik/konfik/commit/50a88b2e77d2f72b32ce23bbf65c92ad766a9389)]:

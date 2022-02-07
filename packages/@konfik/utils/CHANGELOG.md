@@ -1,5 +1,11 @@
 # @konfik/utils
 
+## 0.0.6
+
+### Patch Changes
+
+- [`be4d60e`](https://github.com/konfik/konfik/commit/be4d60e8267ad0eaccc86ea76f226d21ae3e66bf) Thanks [@schickling](https://github.com/schickling)! - Fix release
+
 ## 0.0.5
 
 ### Patch Changes
