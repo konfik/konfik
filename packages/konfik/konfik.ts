@@ -1,7 +1,5 @@
 import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 
-import { version } from '../../konfik/common.js'
-
 export const konfikPkg = PackageJsonKonfik({
   name: 'konfik',
   type: 'module',
@@ -18,7 +16,7 @@ export const konfikPkg = PackageJsonKonfik({
       'esbuild ./dist/cli/index.js --bundle --platform=node --format=cjs --external:esbuild --outfile=dist/cli/bundle.cjs --main-fields=module,main --banner:js="#!/usr/bin/env node"',
   },
   dependencies: {
-    '@konfik/core': version,
+    '@konfik/core': 'workspace:*',
     esbuild: '^0.14.13',
   },
   devDependencies: {

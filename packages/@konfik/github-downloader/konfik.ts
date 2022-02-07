@@ -12,7 +12,7 @@ export const packageJsonKonfik = PackageJsonKonfik({
   },
   types: './dist/index.d.ts',
   dependencies: {
-    '@konfik/utils': version,
+    '@konfik/utils': 'workspace:*',
   },
   publishConfig: {
     access: 'public',

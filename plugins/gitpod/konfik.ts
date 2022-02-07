@@ -15,7 +15,7 @@ export const packageJsonKonfik = PackageJsonKonfik({
   types: './src/index.ts',
   dependencies: {
     '@gitpod/gitpod-protocol': '^0.1.5-test.4',
-    '@konfik/core': version,
+    '@konfik/core': 'workspace:*',
     '@types/js-yaml': '^4',
     'js-yaml': '^4.1.0',
   },

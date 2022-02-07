@@ -1,15 +1,11 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@1.6.4/schema.json",
-  "changelog": [
-    "@changesets/changelog-github",
-    {
-      "repo": "konfik/konfik"
-    }
-  ],
+  "changelog": "../scripts/changeset-changelog-generator.js",
   "commit": false,
-  "linked": [],
+  "fixed": [["konfik", "@konfik/*", "!@konfik/cli", "@konfik-plugin/*"]],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
+  "bumpVersionsWithWorkspaceProtocolOnly": true,
   "ignore": ["example-*"]
 }
