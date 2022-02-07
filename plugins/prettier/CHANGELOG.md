@@ -1,5 +1,14 @@
 # @konfik-plugin/prettier
 
+## 0.0.5
+
+### Patch Changes
+
+- [`50a88b2`](https://github.com/konfik/konfik/commit/50a88b2e77d2f72b32ce23bbf65c92ad766a9389) Thanks [@schickling](https://github.com/schickling)! - Fix release
+
+- Updated dependencies [[`50a88b2`](https://github.com/konfik/konfik/commit/50a88b2e77d2f72b32ce23bbf65c92ad766a9389)]:
+  - @konfik/core@0.0.5
+
 ## 0.0.4
 
 ### Patch Changes

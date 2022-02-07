@@ -17,8 +17,8 @@
     "@effect-ts/figlet": "^0.2.0",
     "@effect-ts/node": "^0.36.0",
     "@effect-ts/printer": "^0.12.0",
-    "@konfik/core": "0.0.4",
-    "@konfik/utils": "0.0.4",
+    "@konfik/core": "0.0.5",
+    "@konfik/utils": "0.0.5",
     "diff": "^5.0.0",
     "esbuild": "^0.14.13",
     "source-map-support": "^0.5.21"
@@ -39,5 +39,6 @@
     "files": [
       "dist/**/*.test.js"
     ]
-  }
+  },
+  "version": null
 }
