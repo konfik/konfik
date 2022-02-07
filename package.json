@@ -2,8 +2,8 @@
   "private": true,
   "workspaces": [
     "packages/*",
-    "plugins/*",
     "packages/@konfik/*",
+    "plugins/*",
     "examples/*"
   ],
   "scripts": {

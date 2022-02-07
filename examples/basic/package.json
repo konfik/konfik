@@ -1,6 +1,5 @@
 {
-  "name": "basic",
-  "version": "0.0.0",
+  "name": "example-basic",
   "private": true,
   "devDependencies": {
     "@konfik-plugin/eslint": "workspace:*",

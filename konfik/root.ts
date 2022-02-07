@@ -77,7 +77,7 @@ export const tsconfigAllKonfik = TsconfigKonfik({
 
 export const packageJsonKonfik = PackageJsonKonfik({
   private: true,
-  workspaces: ['packages/*', 'plugins/*', 'packages/@konfik/*', 'examples/*'],
+  workspaces: ['packages/*', 'packages/@konfik/*', 'plugins/*', 'examples/*'],
   scripts: {
     postinstall: 'ts-patch install && ts-patch --persist && ./link.mjs',
     build: 'yarn build:clean; yarn build:ts',
@@ -138,6 +138,7 @@ export const gitignoreKonfik = GitignoreKonfik([
   '*.log',
   '',
   '.direnv',
+  '.envrc.*',
   '',
 ])
 

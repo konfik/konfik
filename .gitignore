@@ -14,3 +14,4 @@ dist
 *.log
 
 .direnv
+.envrc.*

@@ -1848,20 +1848,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"basic@workspace:examples/basic":
-  version: 0.0.0-use.local
-  resolution: "basic@workspace:examples/basic"
-  dependencies:
-    "@konfik-plugin/eslint": "workspace:*"
-    "@konfik-plugin/gitignore": "workspace:*"
-    "@konfik-plugin/gitpod": "workspace:*"
-    "@konfik-plugin/package-json": "workspace:*"
-    "@konfik-plugin/prettier": "workspace:*"
-    "@konfik-plugin/tsconfig": "workspace:*"
-    konfik: "workspace:*"
-  languageName: unknown
-  linkType: soft
-
 "better-path-resolve@npm:1.0.0":
   version: 1.0.0
   resolution: "better-path-resolve@npm:1.0.0"
@@ -3322,6 +3308,20 @@ __metadata:
   checksum: 1ffe3bb22a6d51bdeb6bf6f7cf97d2ff4a74b017ad12284cc9e6a279e727dc30a5de6bb613e5596ff4dc3e517841339ad09a7eec44266eccb1aa201a30448166
   languageName: node
   linkType: hard
+
+"example-basic@workspace:examples/basic":
+  version: 0.0.0-use.local
+  resolution: "example-basic@workspace:examples/basic"
+  dependencies:
+    "@konfik-plugin/eslint": "workspace:*"
+    "@konfik-plugin/gitignore": "workspace:*"
+    "@konfik-plugin/gitpod": "workspace:*"
+    "@konfik-plugin/package-json": "workspace:*"
+    "@konfik-plugin/prettier": "workspace:*"
+    "@konfik-plugin/tsconfig": "workspace:*"
+    konfik: "workspace:*"
+  languageName: unknown
+  linkType: soft
 
 "extend@npm:^3.0.2":
   version: 3.0.2
