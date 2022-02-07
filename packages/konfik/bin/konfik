@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
+# NOTE This script is only needed for local development in the mono repo and isn't published to NPM
+
 node "$(dirname "${0}")/../dist/cli/bundle.cjs" $@

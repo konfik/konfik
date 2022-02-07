@@ -11,7 +11,7 @@ export const konfikPkg = PackageJsonKonfik({
     '.': './dist/lib/index.js',
   },
   types: './dist/lib/index.d.ts',
-  files: ['./dist', './src', 'package.json'],
+  files: ['./dist/*.{js,ts,map}', './src/*', 'package.json'],
   scripts: {
     prepublish: 'run bundle-cli',
     'bundle-cli':

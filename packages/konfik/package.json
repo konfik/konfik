@@ -8,8 +8,8 @@
   },
   "types": "./dist/lib/index.d.ts",
   "files": [
-    "./dist",
-    "./src",
+    "./dist/*.{js,ts,map}",
+    "./src/*",
     "package.json"
   ],
   "scripts": {
