@@ -1,12 +1,12 @@
 {
   "name": "@konfik-plugin/vscode",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "exports": {
     ".": "./src/index.ts"
   },
   "types": "./src/index.ts",
   "dependencies": {
-    "@konfik/core": "0.0.4"
+    "@konfik/core": "0.0.5"
   },
   "publishConfig": {
     "access": "public"
