@@ -86,8 +86,6 @@ export const packageJsonKonfik = PackageJsonKonfik({
     'build:konfik': 'konfik build --config konfik/index.ts',
     'dev:ts': 'yarn build:ts --watch',
     'dev:bundle-cli': 'yarn workspace konfik bundle-cli --watch',
-    'release:prerelease':
-      'yarn build && yarn workspaces foreach --verbose --topological-dev --no-private exec npm version prerelease --preid=dev && yarn workspaces foreach --verbose --topological-dev --parallel --no-private npm publish --tolerate-republish --tag=dev --access=public',
     'lint:check': 'run lint:eslint:check && run lint:prettier:check',
     'lint:fix': 'run lint:eslint:fix & run lint:prettier:fix',
     'lint:eslint:fix': 'eslint packages --ext .ts --fix',
@@ -96,6 +94,10 @@ export const packageJsonKonfik = PackageJsonKonfik({
     'lint:prettier:check': 'prettier packages --check',
     changeset: 'changeset',
     release: 'changeset publish',
+    'release:dev':
+      'yarn build && yarn workspaces foreach --verbose --topological-dev --parallel --no-private npm publish --tolerate-republish --tag=dev --access=public',
+    'release:latest':
+      'yarn build && yarn workspaces foreach --verbose --topological-dev --parallel --no-private npm publish --tolerate-republish --access=public',
   },
   // TODO: can we create a type representing every possible NPM package name and valid versions
   devDependencies: {

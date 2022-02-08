@@ -1,7 +1,7 @@
 {
   "name": "@konfik/core",
   "type": "module",
-  "version": "0.0.6",
+  "version": "0.0.9",
   "exports": {
     ".": "./dist/index.js"
   },
