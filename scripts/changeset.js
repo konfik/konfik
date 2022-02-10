@@ -59,6 +59,17 @@ if (command) {
       }
       fs.unlinkSync(filePath)
     }
+
+    const { version } = require(path.join(__dirname, '..', 'packages', '@konfik', 'core', 'package.json'))
+    const konfikVersionFilePath = path.join(__dirname, '..', 'konfik', 'common.ts')
+    const konfikVersionFile = fs.readFileSync(konfikVersionFilePath, 'utf8')
+    fs.writeFileSync(
+      konfikVersionFilePath,
+      konfikVersionFile.replace(
+        /(version\s*=\s*)(['"]).*['"]/,
+        (m, assignment, quote) => `${assignment}${quote}${version}${quote}`,
+      ),
+    )
   }
 } else {
   const changesetName = new Date()
