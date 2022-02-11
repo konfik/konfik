@@ -34,6 +34,8 @@ Abstract over configuration with TypeScript.
 - Reusablity
 - Type-safety
 - Composable
+- Replace "templates" / "boilerplate"
+  - Templates/boilerplates just help you when getting started but not while maintaining
 
 ### Cons
 
