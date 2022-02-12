@@ -10,6 +10,7 @@ import { konfikPkg } from '../packages/konfik/konfik.js'
 import * as eslint from '../plugins/eslint/konfik.js'
 import * as gitignore from '../plugins/gitignore/konfik.js'
 import * as gitpod from '../plugins/gitpod/konfik.js'
+import * as jest from '../plugins/jest/konfik.js'
 import * as packageJson from '../plugins/package-json/konfik.js'
 import * as prettier from '../plugins/prettier/konfik.js'
 import * as tsconfig from '../plugins/tsconfig/konfik.js'
@@ -105,6 +106,10 @@ export default {
     yarn: {
       'package.json': yarn.packageJsonKonfik,
       'tsconfig.json': yarn.tsconfigKonfik,
+    },
+    jest: {
+      'package.json': jest.packageJsonKonfik,
+      'tsconfig.json': jest.tsconfigKonfik,
     },
   },
 }
