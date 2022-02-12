@@ -11,7 +11,7 @@ export const packageJsonKonfik = PackageJsonKonfik({
   },
   types: './src/index.ts',
   dependencies: {
-    '@konfik/core': version,
+    '@konfik/core': 'workspace:*',
     '@types/eslint': '^8',
     eslint: '^8.8.0',
   },

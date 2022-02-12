@@ -6,7 +6,7 @@
   },
   "types": "./src/index.ts",
   "dependencies": {
-    "@konfik/core": "0.0.9"
+    "@konfik/core": "workspace:*"
   },
   "publishConfig": {
     "access": "public"

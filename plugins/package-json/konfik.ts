@@ -11,7 +11,7 @@ export const packageJsonKonfik = PackageJsonKonfik({
   },
   types: './src/index.ts',
   dependencies: {
-    '@konfik/core': version,
+    '@konfik/core': 'workspace:*',
     'type-fest': '^2.10.0',
   },
   publishConfig: {

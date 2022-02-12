@@ -5,8 +5,6 @@ import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 import { PrettierKonfik } from '@konfik-plugin/prettier'
 import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
-import { version } from '../../konfik/common.js'
-
 const gitpodKonfik = GitpodKonfik({
   tasks: [
     {
@@ -23,13 +21,13 @@ const packageJsonKonfik = PackageJsonKonfik({
   name: 'basic',
   // TODO: can we create a type representing every possible NPM package name and valid versions
   devDependencies: {
-    konfik: version,
-    '@konfik-plugin/tsconfig': version,
-    '@konfik-plugin/package-json': version,
-    '@konfik-plugin/eslint': version,
-    '@konfik-plugin/prettier': version,
-    '@konfik-plugin/gitpod': version,
-    '@konfik-plugin/gitignore': version,
+    konfik: 'workspace:*',
+    '@konfik-plugin/tsconfig': 'workspace:*',
+    '@konfik-plugin/package-json': 'workspace:*',
+    '@konfik-plugin/eslint': 'workspace:*',
+    '@konfik-plugin/prettier': 'workspace:*',
+    '@konfik-plugin/gitpod': 'workspace:*',
+    '@konfik-plugin/gitignore': 'workspace:*',
   },
 })
 

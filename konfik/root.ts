@@ -80,7 +80,7 @@ export const packageJsonKonfik = PackageJsonKonfik({
   workspaces: ['packages/*', 'packages/@konfik/*', 'plugins/*', 'examples/*'],
   scripts: {
     postinstall: 'ts-patch install && ts-patch --persist && ./link.mjs',
-    build: 'yarn build:clean; yarn build:ts',
+    build: 'yarn build:clean; yarn build:ts; yarn workspace konfik bundle-cli',
     'build:ts': 'tsc --build tsconfig.all.json',
     'build:clean': "bash -c 'rm -rf packages/*/dist packages/@konfik/*/dist'",
     'build:konfik': 'konfik build --config konfik/index.ts',
@@ -92,17 +92,16 @@ export const packageJsonKonfik = PackageJsonKonfik({
     'lint:eslint:check': 'eslint packages --ext .ts --max-warnings=0',
     'lint:prettier:fix': 'prettier packages --write',
     'lint:prettier:check': 'prettier packages --check',
-    changeset: 'changeset',
-    release: 'changeset publish',
-    'release:dev':
-      'yarn build && yarn workspaces foreach --verbose --topological-dev --parallel --no-private npm publish --tolerate-republish --tag=dev --access=public',
-    'release:latest':
-      'yarn build && yarn workspaces foreach --verbose --topological-dev --parallel --no-private npm publish --tolerate-republish --access=public',
+    changeset: 'node ./.changeset/scripts/changeset-cli.cjs',
+    // 'release:dev':
+    // 'yarn build && yarn workspaces foreach --verbose --topological-dev --parallel --no-private npm publish --tolerate-republish --tag=dev --access=public',
+    // 'release:latest':
+    // 'yarn build && yarn workspaces foreach --verbose --topological-dev --parallel --no-private npm publish --tolerate-republish --access=public',
   },
   // TODO: can we create a type representing every possible NPM package name and valid versions
   devDependencies: {
     '@changesets/changelog-github': '^0.4.2',
-    '@changesets/cli': '^2.20.0',
+    '@changesets/cli': 'https://pkg.csb.dev/changesets/changesets/commit/9d2c1229/@changesets/cli/_pkg.tgz',
     '@effect-ts/tracing-plugin': '^0.18.0',
     '@typescript-eslint/eslint-plugin': '^4.31.1',
     '@typescript-eslint/parser': '^4.31.1',
