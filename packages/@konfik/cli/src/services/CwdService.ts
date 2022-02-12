@@ -28,6 +28,6 @@ export type HasCwdService = Has<CwdService>
 
 export const LiveCwdService = Layer.fromEffect(CwdService)(makeCwdService)
 
-export const { cwd } = T.deriveLifted(CwdService)([], [], ['cwd'])
+export const { cwd: accessCwd } = T.deriveLifted(CwdService)([], [], ['cwd'])
 
 export const provideCwd = T.provideServiceM(CwdService)(makeCwdService)

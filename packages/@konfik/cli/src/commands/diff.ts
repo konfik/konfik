@@ -16,7 +16,7 @@ import * as path from 'node:path'
 import type { KonfikCliCommand } from '../cli.js'
 import { getPlugins } from '../getConfig/index.js'
 import { artifactCacheDirectory } from '../services/ArtifactService.js'
-import { cwd } from '../services/CwdService.js'
+import { accessCwd } from '../services/CwdService.js'
 import { validatePlugins } from '../validate.js'
 import type { CommonCliOptions } from './common.js'
 import { configPathOption } from './common.js'
@@ -196,13 +196,13 @@ export const execute = ({ configPath }: DiffCommandOptions) =>
     const fileMap = Map.make(flattenKonfikTrie(plugin, prettyPrint))
     const filePaths = fileMap.keys()
 
-    const currentWorkingDir = yield* $(cwd)
+    const cwd = yield* $(accessCwd)
 
     yield* $(
       pipe(
         filePaths,
         T.forEach((filePath) => {
-          const absolutePath = path.join(currentWorkingDir, filePath)
+          const absolutePath = path.join(cwd, filePath)
           return pipe(
             fs.readFile(absolutePath),
             T.chain((oldContents) =>

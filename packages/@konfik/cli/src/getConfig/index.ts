@@ -9,7 +9,7 @@ import * as path from 'path'
 import type { EsbuildBinNotFoundError } from '../errors.js'
 import { ConfigNoDefaultExportError, ConfigReadError, NoConfigFoundError } from '../errors.js'
 import type { HasCwdService } from '../services/CwdService.js'
-import { cwd } from '../services/CwdService.js'
+import { accessCwd } from '../services/CwdService.js'
 import type { GetKonfikVersionError } from '../version.js'
 import * as esbuild from './esbuild.js'
 
@@ -86,24 +86,24 @@ const resolveConfigPath = ({
   configPath?: string
 }): T.Effect<HasCwdService & OT.HasTracer, NoConfigFoundError | fs.StatError, string> =>
   T.gen(function* ($) {
-    const currentWorkingDir = yield* $(cwd)
+    const cwd = yield* $(accessCwd)
 
     if (configPath) {
       if (path.isAbsolute(configPath)) {
         return configPath
       }
 
-      return path.join(currentWorkingDir, configPath)
+      return path.join(cwd, configPath)
     }
 
-    const defaultFilePaths = [path.join(currentWorkingDir, 'konfik.ts'), path.join(currentWorkingDir, 'konfik.js')]
+    const defaultFilePaths = [path.join(cwd, 'konfik.ts'), path.join(cwd, 'konfik.js')]
     const foundDefaultFiles = yield* $(pipe(defaultFilePaths, T.forEachPar(fs.fileOrDirExists), T.map(Chunk.toArray)))
     const foundDefaultFile = defaultFilePaths[foundDefaultFiles.findIndex((_) => _)]
     if (foundDefaultFile) {
       return foundDefaultFile
     }
 
-    return yield* $(T.fail(new NoConfigFoundError({ cwd: currentWorkingDir, configPath })))
+    return yield* $(T.fail(new NoConfigFoundError({ cwd, configPath })))
   })
 
 const getConfigFromResult = ({
