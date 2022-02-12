@@ -1,25 +1,19 @@
 import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
-import { version } from '../../../konfik/common.js'
+import { version } from '../../.konfik/common.js'
 
 export const packageJsonKonfik = PackageJsonKonfik({
-  name: '@konfik/core',
-  type: 'module',
+  name: '@konfik-plugin/eslint',
   version,
   exports: {
-    '.': './dist/index.js',
+    '.': './src/index.ts',
   },
-  types: './dist/index.d.ts',
-  scripts: {
-    test: 'ava',
-  },
-  devDependencies: {
-    ava: '^4.0.1',
-    'conditional-type-checks': '^1.0.5',
-  },
-  ava: {
-    files: ['dist/tests.js'],
+  types: './src/index.ts',
+  dependencies: {
+    '@konfik/core': 'workspace:*',
+    '@types/eslint': '^8',
+    eslint: '^8.8.0',
   },
   publishConfig: {
     access: 'public',
@@ -27,12 +21,12 @@ export const packageJsonKonfik = PackageJsonKonfik({
 })
 
 export const tsconfigKonfik = TsconfigKonfik({
-  extends: '../../../tsconfig.base.json',
+  extends: '../../tsconfig.base.json',
   compilerOptions: {
     outDir: './dist',
     rootDir: './src',
     tsBuildInfoFile: './dist/.tsbuildinfo',
   },
   include: ['./src'],
-  references: [{ path: '../utils' }],
+  references: [{ path: '../../packages/@konfik/core' }],
 })

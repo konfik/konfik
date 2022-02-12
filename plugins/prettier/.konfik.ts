@@ -1,18 +1,19 @@
 import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
-import { version } from '../../konfik/common.js'
+import { version } from '../../.konfik/common.js'
 
 export const packageJsonKonfik = PackageJsonKonfik({
-  name: '@konfik-plugin/jest',
+  name: '@konfik-plugin/prettier',
   version,
   exports: {
     '.': './src/index.ts',
   },
   types: './src/index.ts',
   dependencies: {
-    '@jest/types': '27.5.1',
     '@konfik/core': 'workspace:*',
+    '@types/prettier': '^2',
+    prettier: '^2.5.1',
   },
   publishConfig: {
     access: 'public',

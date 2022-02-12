@@ -1,10 +1,10 @@
 import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
-import { version } from '../../konfik/common.js'
+import { version } from '../../.konfik/common.js'
 
 export const packageJsonKonfik = PackageJsonKonfik({
-  name: '@konfik-plugin/vscode',
+  name: '@konfik-plugin/gitignore',
   version,
   exports: {
     '.': './src/index.ts',

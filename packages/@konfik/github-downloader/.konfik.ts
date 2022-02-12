@@ -1,18 +1,18 @@
 import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
-import { version } from '../../konfik/common.js'
+import { version } from '../../../.konfik/common.js'
 
 export const packageJsonKonfik = PackageJsonKonfik({
-  name: '@konfik-plugin/package-json',
+  name: '@konfik/github-downloader',
+  type: 'module',
   version,
   exports: {
-    '.': './src/index.ts',
+    '.': './dist/index.js',
   },
-  types: './src/index.ts',
+  types: './dist/index.d.ts',
   dependencies: {
-    '@konfik/core': 'workspace:*',
-    'type-fest': '^2.10.0',
+    '@konfik/utils': 'workspace:*',
   },
   publishConfig: {
     access: 'public',
@@ -20,12 +20,12 @@ export const packageJsonKonfik = PackageJsonKonfik({
 })
 
 export const tsconfigKonfik = TsconfigKonfik({
-  extends: '../../tsconfig.base.json',
+  extends: '../../../tsconfig.base.json',
   compilerOptions: {
     outDir: './dist',
     rootDir: './src',
     tsBuildInfoFile: './dist/.tsbuildinfo',
   },
   include: ['./src'],
-  references: [{ path: '../../packages/@konfik/core' }],
+  references: [{ path: '../utils' }],
 })

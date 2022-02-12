@@ -1,22 +1,23 @@
 import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
-import { version } from '../../konfik/common.js'
+import { version } from '../../.konfik/common.js'
 
 export const packageJsonKonfik = PackageJsonKonfik({
-  name: '@konfik-plugin/eslint',
+  name: '@konfik-plugin/gitpod',
   version,
+  publishConfig: {
+    access: 'public',
+  },
   exports: {
     '.': './src/index.ts',
   },
   types: './src/index.ts',
   dependencies: {
+    '@gitpod/gitpod-protocol': '^0.1.5-test.4',
     '@konfik/core': 'workspace:*',
-    '@types/eslint': '^8',
-    eslint: '^8.8.0',
-  },
-  publishConfig: {
-    access: 'public',
+    '@types/js-yaml': '^4',
+    'js-yaml': '^4.1.0',
   },
 })
 
