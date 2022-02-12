@@ -8,15 +8,16 @@ import { pipe, T } from '@konfik/utils/effect'
 import { provideDummyTracing, provideJaegerTracing } from '@konfik/utils/effect/Tracing'
 
 import * as BuildCommand from './commands/build.js'
+import * as DevCommand from './commands/dev.js'
 import * as DiffCommand from './commands/diff.js'
 import { provideCwd } from './cwd.js'
 import { version } from './version.js'
 
-export type KonfikCliCommand = BuildCommand.Build | DiffCommand.Diff
+export type KonfikCliCommand = BuildCommand.Build | DiffCommand.Diff | DevCommand.Dev
 
 export const konfikCliCommand = pipe(
   CliCommand.make('konfik'),
-  CliCommand.subcommands(BuildCommand.command, DiffCommand.command),
+  CliCommand.subcommands(BuildCommand.command, DiffCommand.command, DevCommand.command),
 )
 
 const cli = CliApp.make({
@@ -31,8 +32,9 @@ const execute = (command: KonfikCliCommand) =>
   pipe(
     command,
     T.matchTag({
-      Build: (_) => BuildCommand.execute(_),
-      Diff: (_) => DiffCommand.execute(_),
+      Build: BuildCommand.execute,
+      Dev: DevCommand.execute,
+      Diff: DiffCommand.execute,
     }),
   )
 

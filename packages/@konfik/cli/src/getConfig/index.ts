@@ -34,26 +34,25 @@ export const getPlugins = ({
 }: {
   configPath: O.Option<string>
   artifactsDir: string
-}): T.Effect<OT.HasTracer & HasCwd, GetConfigError, KonfikResult> => {
-  const targetPath = O.toUndefined(configPath)
-  return pipe(
-    getConfigWatch({ configPath: targetPath, artifactsDir }),
+}): T.Effect<OT.HasTracer & HasCwd, GetConfigError, KonfikResult> =>
+  pipe(
+    getPluginsWatch({ configPath, artifactsDir }),
     S.take(1),
     S.runCollect,
     T.map(Chunk.unsafeHead),
     T.rightOrFail,
-    OT.withSpan('@konfik/core/getConfig:getConfig', { attributes: { configPath: targetPath } }),
+    OT.withSpan('@konfik/core/getConfig:getConfig', { attributes: { configPath: O.toUndefined(configPath) } }),
   )
-}
 
-export const getConfigWatch = ({
+export const getPluginsWatch = ({
   configPath: configPath_,
   artifactsDir,
 }: {
-  configPath?: string
+  configPath: O.Option<string>
   artifactsDir: string
 }): S.Stream<OT.HasTracer & HasCwd, never, E.Either<GetConfigError, KonfikResult>> => {
-  const resolveParams = pipe(T.structPar({ configPath: resolveConfigPath({ configPath: configPath_ }) }), T.either)
+  const configPath = O.toUndefined(configPath_)
+  const resolveParams = pipe(T.structPar({ configPath: resolveConfigPath({ configPath }) }), T.either)
 
   return pipe(
     S.fromEffect(resolveParams),
