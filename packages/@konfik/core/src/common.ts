@@ -23,14 +23,16 @@ export const flattenKonfikTrie = (
   const current: [string, string][] = []
   const entries = Object.entries(konfikTrie)
   entries.forEach(([k, v]) => {
-    try {
-      const config = getFactoryConfig(v)
-      const content = prettyPrint(config.toString(v), config.fileType)
-      // HARRY ISN'T SURE.
-      current.push([path.join(currentDir, k), content])
-    } catch {
-      const childPaths = flattenKonfikTrie(v, prettyPrint, path.join(currentDir, k))
-      current.push(...childPaths)
+    if (typeof v !== 'string') {
+      try {
+        const config = getFactoryConfig(v)
+        const content = prettyPrint(config.toString(v), config.fileType)
+        // HARRY ISN'T SURE.
+        current.push([path.join(currentDir, k), content])
+      } catch {
+        const childPaths = flattenKonfikTrie(v, prettyPrint, path.join(currentDir, k))
+        current.push(...childPaths)
+      }
     }
   })
   return current
