@@ -516,7 +516,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@konfik-plugin/eslint@workspace:plugins/eslint"
   dependencies:
-    "@konfik/core": 0.0.9
+    "@konfik/core": "workspace:*"
     "@types/eslint": ^8
     eslint: ^8.8.0
   languageName: unknown
@@ -526,7 +526,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@konfik-plugin/gitignore@workspace:plugins/gitignore"
   dependencies:
-    "@konfik/core": 0.0.9
+    "@konfik/core": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -535,7 +535,7 @@ __metadata:
   resolution: "@konfik-plugin/gitpod@workspace:plugins/gitpod"
   dependencies:
     "@gitpod/gitpod-protocol": ^0.1.5-test.4
-    "@konfik/core": 0.0.9
+    "@konfik/core": "workspace:*"
     "@types/js-yaml": ^4
     js-yaml: ^4.1.0
   languageName: unknown
@@ -545,7 +545,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@konfik-plugin/package-json@workspace:plugins/package-json"
   dependencies:
-    "@konfik/core": 0.0.9
+    "@konfik/core": "workspace:*"
     type-fest: ^2.10.0
   languageName: unknown
   linkType: soft
@@ -554,7 +554,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@konfik-plugin/prettier@workspace:plugins/prettier"
   dependencies:
-    "@konfik/core": 0.0.9
+    "@konfik/core": "workspace:*"
     "@types/prettier": ^2
     prettier: ^2.5.1
   languageName: unknown
@@ -564,7 +564,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@konfik-plugin/tsconfig@workspace:plugins/tsconfig"
   dependencies:
-    "@konfik/core": 0.0.9
+    "@konfik/core": "workspace:*"
     tsconfig-type: 1.21.0
   languageName: unknown
   linkType: soft
@@ -573,7 +573,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@konfik-plugin/vscode@workspace:plugins/vscode"
   dependencies:
-    "@konfik/core": 0.0.9
+    "@konfik/core": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -581,7 +581,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@konfik-plugin/yarn@workspace:plugins/yarn"
   dependencies:
-    "@konfik/core": 0.0.9
+    "@konfik/core": "workspace:*"
     "@types/js-yaml": ^4
     "@yarnpkg/core": ^3.2.0-rc.13
     js-yaml: ^4.1.0
@@ -596,8 +596,8 @@ __metadata:
     "@effect-ts/figlet": ^0.2.0
     "@effect-ts/node": ^0.36.0
     "@effect-ts/printer": ^0.12.0
-    "@konfik/core": 0.0.9
-    "@konfik/utils": 0.0.9
+    "@konfik/core": "workspace:*"
+    "@konfik/utils": "workspace:*"
     "@types/diff": ^5
     "@types/source-map-support": ^0
     ava: ^4.0.1
@@ -607,7 +607,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@konfik/core@0.0.9, @konfik/core@workspace:packages/@konfik/core":
+"@konfik/core@workspace:*, @konfik/core@workspace:packages/@konfik/core":
   version: 0.0.0-use.local
   resolution: "@konfik/core@workspace:packages/@konfik/core"
   dependencies:
@@ -620,11 +620,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@konfik/github-downloader@workspace:packages/@konfik/github-downloader"
   dependencies:
-    "@konfik/utils": 0.0.9
+    "@konfik/utils": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@konfik/utils@0.0.9, @konfik/utils@workspace:packages/@konfik/utils":
+"@konfik/utils@workspace:*, @konfik/utils@workspace:packages/@konfik/utils":
   version: 0.0.0-use.local
   resolution: "@konfik/utils@workspace:packages/@konfik/utils"
   dependencies:
@@ -4503,7 +4503,7 @@ __metadata:
   resolution: "konfik@workspace:packages/konfik"
   dependencies:
     "@konfik/cli": "workspace:*"
-    "@konfik/core": 0.0.9
+    "@konfik/core": "workspace:*"
     "@types/node": ^17.0.10
     esbuild: ^0.14.13
   bin:
