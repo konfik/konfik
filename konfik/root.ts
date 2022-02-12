@@ -92,8 +92,7 @@ export const packageJsonKonfik = PackageJsonKonfik({
     'lint:eslint:check': 'eslint packages --ext .ts --max-warnings=0',
     'lint:prettier:fix': 'prettier packages --write',
     'lint:prettier:check': 'prettier packages --check',
-    'changeset:new': 'node ./.changeset/scripts/changeset-cli.cjs',
-    'changeset:release': 'node ./.changeset/scripts/changeset-cli.cjs publish',
+    changeset: 'node ./.changeset/scripts/changeset-cli.cjs',
     // 'release:dev':
     // 'yarn build && yarn workspaces foreach --verbose --topological-dev --parallel --no-private npm publish --tolerate-republish --tag=dev --access=public',
     // 'release:latest':
