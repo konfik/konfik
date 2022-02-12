@@ -4,8 +4,8 @@ import * as OTNode from '@effect-ts/otel-sdk-trace-node'
 import { Resource } from '@opentelemetry/resources'
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
 
-import type { Has, L } from '../index.js'
-import { OT, T } from '../index.js'
+import type { Has } from '../index.js'
+import { L, OT, T } from '../index.js'
 
 export { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http'
 export { Resource } from '@opentelemetry/resources'
@@ -21,7 +21,7 @@ const makeNodeTracingProvider = (serviceName: string) =>
 
 const CollectorConfig = makeOTLPTraceExporterConfigLayer({})
 
-const makeJaegerNodeTracingLayer = (serviceName: string): L.Layer<Has<Clock>, never, OT.HasTracer> =>
+export const makeJaegerNodeTracingLayer = (serviceName: string): L.Layer<Has<Clock>, never, OT.HasTracer> =>
   CollectorConfig['>+>'](OT.LiveTracer['<<<'](makeNodeTracingProvider(serviceName)['>+>'](LiveSimpleProcessor)))
 
 export const provideJaegerTracing = (serviceName: string) => T.provideSomeLayer(makeJaegerNodeTracingLayer(serviceName))
@@ -32,17 +32,18 @@ export const provideJaegerTracing = (serviceName: string) => T.provideSomeLayer(
 
 const dummyProps = {} as any
 
-const DummyTracing = () =>
-  OT.Tracer.has({
-    [OT.TracerSymbol]: OT.TracerSymbol,
-    tracer: {
-      startSpan: () => ({
-        setAttribute: () => null,
-        setStatus: () => null,
-        end: () => null,
-      }),
-      ...dummyProps,
-    },
-  })
+export const dummyTracing = (): OT.Tracer => ({
+  [OT.TracerSymbol]: OT.TracerSymbol,
+  tracer: {
+    startSpan: () => ({
+      setAttribute: () => null,
+      setStatus: () => null,
+      end: () => null,
+    }),
+    ...dummyProps,
+  },
+})
 
-export const provideDummyTracing = () => T.provide(DummyTracing())
+export const LiveDummyTracing: L.Layer<Has<Clock>, never, OT.HasTracer> = L.fromFunction(OT.Tracer)(dummyTracing)
+
+export const provideDummyTracing = () => T.provideSomeLayer(LiveDummyTracing)

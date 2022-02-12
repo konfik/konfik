@@ -1,14 +1,15 @@
 import type { KonfikPlugin, PrettyPrint } from '@konfik/core'
+import type { PosixFilePath } from '@konfik/utils'
 import type { E } from '@konfik/utils/effect'
 import { Chunk, identity, O, OT, pipe, S, T } from '@konfik/utils/effect'
 // import type { GetKonfikVersionError } from '@konfik/utils/node'
 import { fs } from '@konfik/utils/node'
 import * as path from 'path'
 
-import type { HasCwd } from '../cwd.js'
-import { getCwd } from '../cwd.js'
 import type { EsbuildBinNotFoundError } from '../errors.js'
 import { ConfigNoDefaultExportError, ConfigReadError, NoConfigFoundError } from '../errors.js'
+import type { HasCwdService } from '../services/CwdService.js'
+import { accessCwd } from '../services/CwdService.js'
 import type { GetKonfikVersionError } from '../version.js'
 import * as esbuild from './esbuild.js'
 
@@ -30,13 +31,13 @@ export type KonfikResult = {
 
 export const getPlugins = ({
   configPath,
-  artifactsDir,
+  outFilePath,
 }: {
   configPath: O.Option<string>
-  artifactsDir: string
-}): T.Effect<OT.HasTracer & HasCwd, GetConfigError, KonfikResult> =>
+  outFilePath: PosixFilePath
+}): T.Effect<OT.HasTracer & HasCwdService, GetConfigError, KonfikResult> =>
   pipe(
-    getPluginsWatch({ configPath, artifactsDir }),
+    getPluginsWatch({ configPath, outFilePath }),
     S.take(1),
     S.runCollect,
     T.map(Chunk.unsafeHead),
@@ -46,11 +47,11 @@ export const getPlugins = ({
 
 export const getPluginsWatch = ({
   configPath: configPath_,
-  artifactsDir,
+  outFilePath,
 }: {
   configPath: O.Option<string>
-  artifactsDir: string
-}): S.Stream<OT.HasTracer & HasCwd, never, E.Either<GetConfigError, KonfikResult>> => {
+  outFilePath: PosixFilePath
+}): S.Stream<OT.HasTracer & HasCwdService, never, E.Either<GetConfigError, KonfikResult>> => {
   const configPath = O.toUndefined(configPath_)
   const resolveParams = pipe(T.structPar({ configPath: resolveConfigPath({ configPath }) }), T.either)
 
@@ -60,7 +61,7 @@ export const getPluginsWatch = ({
       pipe(
         esbuild.makeAndSubscribe({
           entryPoints: [configPath],
-          outfile: artifactsDir,
+          outfile: outFilePath,
           sourcemap: true,
           platform: 'node',
           target: 'es2020',
@@ -73,7 +74,7 @@ export const getPluginsWatch = ({
           logLevel: 'silent',
           // plugins: [contentlayerGenPlugin(), makeAllPackagesExternalPlugin(configPath)],
         }),
-        S.mapEffectEitherRight((result) => getConfigFromResult({ result, configPath, outfilePath: artifactsDir })),
+        S.mapEffectEitherRight((result) => getConfigFromResult({ result, configPath, outFilePath })),
       ),
     ),
   )
@@ -83,9 +84,9 @@ const resolveConfigPath = ({
   configPath,
 }: {
   configPath?: string
-}): T.Effect<HasCwd & OT.HasTracer, NoConfigFoundError | fs.StatError, string> =>
+}): T.Effect<HasCwdService & OT.HasTracer, NoConfigFoundError | fs.StatError, string> =>
   T.gen(function* ($) {
-    const cwd = yield* $(getCwd)
+    const cwd = yield* $(accessCwd)
 
     if (configPath) {
       if (path.isAbsolute(configPath)) {
@@ -108,12 +109,12 @@ const resolveConfigPath = ({
 const getConfigFromResult = ({
   result,
   configPath,
-  outfilePath,
+  outFilePath,
 }: {
   result: esbuild.BuildResult
   /** configPath only needed for error message */
   configPath: string
-  outfilePath: string
+  outFilePath: PosixFilePath
 }): T.Effect<OT.HasTracer, never, E.Either<ConfigReadError | ConfigNoDefaultExportError, KonfikResult>> =>
   pipe(
     T.gen(function* ($) {
@@ -144,7 +145,7 @@ const getConfigFromResult = ({
 
       const exports = yield* $(
         T.tryCatchPromise(
-          () => importFresh(outfilePath),
+          () => importFresh(outFilePath),
           (error) => new ConfigReadError({ error, configPath }),
         ),
       )
@@ -164,7 +165,7 @@ const getConfigFromResult = ({
 
       return { plugin, prettyPrint }
     }),
-    OT.withSpan('@konfik/core/getConfig:getConfigFromResult', { attributes: { configPath, outfilePath } }),
+    OT.withSpan('@konfik/core/getConfig:getConfigFromResult', { attributes: { configPath, outFilePath } }),
     T.either,
   )
 

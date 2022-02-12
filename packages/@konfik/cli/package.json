@@ -39,6 +39,5 @@
     "files": [
       "dist/**/*.test.js"
     ]
-  },
-  "version": null
+  }
 }

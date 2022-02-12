@@ -6,16 +6,17 @@ import type { AnsiDoc } from '@effect-ts/printer/Terminal/Render'
 import { renderPrettyDefault } from '@effect-ts/printer/Terminal/Render'
 import * as AnsiStyle from '@effect-ts/printer/Terminal/Style'
 import { flattenKonfikTrie } from '@konfik/core'
+import { filePathJoin } from '@konfik/utils'
 import { Array, Map, O, pipe, T, Tagged } from '@konfik/utils/effect'
 import { fs } from '@konfik/utils/node'
 import type { Change } from 'diff'
 import { diffLines } from 'diff'
 import * as path from 'node:path'
 
-import { ArtifactsDir } from '../ArtifactsDir.js'
 import type { KonfikCliCommand } from '../cli.js'
-import { getCwd } from '../cwd.js'
 import { getPlugins } from '../getConfig/index.js'
+import { artifactCacheDirectory } from '../services/ArtifactService.js'
+import { accessCwd } from '../services/CwdService.js'
 import { validatePlugins } from '../validate.js'
 import type { CommonCliOptions } from './common.js'
 import { configPathOption } from './common.js'
@@ -182,18 +183,20 @@ function renderChanges(fileName: string, oldContents: string, newContents: strin
   return renderPrettyDefault(Doc.vsep(documents))
 }
 
-export const execute = (options: DiffCommandOptions) =>
+export const execute = ({ configPath }: DiffCommandOptions) =>
   T.gen(function* ($) {
-    const artifactsDir = yield* $(ArtifactsDir.makeTmpDirAndResolveEntryPoint)
+    const artifactCacheDir = yield* $(artifactCacheDirectory)
 
-    const { plugin, prettyPrint } = yield* $(getPlugins({ configPath: options.configPath, artifactsDir }))
+    const outFilePath = filePathJoin(artifactCacheDir, 'compiled-config-map.mjs')
+
+    const { plugin, prettyPrint } = yield* $(getPlugins({ configPath, outFilePath }))
 
     yield* $(validatePlugins([plugin]))
 
     const fileMap = Map.make(flattenKonfikTrie(plugin, prettyPrint))
     const filePaths = fileMap.keys()
 
-    const cwd = yield* $(getCwd)
+    const cwd = yield* $(accessCwd)
 
     yield* $(
       pipe(
