@@ -2,14 +2,14 @@ import * as CliCommand from '@effect-ts/cli/Command'
 import * as CliExists from '@effect-ts/cli/Exists'
 import * as CliOptions from '@effect-ts/cli/Options'
 import { flattenKonfikTrie } from '@konfik/core'
-import { unknownToPosixFilePath } from '@konfik/utils'
+import { filePathJoin, unknownToPosixFilePath } from '@konfik/utils'
 import { O, pipe, Show, T, Tagged } from '@konfik/utils/effect'
 import { fs } from '@konfik/utils/node'
 import * as os from 'node:os'
 
-import { ArtifactsDir } from '../ArtifactsDir.js'
 import type { KonfikCliCommand } from '../cli.js'
 import { getPlugins } from '../getConfig/index.js'
+import { makeArtifactCacheDirectory } from '../services/ArtifactService.js'
 import { validatePlugins } from '../validate.js'
 import { writeFile } from '../writeFile.js'
 import type { CommonCliOptions } from './common.js'
@@ -54,15 +54,17 @@ export const command: CliCommand.Command<KonfikCliCommand> = pipe(
 // Execute
 // -----------------------------------------------------------------------------
 
-export const execute = (options: BuildCommandOptions) =>
+export const execute = ({ clearCache, configPath, outDir }: BuildCommandOptions) =>
   T.gen(function* ($) {
-    const artifactsDir = yield* $(ArtifactsDir.makeTmpDirAndResolveEntryPoint)
+    const artifactCacheDir = yield* $(makeArtifactCacheDirectory)
 
-    if (options.clearCache) {
-      yield* $(fs.rm(artifactsDir, { recursive: true }))
+    if (clearCache) {
+      yield* $(fs.rm(artifactCacheDir, { recursive: true }))
     }
 
-    const { plugin, prettyPrint } = yield* $(getPlugins({ configPath: options.configPath, artifactsDir }))
+    const outFilePath = filePathJoin(artifactCacheDir, 'compiled-konfik-map.mjs')
+
+    const { plugin, prettyPrint } = yield* $(getPlugins({ configPath, outFilePath }))
 
     yield* $(validatePlugins([plugin]))
 
@@ -73,12 +75,12 @@ export const execute = (options: BuildCommandOptions) =>
     yield* $(
       fs.mkdirp(
         pipe(
-          options.outDir,
+          outDir,
           O.getOrElse(() => '.'),
           unknownToPosixFilePath,
         ),
       ),
     )
 
-    yield* $(pipe(allFileEntries, T.forEachParN(concurrencyLimit, writeFile(options.outDir))))
+    yield* $(pipe(allFileEntries, T.forEachParN(concurrencyLimit, writeFile(outDir))))
   })

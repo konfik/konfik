@@ -4,13 +4,14 @@ import * as CliApp from '@effect-ts/cli/CliApp'
 import * as CliCommand from '@effect-ts/cli/Command'
 import * as CliHelp from '@effect-ts/cli/Help'
 import { runMain } from '@effect-ts/node/Runtime'
-import { pipe, T } from '@konfik/utils/effect'
-import { provideDummyTracing, provideJaegerTracing } from '@konfik/utils/effect/Tracing'
+import { Layer, O, pipe, T } from '@konfik/utils/effect'
+import { LiveDummyTracing, makeJaegerNodeTracingLayer } from '@konfik/utils/effect/Tracing'
 
 import * as BuildCommand from './commands/build.js'
 import * as DevCommand from './commands/dev.js'
 import * as DiffCommand from './commands/diff.js'
-import { provideCwd } from './cwd.js'
+import { LiveArtifactService } from './services/ArtifactService.js'
+import { LiveCwdService } from './services/CwdService.js'
 import { version } from './version.js'
 
 export type KonfikCliCommand = BuildCommand.Build | DiffCommand.Diff | DevCommand.Dev
@@ -38,14 +39,21 @@ const execute = (command: KonfikCliCommand) =>
     }),
   )
 
-const provideTracing = () =>
-  process.env.KONFIK_OTEL !== undefined ? provideJaegerTracing('@konfik-plugin/cli') : provideDummyTracing()
+const LiveTracingService = (serviceName: string) =>
+  pipe(
+    Layer.fromRawEffect(T.succeedWith(() => O.fromNullable(process.env.KONFIK_OTEL))),
+    Layer.chain(
+      O.fold(
+        () => LiveDummyTracing,
+        () => makeJaegerNodeTracingLayer(serviceName),
+      ),
+    ),
+  )
 
 export const run = () =>
   pipe(
     T.succeedWith(() => process.argv.slice(2)),
     T.chain((args) => CliApp.run_(cli, args, execute)),
-    provideTracing(),
-    provideCwd,
+    T.provideSomeLayer(LiveCwdService['+++'](LiveTracingService('@konfik/cli'))['>+>'](LiveArtifactService)),
     runMain,
   )
