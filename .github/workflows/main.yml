@@ -24,7 +24,7 @@ jobs:
       - name: Create Release Pull Request or Publish to npm
         uses: contentlayerdev/action@draft-release-flow
         with:
-          publish: yarn changeset publish
+          publish: yarn release
           version: yarn changeset version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
