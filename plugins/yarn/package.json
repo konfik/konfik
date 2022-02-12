@@ -6,7 +6,7 @@
   },
   "types": "./src/index.ts",
   "dependencies": {
-    "@konfik/core": "0.0.9",
+    "@konfik/core": "workspace:*",
     "@types/js-yaml": "^4",
     "@yarnpkg/core": "^3.2.0-rc.13",
     "js-yaml": "^4.1.0"

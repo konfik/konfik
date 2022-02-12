@@ -1,5 +1,7 @@
 import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 
+import { version } from '../../konfik/common.js'
+
 export const konfikPkg = PackageJsonKonfik({
   name: 'konfik',
   type: 'module',

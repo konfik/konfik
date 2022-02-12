@@ -9,7 +9,7 @@ const [command, ...flags] = process.argv.slice(2)
 if (command) {
   const changesetResult = spawnSync(
     process.argv[0],
-    [path.join(__dirname, '..', 'node_modules', '.bin', 'changeset'), command, ...flags],
+    [path.join(__dirname, '..', '..', 'node_modules', '.bin', 'changeset'), command, ...flags],
     { stdio: 'inherit' },
   )
 
@@ -78,5 +78,5 @@ if (command) {
     .replace(/[^\d]/g, '')
     .toString()
 
-  fs.writeFileSync(path.join(__dirname, '..', '.changeset', `${changesetName}.md`), `---\n'@konfik/core': patch\n---\n`)
+  fs.writeFileSync(path.join(__dirname, '..', `${changesetName}.md`), `---\n'@konfik/core': patch\n---\n`)
 }

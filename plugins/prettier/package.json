@@ -6,7 +6,7 @@
   },
   "types": "./src/index.ts",
   "dependencies": {
-    "@konfik/core": "0.0.9",
+    "@konfik/core": "workspace:*",
     "@types/prettier": "^2",
     "prettier": "^2.5.1"
   },
