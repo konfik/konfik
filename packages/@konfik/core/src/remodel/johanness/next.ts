@@ -1,7 +1,8 @@
 import { EslintKonfik } from '../eslint.js'
+import { PackageJsonKonfik } from '../packageJson.js'
 import * as base from './base.js'
 
-export const eslintKonfik = base.eslintKonfik.derived('eslint.config.json')((bag) => {
+export const eslintKonfik = base.eslintKonfik.derive((bag) => {
   const baseConfig = bag['eslint.config.json']
   return EslintKonfik('eslint.config.json', {
     env: { browser: true, es6: true, node: true },
@@ -23,3 +24,13 @@ export const eslintKonfik = base.eslintKonfik.derived('eslint.config.json')((bag
     },
   })
 })
+
+export const packageJsonKonfik = base.packageJsonKonfik.derive((bag) =>
+  PackageJsonKonfik('package.json', {
+    dependencies: {
+      ...bag['package.json'].dependencies,
+      'eslint-plugin-react-hooks': '^4.3.0',
+      'eslint-config-next': '^12.0.10',
+    } as const,
+  }),
+)

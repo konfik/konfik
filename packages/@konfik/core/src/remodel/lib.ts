@@ -12,7 +12,7 @@ export interface Plugins {}
 
 export abstract class Konfik<Bag> {
   static from<P extends keyof Plugins>(
-    p: P,
+    _p: P,
   ): <Path extends string, Content extends Plugins[P]>(
     path: Path,
     content: Content,
@@ -23,7 +23,7 @@ export abstract class Konfik<Bag> {
   }
 
   static merge<Konfiks extends Konfik<any>[]>(
-    ...konfiks: Konfiks
+    ..._konfiks: Konfiks
   ): Konfik<
     Flat<
       UnionToIntersection<
@@ -36,31 +36,6 @@ export abstract class Konfik<Bag> {
     return 0 as any
   }
 
-  abstract derived<Keys extends (keyof Bag)[]>(
-    ...keys: Keys
-  ): <X>(
-    body: (
-      _: Flat<
-        UnionToIntersection<
-          {
-            [k in keyof Keys]: Keys[k] extends keyof Bag ? { [h in Keys[k]]: Bag[Keys[k]] } : never
-          }[number]
-        >
-      >,
-    ) => X,
-  ) => X
-
-  abstract extend<Keys extends (keyof Bag)[]>(
-    ...keys: Keys
-  ): <X>(
-    body: (
-      _: Flat<
-        UnionToIntersection<
-          {
-            [k in keyof Keys]: Keys[k] extends keyof Bag ? { [h in Keys[k]]: Bag[Keys[k]] } : never
-          }[number]
-        >
-      >,
-    ) => X,
-  ) => X extends Konfik<infer Y> ? Konfik<Flat<Bag & Y>> : never
+  abstract derive<X>(body: (_: Bag) => X): X
+  abstract extend<X>(body: (_: Bag) => X): X extends Konfik<infer Y> ? Konfik<Flat<Bag & Y>> : never
 }

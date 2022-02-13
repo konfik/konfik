@@ -1,4 +1,5 @@
 import { EslintKonfik } from '../eslint'
+import { PackageJsonKonfik } from '../packageJson'
 
 const tuple = <T extends string[]>(..._: T): T[number][] => _ as any
 
@@ -61,4 +62,18 @@ export const eslintKonfik = EslintKonfik('eslint.config.json', {
     '@typescript-eslint/explicit-module-boundary-types': 'off', // With inlay types this becomes less important
     '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
   },
+})
+
+export const packageJsonKonfik = PackageJsonKonfik('package.json', {
+  dependencies: {
+    '@typescript-eslint/eslint-plugin': '^5.11.0',
+    '@typescript-eslint/parser': '^5.11.0',
+    eslint: '^8.9.0',
+    'eslint-config-prettier': '^8.3.0',
+    'eslint-plugin-import': '^2.25.4',
+    'eslint-plugin-simple-import-sort': '^7.0.0',
+    'eslint-plugin-prefer-arrow': '^1.2.3',
+    'eslint-plugin-unicorn': '^40.1.0',
+    typescript: '^4.5.5',
+  } as const,
 })
