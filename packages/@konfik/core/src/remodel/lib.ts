@@ -10,7 +10,9 @@ export type Flat<X> = {
 
 export interface Plugins {}
 
-export abstract class Konfik<Bag> {
+export class Konfik<Bag> {
+  constructor(private bag: Bag) {}
+
   static from<P extends keyof Plugins>(
     _p: P,
   ): <Path extends string, Content extends Plugins[P]>(
@@ -19,7 +21,9 @@ export abstract class Konfik<Bag> {
   ) => Konfik<{
     [k in Path]: Content
   }> {
-    return 0 as any
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    return new Konfik({ [path]: content })
   }
 
   static merge<Konfiks extends Konfik<any>[]>(
@@ -33,9 +37,20 @@ export abstract class Konfik<Bag> {
       >
     >
   > {
-    return 0 as any
+    const bag = {}
+    _konfiks.forEach((k) => Object.assign(bag, k.bag))
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    return new Konfik(bag)
   }
 
-  abstract derive<X>(body: (_: Bag) => X): X
-  abstract extend<X>(body: (_: Bag) => X): X extends Konfik<infer Y> ? Konfik<Flat<Bag & Y>> : never
+  derive<X>(body: (_: Bag) => X): X {
+    return body(this.bag)
+  }
+
+  extend<X>(body: (_: Bag) => X): X extends Konfik<infer Y> ? Konfik<Flat<Bag & Y>> : never {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    return Konfik.merge(this.bag, body(this.bag))
+  }
 }
