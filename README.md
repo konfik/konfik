@@ -36,6 +36,11 @@ Abstract over configuration with TypeScript.
 - Composable
 - Replace "templates" / "boilerplate"
   - Templates/boilerplates just help you when getting started but not while maintaining
+- Single source of truth
+- Makes the right thing easy
+  - e.g. have different linting rules for various sub packages in a repo
+- Clarity through code
+  - It's much easier to understand how things relate to/depend on each other when you can express the relationships in code
 
 ### Cons
 
