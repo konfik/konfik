@@ -1,5 +1,5 @@
 import { GitHubWorkflowKonfik } from '../plugins/github/src'
-import dedent from 'dedent'
+import {stripMargin} from "@effect-ts/core/String"
 
 export const main = GitHubWorkflowKonfik({
   name: 'Publish CI',
@@ -32,10 +32,9 @@ export const main = GitHubWorkflowKonfik({
         },
         {
           name: 'Build',
-          run: dedent`
-            yarn
-            yarn build
-          `,
+          run: stripMargin(`\
+          |yarn
+          |yarn build`),
           env: {
             CI: true,
           },
@@ -85,10 +84,9 @@ export const pr = GitHubWorkflowKonfik({
         },
         {
           name: 'build',
-          run: dedent`
-            yarn
-            yarn build
-          `,
+          run: stripMargin(`\
+          |yarn
+          |yarn build`),
           env: {
             CI: true,
           },
