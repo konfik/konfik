@@ -15,6 +15,7 @@ const entries = Object.entries({
 
 async function main(): Promise<void> {
   const imports: string[] = []
+  const currentDir = path.dirname(new URL(import.meta.url).pathname)
 
   await Promise.all(
     entries.map(async ([name, uri]) => {
@@ -36,12 +37,12 @@ async function main(): Promise<void> {
         bannerComment: '/**\n * THIS FILE WAS GENERATED. BE WARY OF EDITING BY HAND.\n */',
       })
 
-      fs.writeFile(path.resolve(__dirname, `${name}.ts`), serialized, 'utf-8') // Freaky leaky
+      fs.writeFile(path.resolve(currentDir, `${name}.ts`), serialized, 'utf-8') // Freaky leaky
       imports.push(`export * as ${name} from "./${name}";`)
     }),
   )
 
-  await fs.writeFile(path.resolve(__dirname, 'index.ts'), imports.join('\n'), 'utf-8')
+  await fs.writeFile(path.resolve(currentDir, 'index.ts'), imports.join('\n'), 'utf-8')
 }
 
 main()

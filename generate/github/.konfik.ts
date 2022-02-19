@@ -4,21 +4,23 @@ import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 import { version } from '../../.konfik/common.js'
 
 export const packageJsonKonfik = PackageJsonKonfik({
-  name: '@konfik-generated/github',
+  name: '@konfik-generate/github',
   types: 'index.ts',
   version,
   devDependencies: {
     'json-schema-to-typescript': '^10.1.5',
   },
   scripts: {
-    gen: 'ts-node gen.ts',
+    prepublish: 'yarn gen',
   },
 })
 
 export const tsconfigKonfik = TsconfigKonfik({
-  extend: ['../../tsconfig.base.json'],
+  extends: '../../tsconfig.base.json',
   compilerOptions: {
-    noEmit: true,
+    outDir: './dist',
+    rootDir: './src',
+    tsBuildInfoFile: './dist/.tsbuildinfo',
   },
-  include: ['.'],
+  include: ['./src'],
 })

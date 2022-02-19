@@ -560,9 +560,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@konfik-generated/github@workspace:generated/gh":
+"@konfik-generate/github@workspace:*, @konfik-generate/github@workspace:generate/github":
   version: 0.0.0-use.local
-  resolution: "@konfik-generated/github@workspace:generated/gh"
+  resolution: "@konfik-generate/github@workspace:generate/github"
   dependencies:
     json-schema-to-typescript: ^10.1.5
   languageName: unknown
@@ -575,6 +575,17 @@ __metadata:
     "@konfik/core": "workspace:*"
     "@types/eslint": ^8
     eslint: ^8.8.0
+  languageName: unknown
+  linkType: soft
+
+"@konfik-plugin/github@workspace:plugins/github":
+  version: 0.0.0-use.local
+  resolution: "@konfik-plugin/github@workspace:plugins/github"
+  dependencies:
+    "@konfik-generate/github": "workspace:*"
+    "@konfik/core": "workspace:*"
+    "@types/js-yaml": ^4
+    js-yaml: ^4.1.0
   languageName: unknown
   linkType: soft
 
