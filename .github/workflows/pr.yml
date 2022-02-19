@@ -1,5 +1,5 @@
 name: Pull Request CI
-on:
+'on':
   pull_request:
     branches:
       - main
@@ -15,9 +15,9 @@ jobs:
         with:
           node-version: 16.x
           cache: yarn
-      - name: Build
-        run: |
+      - name: build
+        run: |-
           yarn
           yarn build
         env:
-          CI: 'true'
+          CI: true

@@ -29,9 +29,6 @@
     },
     {
       "path": "./plugins/yarn"
-    },
-    {
-      "path": "./generate/github"
     }
   ]
 }

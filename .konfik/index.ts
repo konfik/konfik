@@ -17,6 +17,7 @@ import * as tsconfig from '../plugins/tsconfig/.konfik.js'
 import * as vscode from '../plugins/vscode/.konfik.js'
 import * as yarn from '../plugins/yarn/.konfik.js'
 import * as root from './root.js'
+import * as githubWorkflows from './github_workflows.js'
 
 export const prettyPrint = (uglyString: string, fileType: FileType): string => {
   const parser = mapFileTypeToParser(fileType)
@@ -51,6 +52,12 @@ export default {
   'tsconfig.all.json': root.tsconfigAllKonfik,
   'tsconfig.base.json': root.tsconfigBaseKonfik,
   'package.json': root.packageJsonKonfik,
+  ['.github']: {
+    workflows: {
+      ['main.yml']: githubWorkflows.main,
+      ['pr.yml']: githubWorkflows.pr,
+    },
+  },
   packages: {
     '@konfik': {
       core: {

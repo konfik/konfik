@@ -1,5 +1,5 @@
 name: Publish CI
-on:
+'on':
   push:
     branches:
       - main
@@ -16,12 +16,12 @@ jobs:
           node-version: 16.x
           cache: yarn
       - name: Build
-        run: |
+        run: |-
           yarn
           yarn build
         env:
-          CI: 'true'
-      - name: Create Release Pull Request or Publish to npm
+          CI: true
+      - name: Create Release Pull Request or Publish to NPM
         uses: contentlayerdev/action@draft-release-flow
         with:
           publish: yarn changeset publish

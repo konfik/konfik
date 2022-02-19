@@ -5,7 +5,7 @@
     "packages/@konfik/*",
     "plugins/*",
     "examples/*",
-    "generate/*"
+    "generated/*"
   ],
   "scripts": {
     "postinstall": "ts-patch install && ts-patch --persist && ./link.mjs",
@@ -37,7 +37,6 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "prettier": "^2.5.0",
-    "ts-node": "^10.5.0",
     "ts-patch": "^1.4.5",
     "typescript": "^4.5.5",
     "zx": "^4.3.0"

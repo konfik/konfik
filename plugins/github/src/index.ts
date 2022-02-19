@@ -7,6 +7,10 @@ export type GitHubWorkflowKonfikBrand = typeof GitHubWorkflowKonfikBrand
 
 export const GitHubWorkflowKonfik = KonfikFactory<Workflow>()({
   brand: GitHubWorkflowKonfikBrand,
-  toString: (config) => dump(config),
+  // TODO: investigate whether this consistently handles interpolated vars properly.
+  toString: (config) => {
+    const withVarsQuoted = dump(config)
+    return withVarsQuoted
+  },
   fileType: 'yaml',
 })
