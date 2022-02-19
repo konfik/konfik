@@ -97,27 +97,3 @@ export const pr = GitHubWorkflowKonfik({
     },
   },
 })
-
-// name: Pull Request CI
-// on:
-//   pull_request:
-//     branches:
-//       - main
-// jobs:
-//   build:
-//     runs-on: ubuntu-latest
-//     steps:
-//       - uses: actions/checkout@v2
-//         with:
-//           fetch-depth: 0
-//       - name: Use Node.js 16.x
-//         uses: actions/setup-node@v2
-//         with:
-//           node-version: 16.x
-//           cache: yarn
-//       - name: Build
-//         run: |
-//           yarn
-//           yarn build
-//         env:
-//           CI: 'true'
