@@ -101,7 +101,7 @@ export const packageJsonKonfik = PackageJsonKonfik({
   // TODO: can we create a type representing every possible NPM package name and valid versions
   devDependencies: {
     '@changesets/changelog-github': '^0.4.2',
-    // '@changesets/cli': 'https://pkg.csb.dev/changesets/changesets/commit/9d2c1229/@changesets/cli/_pkg.tgz',
+    '@changesets/cli': '2.22.0-temp.0',
     '@effect-ts/tracing-plugin': '^0.18.0',
     '@typescript-eslint/eslint-plugin': '^4.31.1',
     '@typescript-eslint/parser': '^4.31.1',
