@@ -77,7 +77,7 @@ export const tsconfigAllKonfik = TsconfigKonfik({
 
 export const packageJsonKonfik = PackageJsonKonfik({
   private: true,
-  workspaces: ['packages/*', 'packages/@konfik/*', 'plugins/*', 'examples/*', "generated/*"],
+  workspaces: ['packages/*', 'packages/@konfik/*', 'plugins/*', 'examples/*', "generate/*"],
   scripts: {
     postinstall: 'ts-patch install && ts-patch --persist && ./link.mjs',
     build: 'yarn build:clean; yarn build:ts; yarn workspace konfik bundle-cli',
