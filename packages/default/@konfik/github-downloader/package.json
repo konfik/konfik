@@ -1,0 +1,15 @@
+{
+  "name": "@konfik/github-downloader",
+  "type": "module",
+  "version": "0.0.13",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "@konfik/utils": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
