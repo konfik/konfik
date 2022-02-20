@@ -1,7 +1,7 @@
 {
   "name": "konfik",
   "type": "module",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "bin": "./dist/cli/bundle.cjs",
   "exports": {
     ".": "./dist/lib/index.js"

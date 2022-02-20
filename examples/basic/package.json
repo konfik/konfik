@@ -9,5 +9,6 @@
     "@konfik-plugin/prettier": "workspace:*",
     "@konfik-plugin/tsconfig": "workspace:*",
     "konfik": "workspace:*"
-  }
+  },
+  "version": "0.0.0"
 }
