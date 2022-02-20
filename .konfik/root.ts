@@ -72,6 +72,7 @@ export const tsconfigAllKonfik = TsconfigKonfik({
     { path: './plugins/tsconfig' },
     { path: './plugins/vscode' },
     { path: './plugins/yarn' },
+    { path: './generate/github' },
   ],
 })
 

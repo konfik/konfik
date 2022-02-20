@@ -1,11 +1,13 @@
 {
   "name": "@konfik-generate/github",
   "types": "index.ts",
+  "type": "module",
   "version": "0.0.13",
   "devDependencies": {
     "json-schema-to-typescript": "^10.1.5"
   },
   "scripts": {
+    "gen": "node ./dist/gen.js",
     "prepublish": "yarn gen"
   }
 }
