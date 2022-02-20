@@ -61,7 +61,7 @@ if (command) {
     }
 
     const { version } = require(path.join(__dirname, '..', 'packages', '@konfik', 'core', 'package.json'))
-    const konfikVersionFilePath = path.join(__dirname, '..', 'konfik', 'common.ts')
+    const konfikVersionFilePath = path.join(__dirname, '..', '.konfik', 'common.ts')
     const konfikVersionFile = fs.readFileSync(konfikVersionFilePath, 'utf8')
     fs.writeFileSync(
       konfikVersionFilePath,
