@@ -1,8 +1,9 @@
-import * as cli from './@konfik/cli/.konfik'
-import * as core from './@konfik/core/.konfik'
-import * as githubDownloader from './@konfik/github-downloader/.konfik'
-import * as utils from './@konfik/utils/.konfik'
-import * as bundled from './konfik/.konfik'
+
+import * as cli from './@konfik/cli/.konfik.js'
+import * as core from './@konfik/core/.konfik.js'
+import * as githubDownloader from './@konfik/github-downloader/.konfik.js'
+import * as utils from './@konfik/utils/.konfik.js'
+import * as bundled from './konfik/.konfik.js'
 
 export default {
   '@konfik': {
