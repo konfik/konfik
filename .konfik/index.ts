@@ -2,7 +2,7 @@ import type { FileType } from '@konfik/core'
 import type { BuiltInParserName } from 'prettier'
 import { format } from 'prettier'
 
-import { default as packages } from "../packages/konfik.js"
+import { default as packages } from "../packages/.konfik.js"
 import { default as plugins } from "../plugins/.konfik.js";
 import * as root from './root.js'
 import * as githubWorkflows from './github_workflows.js'
