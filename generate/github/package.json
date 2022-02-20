@@ -1,17 +1,11 @@
 {
   "name": "@konfik-generate/github",
   "types": "index.ts",
-  "version": "0.1.0",
-  "type": "module",
-  "files": [
-    "dist/Action.ts",
-    "dist/Workflow.ts",
-    "WorkflowTemplateProperties.ts"
-  ],
+  "version": "0.0.13",
   "devDependencies": {
     "json-schema-to-typescript": "^10.1.5"
   },
   "scripts": {
-    "prepublish": "node dist/gen.js"
+    "prepublish": "yarn gen"
   }
 }
