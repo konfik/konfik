@@ -10,10 +10,16 @@
       "path": "./plugins/eslint"
     },
     {
+      "path": "./plugins/github"
+    },
+    {
       "path": "./plugins/gitignore"
     },
     {
       "path": "./plugins/gitpod"
+    },
+    {
+      "path": "./plugins/jest"
     },
     {
       "path": "./plugins/package-json"

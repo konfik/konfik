@@ -1,9 +1,14 @@
 {
   "env": { "browser": true, "node": true, "es6": true },
-  "ignorePatterns": ["packages/_archive/*", "**/dist/*", "**/.nyc_output/*"],
+  "ignorePatterns": ["!.konfik", "packages/_archive/*", "**/dist/*", "**/.nyc_output/*"],
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "simple-import-sort", "prefer-arrow", "import"],
-  "extends": ["plugin:react-hooks/recommended", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+  "extends": [
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
   "rules": {
     "simple-import-sort/imports": "error",
     "import/no-duplicates": "warn",

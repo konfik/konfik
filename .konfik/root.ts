@@ -4,22 +4,8 @@ import { GitpodKonfik } from '@konfik-plugin/gitpod'
 import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 import { PrettierKonfik } from '@konfik-plugin/prettier'
 import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
-// import { YarnKonfik } from '@konfik-plugin/yarn'
-
-// export const yarnKonfik = YarnKonfik({
-//   nodeLinker: 'node-modules',
-//   plugins: [
-//     {
-//       path: '.yarn/plugins/@yarnpkg/plugin-typescript.cjs',
-//       spec: '@yarnpkg/plugin-typescript',
-//     },
-//     {
-//       path: '.yarn/plugins/@yarnpkg/plugin-interactive-tools.cjs',
-//       spec: '@yarnpkg/plugin-interactive-tools',
-//     },
-//   ],
-//   yarnPath: '.yarn/releases/yarn-3.1.1.cjs',
-// })
+import * as fs from 'fs'
+import * as path from 'path'
 
 // See https://www.gitpod.io/docs/config-gitpod-file
 export const gitpodKonfik = GitpodKonfik({
@@ -57,28 +43,27 @@ export const tsconfigBaseKonfik = TsconfigKonfik({
   exclude: ['**/dist', '**/node_modules'],
 })
 
+// TODO get root dir from Konfik CLI
+const projectRootDir = process.cwd()
+
+const getPackageDirPaths = (dirName: string) => {
+  const fullDirPath = path.join(projectRootDir, dirName)
+  return fs
+    .readdirSync(fullDirPath)
+    .filter((_) => _.includes('.') === false)
+    .map((subDirName) => ({ path: `./${dirName}/${subDirName}` }))
+}
+
 export const tsconfigAllKonfik = TsconfigKonfik({
   extends: './tsconfig.base.json',
   compilerOptions: {},
   include: [],
-  references: [
-    { path: './packages/konfik' },
-    // TODO "generate" the list below
-    { path: './plugins/eslint' },
-    { path: './plugins/gitignore' },
-    { path: './plugins/gitpod' },
-    { path: './plugins/package-json' },
-    { path: './plugins/prettier' },
-    { path: './plugins/tsconfig' },
-    { path: './plugins/vscode' },
-    { path: './plugins/yarn' },
-    { path: './generate/github' },
-  ],
+  references: [{ path: './packages/konfik' }, ...getPackageDirPaths('plugins'), ...getPackageDirPaths('generate')],
 })
 
 export const packageJsonKonfik = PackageJsonKonfik({
   private: true,
-  workspaces: ['packages/*', 'packages/@konfik/*', 'plugins/*', 'examples/*', "generate/*"],
+  workspaces: ['packages/*', 'packages/@konfik/*', 'plugins/*', 'examples/*', 'generate/*'],
   scripts: {
     postinstall: 'ts-patch install && ts-patch --persist && ./link.mjs',
     build: 'yarn build:clean; yarn build:ts; yarn workspace konfik bundle-cli',
@@ -159,11 +144,16 @@ export const eslintKonfik = EslintKonfik({
     node: true,
     es6: true,
   },
-  ignorePatterns: ['packages/_archive/*', '**/dist/*', '**/.nyc_output/*'],
+  ignorePatterns: ['!.konfik', 'packages/_archive/*', '**/dist/*', '**/.nyc_output/*'],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'simple-import-sort', 'prefer-arrow', 'import'],
   // TODO: can we infer the dependencies & inject them into a generated `package.json`?
-  extends: ['plugin:react-hooks/recommended', 'plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
+  extends: [
+    'plugin:react-hooks/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'plugin:prettier/recommended',
+  ],
   rules: {
     'simple-import-sort/imports': 'error',
     'import/no-duplicates': 'warn',

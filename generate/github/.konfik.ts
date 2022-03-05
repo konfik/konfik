@@ -8,6 +8,11 @@ export const packageJsonKonfik = PackageJsonKonfik({
   types: 'index.ts',
   type: "module",
   version,
+  "files": [
+    "dist/Action.ts",
+    "dist/Workflow.ts",
+    "dist/WorkflowTemplateProperties.ts"
+  ],
   devDependencies: {
     'json-schema-to-typescript': '^10.1.5',
   },

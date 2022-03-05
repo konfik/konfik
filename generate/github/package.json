@@ -3,6 +3,11 @@
   "types": "index.ts",
   "type": "module",
   "version": "0.0.13",
+  "files": [
+    "dist/Action.ts",
+    "dist/Workflow.ts",
+    "dist/WorkflowTemplateProperties.ts"
+  ],
   "devDependencies": {
     "json-schema-to-typescript": "^10.1.5"
   },

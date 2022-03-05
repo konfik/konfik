@@ -2,11 +2,11 @@ import type { FileType } from '@konfik/core'
 import type { BuiltInParserName } from 'prettier'
 import { format } from 'prettier'
 
-import { default as packages } from "../packages/.konfik.js"
-import { default as plugins } from "../plugins/.konfik.js";
-import * as root from './root.js'
+import generate from '../generate/.konfik.js'
+import { default as packages } from '../packages/.konfik.js'
+import { default as plugins } from '../plugins/.konfik.js'
 import * as githubWorkflows from './github_workflows.js'
-import generate from "../generate/.konfik.js"
+import * as root from './root.js'
 
 export const prettyPrint = (uglyString: string, fileType: FileType): string => {
   const parser = mapFileTypeToParser(fileType)
@@ -49,5 +49,5 @@ export default {
   },
   packages,
   generate,
-  plugins
+  plugins,
 }
