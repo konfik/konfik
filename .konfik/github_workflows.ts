@@ -1,5 +1,3 @@
-import { stripMargin } from '@konfik/utils'
-
 import { GitHubWorkflowKonfik } from '../plugins/github/src'
 
 export const main = GitHubWorkflowKonfik({
