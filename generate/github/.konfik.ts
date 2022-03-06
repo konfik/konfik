@@ -14,8 +14,7 @@ export const packageJsonKonfik = PackageJsonKonfik({
   },
   scripts: {
     ...basePackageJson.scripts,
-    gen: 'node ./dist/src/gen.js',
-    prepublish: 'yarn gen',
+    build: 'node ./dist/src/gen.js',
   },
 })
 

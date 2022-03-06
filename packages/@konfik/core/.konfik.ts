@@ -12,6 +12,9 @@ export const packageJsonKonfik = PackageJsonKonfik({
     ...basePackageJson.scripts,
     test: 'ava',
   },
+  dependencies: {
+    '@konfik/utils': 'workspace:*',
+  },
   devDependencies: {
     ...basePackageJson.devDependencies,
     ava: '^4.0.1',

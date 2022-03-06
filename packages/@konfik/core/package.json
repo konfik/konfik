@@ -7,6 +7,9 @@
     "build:ts": "tsc",
     "test": "ava"
   },
+  "dependencies": {
+    "@konfik/utils": "workspace:*"
+  },
   "devDependencies": {
     "ava": "^4.0.1",
     "conditional-type-checks": "^1.0.5",

@@ -5,8 +5,7 @@
   "version": "0.0.13",
   "scripts": {
     "build:ts": "tsc",
-    "gen": "node ./dist/src/gen.js",
-    "prepublish": "yarn gen"
+    "build": "node ./dist/src/gen.js"
   },
   "devDependencies": {
     "json-schema-to-typescript": "^10.1.5",
