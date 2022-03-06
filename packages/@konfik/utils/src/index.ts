@@ -7,6 +7,7 @@ export * from './time.js'
 export * from './single-item.js'
 export * from './file-paths.js'
 export * from './types.js'
+export { stripMargin } from '@effect-ts/core/String'
 
 export { v4 as uuid } from 'uuid'
 

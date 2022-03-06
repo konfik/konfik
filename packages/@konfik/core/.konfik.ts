@@ -1,38 +1,30 @@
 import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
-import { version } from '../../../.konfik/common.js'
+import { basePackageJson, baseTsconfig } from '../../../.konfik/common.js'
 
 export const packageJsonKonfik = PackageJsonKonfik({
+  ...basePackageJson,
   name: '@konfik/core',
-  type: 'module',
-  version,
-  exports: {
-    '.': './dist/index.js',
-  },
-  types: './dist/index.d.ts',
+  exports: { '.': './dist/src/index.js' },
+  types: './dist/src/index.d.ts',
   scripts: {
+    ...basePackageJson.scripts,
     test: 'ava',
   },
+  dependencies: {
+    '@konfik/utils': 'workspace:*',
+  },
   devDependencies: {
+    ...basePackageJson.devDependencies,
     ava: '^4.0.1',
     'conditional-type-checks': '^1.0.5',
   },
-  ava: {
-    files: ['dist/tests.js'],
-  },
-  publishConfig: {
-    access: 'public',
-  },
+  ava: { files: ['dist/tests.js'] },
 })
 
 export const tsconfigKonfik = TsconfigKonfik({
+  ...baseTsconfig,
   extends: '../../../tsconfig.base.json',
-  compilerOptions: {
-    outDir: './dist',
-    rootDir: './src',
-    tsBuildInfoFile: './dist/.tsbuildinfo',
-  },
-  include: ['./src'],
   references: [{ path: '../utils' }],
 })

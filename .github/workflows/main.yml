@@ -15,12 +15,12 @@ jobs:
         with:
           node-version: 16.x
           cache: yarn
-      - name: Build
-        run: |-
-          yarn
-          yarn build
+      - name: Install dependencies
+        run: yarn install
         env:
           CI: true
+      - name: Build
+        run: yarn turbo run build
       - name: Create Release Pull Request or Publish to NPM
         uses: contentlayerdev/action@draft-release-flow
         with:

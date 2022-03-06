@@ -79,9 +79,9 @@ const eslintKonfik = EslintKonfik({
 const tsconfigKonfik = TsconfigKonfik({
   extends: '../../tsconfig.base.json',
   compilerOptions: {
-    outDir: './dist',
+    outDir: './dist/src',
     rootDir: './src',
-    tsBuildInfoFile: './dist/.tsbuildinfo',
+    tsBuildInfoFile: './dist/src/.tsbuildinfo',
   },
   include: ['./src'],
   references: [{ path: '../../packages/@konfik/core' }, { path: '../../packages/@konfik/tsconfig' }],

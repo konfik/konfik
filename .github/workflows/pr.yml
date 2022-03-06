@@ -15,9 +15,9 @@ jobs:
         with:
           node-version: 16.x
           cache: yarn
-      - name: build
-        run: |-
-          yarn
-          yarn build
+      - name: Install dependencies
+        run: yarn install
         env:
           CI: true
+      - name: Build
+        run: yarn turbo run build

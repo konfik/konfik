@@ -7,6 +7,9 @@ export * from './EnvVar.js'
 
 export type { _A as OutputOf } from '@effect-ts/core/Utils'
 
+export { enableTracing } from '@effect-ts/core/Tracing'
+export { patch as patchOperators } from '@effect-ts/core/Operator'
+
 export { pipe, flow, identity } from '@effect-ts/core/Function'
 export { Tagged } from '@effect-ts/core/Case'
 export { tag, service } from '@effect-ts/core/Has'

@@ -1,9 +1,9 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "./dist",
+    "outDir": "./dist/src",
     "rootDir": "./src",
-    "tsBuildInfoFile": "./dist/.tsbuildinfo"
+    "tsBuildInfoFile": "./dist/src/.tsbuildinfo"
   },
   "include": ["./src"],
   "references": [{ "path": "../@konfik/cli" }, { "path": "../@konfik/core" }]
