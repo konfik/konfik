@@ -1,6 +1,19 @@
 {
   "deno.enable": false,
   "typescript.tsdk": "node_modules/typescript/lib",
+  "files.exclude": {
+    "**/*.lock": true,
+    "**/*.turbo": true,
+    "**/dist": true,
+    "**/.direnv": true,
+    "**/.yarn": true,
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true
+  },
   "editor.formatOnSave": true,
   "eslint.format.enable": true,
   "[javascript]": {
@@ -15,7 +28,6 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
-  "prettier.disableLanguages": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   "eslint.validate": ["markdown", "javascript", "typescript"],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true

@@ -66,12 +66,12 @@ export const packageJsonKonfik = PackageJsonKonfik({
   workspaces: ['packages/*', 'packages/@konfik/*', 'plugins/*', 'examples/*', 'generate/*'],
   scripts: {
     postinstall: 'ts-patch install && ts-patch --persist && ./link.mjs',
-    build: 'yarn build:clean; yarn build:ts; yarn workspace konfik bundle-cli',
+    _build: 'yarn build:clean; yarn build:ts; yarn workspace konfik bundle-cli',
     'build:ts': 'tsc --build tsconfig.all.json',
-    'build:clean': "bash -c 'rm -rf packages/*/dist packages/@konfik/*/dist'",
+    'build:clean': "bash -c 'rm -rf packages/*/dist plugins/*/dist generate/*/dist packages/@konfik/*/dist'",
     'build:konfik': 'konfik build --config ./.konfik/index.ts',
     'dev:ts': 'yarn build:ts --watch',
-    'dev:bundle-cli': 'yarn workspace konfik bundle-cli --watch',
+    'dev:bundle-cli': 'yarn workspace konfik build:bundle --watch',
     'lint:check': 'run lint:eslint:check && run lint:prettier:check',
     'lint:fix': 'run lint:eslint:fix & run lint:prettier:fix',
     'lint:eslint:fix': 'eslint packages --ext .ts --fix',
@@ -86,6 +86,7 @@ export const packageJsonKonfik = PackageJsonKonfik({
   },
   // TODO: can we create a type representing every possible NPM package name and valid versions
   devDependencies: {
+    '@konfik/utils': 'workspace:*',
     '@changesets/changelog-github': '^0.4.2',
     '@changesets/cli': '2.22.0-temp.0',
     '@effect-ts/tracing-plugin': '^0.18.0',
@@ -100,6 +101,7 @@ export const packageJsonKonfik = PackageJsonKonfik({
     'eslint-plugin-simple-import-sort': '^7.0.0',
     prettier: '^2.5.0',
     'ts-patch': '^1.4.5',
+    turbo: '^1.1.5',
     typescript: '^4.5.5',
     zx: '^4.3.0',
   },
@@ -144,7 +146,7 @@ export const eslintKonfik = EslintKonfik({
     node: true,
     es6: true,
   },
-  ignorePatterns: ['!.konfik', 'packages/_archive/*', '**/dist/*', '**/.nyc_output/*'],
+  ignorePatterns: ['!**/.konfik*', 'packages/_archive/*', '**/dist/*', '**/.nyc_output/*'],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'simple-import-sort', 'prefer-arrow', 'import'],
   // TODO: can we infer the dependencies & inject them into a generated `package.json`?

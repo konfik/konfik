@@ -1,51 +1,51 @@
 import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
-import { version } from '../../../.konfik/common.js'
+import { basePackageJson, baseTsconfig } from '../../../.konfik/common.js'
 
 export const packageJsonKonfik = PackageJsonKonfik({
+  ...basePackageJson,
   name: '@konfik/utils',
-  version,
-  type: 'module',
   exports: {
     './package.json': {
       import: './package.json',
     },
     '.': {
-      import: './dist/index.js',
+      import: './dist/src/index.js',
     },
     './effect': {
-      import: './dist/effect/index.js',
+      import: './dist/src/effect/index.js',
     },
     './effect/Tracing': {
-      import: './dist/effect/Tracing/index.js',
+      import: './dist/src/effect/Tracing/index.js',
     },
     './effect/Tracing/Enable': {
-      import: './dist/effect/Tracing/Enable.js',
+      import: './dist/src/effect/Tracing/Enable.js',
     },
     './node': {
-      import: './dist/node/index.js',
+      import: './dist/src/node/index.js',
     },
   },
-  types: './dist/index.d.ts',
+  types: './dist/src/index.d.ts',
   typesVersions: {
     '*': {
-      effect: ['./dist/effect'],
       'package.json': ['./package.json'],
-      'effect/Tracing': ['./dist/effect/Tracing'],
-      'effect/Tracing/Enable': ['./dist/effect/Tracing/Enable'],
-      node: ['./dist/node'],
+      effect: ['./dist/src/effect'],
+      'effect/Tracing': ['./dist/src/effect/Tracing'],
+      'effect/Tracing/Enable': ['./dist/src/effect/Tracing/Enable'],
+      node: ['./dist/src/node'],
     },
   },
-  sideEffects: ['./dist/effect/Tracing/Enable.js'],
+  sideEffects: ['./dist/src/effect/Tracing/Enable.js'],
   scripts: {
+    ...basePackageJson.scripts,
     test: 'echo No tests yet',
   },
   dependencies: {
-    '@effect-ts/core': '^0.55.1',
-    '@effect-ts/otel': '^0.11.6',
-    '@effect-ts/otel-exporter-trace-otlp-http': '^0.11.6',
-    '@effect-ts/otel-sdk-trace-node': '^0.11.6',
+    '@effect-ts/core': '^0.58.0',
+    '@effect-ts/otel': '^0.13.0',
+    '@effect-ts/otel-exporter-trace-otlp-http': '^0.13.0',
+    '@effect-ts/otel-sdk-trace-node': '^0.13.0',
     '@opentelemetry/api': '^1.0.3',
     '@opentelemetry/core': '^1.0.1',
     '@opentelemetry/exporter-trace-otlp-http': '0.27.0',
@@ -63,22 +63,13 @@ export const packageJsonKonfik = PackageJsonKonfik({
     uuid: '^8.3.2',
   },
   devDependencies: {
+    ...basePackageJson.devDependencies,
     '@types/inflection': '^1.13.0',
     '@types/uuid': '^8.3.3',
-  },
-  publishConfig: {
-    access: 'public',
   },
 })
 
 export const tsconfigKonfik = TsconfigKonfik({
   extends: '../../../tsconfig.base.json',
-  compilerOptions: {
-    module: 'ES2020',
-    rootDir: './src',
-    outDir: './dist',
-    tsBuildInfoFile: './dist/.tsbuildinfo.json',
-  },
-  include: ['./src'],
-  references: [],
+  ...baseTsconfig,
 })

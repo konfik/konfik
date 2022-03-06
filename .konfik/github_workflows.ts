@@ -1,5 +1,6 @@
+import { stripMargin } from '@konfik/utils'
+
 import { GitHubWorkflowKonfik } from '../plugins/github/src'
-import {stripMargin} from "@effect-ts/core/String"
 
 export const main = GitHubWorkflowKonfik({
   name: 'Publish CI',
@@ -31,13 +32,13 @@ export const main = GitHubWorkflowKonfik({
           },
         },
         {
+          name: 'Install dependencies',
+          run: 'yarn install',
+          env: { CI: true },
+        },
+        {
           name: 'Build',
-          run: stripMargin(`\
-          |yarn
-          |yarn build`),
-          env: {
-            CI: true,
-          },
+          run: 'yarn turbo run build',
         },
         {
           name: 'Create Release Pull Request or Publish to NPM',
@@ -83,13 +84,13 @@ export const pr = GitHubWorkflowKonfik({
           },
         },
         {
-          name: 'build',
-          run: stripMargin(`\
-          |yarn
-          |yarn build`),
-          env: {
-            CI: true,
-          },
+          name: 'Install dependencies',
+          run: 'yarn install',
+          env: { CI: true },
+        },
+        {
+          name: 'Build',
+          run: 'yarn turbo run build',
         },
       ],
     },

@@ -1,5 +1,5 @@
 import { KonfikFactory } from '@konfik/core'
-import type { Workflow } from '@konfik-generate/github/dist/Workflow'
+import type { Workflow } from '@konfik-generate/github/dist/src/Workflow'
 import { dump } from 'js-yaml'
 
 export const GitHubWorkflowKonfikBrand = Symbol.for('@konfik-plugin/github-workflow')
