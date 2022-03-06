@@ -1,7 +1,7 @@
 import { PackageJsonKonfik } from '@konfik-plugin/package-json'
 import { TsconfigKonfik } from '@konfik-plugin/tsconfig'
 
-export const version = '0.0.13'
+export const version = '0.0.14'
 
 export const basePackageJson = PackageJsonKonfik({
   type: 'module',
