@@ -1,5 +1,29 @@
 import { GitHubWorkflowKonfik } from '../plugins/github/src'
 
+const sharedSteps = [
+  {
+    uses: 'actions/checkout@v2',
+    with: { 'fetch-depth': 0 },
+  },
+  {
+    name: 'Use Node.js 16.x',
+    uses: 'actions/setup-node@v2',
+    with: {
+      'node-version': '16.x',
+      cache: 'yarn',
+    },
+  },
+  {
+    name: 'Install dependencies',
+    run: 'yarn install',
+    env: { CI: true },
+  },
+  {
+    name: 'Build',
+    run: 'yarn turbo run build',
+  },
+] as const
+
 export const main = GitHubWorkflowKonfik({
   name: 'Publish CI',
   on: {
@@ -13,31 +37,9 @@ export const main = GitHubWorkflowKonfik({
   jobs: {
     build: {
       // TODO: fix inference
-      ['runs-on']: 'ubuntu-latest',
+      'runs-on': 'ubuntu-latest',
       steps: [
-        {
-          uses: 'actions/checkout@v2',
-          with: {
-            ['fetch-depth']: 0,
-          },
-        },
-        {
-          name: 'Use Node.js 16.x',
-          uses: 'actions/setup-node@v2',
-          with: {
-            ['node-version']: '16.x',
-            cache: 'yarn',
-          },
-        },
-        {
-          name: 'Install dependencies',
-          run: 'yarn install',
-          env: { CI: true },
-        },
-        {
-          name: 'Build',
-          run: 'yarn turbo run build',
-        },
+        ...sharedSteps,
         {
           name: 'Create Release Pull Request or Publish to NPM',
           uses: 'contentlayerdev/action@draft-release-flow',
@@ -65,32 +67,8 @@ export const pr = GitHubWorkflowKonfik({
   },
   jobs: {
     build: {
-      ['runs-on']: 'ubuntu-latest',
-      steps: [
-        {
-          uses: 'actions/checkout@v2',
-          with: {
-            ['fetch-depth']: 0,
-          },
-        },
-        {
-          name: 'Use Node.js 16.x',
-          uses: 'actions/setup-node@v2',
-          with: {
-            ['node-version']: '16.x',
-            cache: 'yarn',
-          },
-        },
-        {
-          name: 'Install dependencies',
-          run: 'yarn install',
-          env: { CI: true },
-        },
-        {
-          name: 'Build',
-          run: 'yarn turbo run build',
-        },
-      ],
+      'runs-on': 'ubuntu-latest',
+      steps: [...sharedSteps],
     },
   },
 })
