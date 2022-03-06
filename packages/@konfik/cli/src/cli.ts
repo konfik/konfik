@@ -1,10 +1,12 @@
-import '@konfik/utils/effect/Tracing/Enable'
+import { enableTracing, Layer, O, patchOperators, pipe, T } from '@konfik/utils/effect'
+
+enableTracing()
+patchOperators()
 
 import * as CliApp from '@effect-ts/cli/CliApp'
 import * as CliCommand from '@effect-ts/cli/Command'
 import * as CliHelp from '@effect-ts/cli/Help'
 import { runMain } from '@effect-ts/node/Runtime'
-import { Layer, O, pipe, T } from '@konfik/utils/effect'
 import { LiveDummyTracing, makeJaegerNodeTracingLayer } from '@konfik/utils/effect/Tracing'
 
 import * as BuildCommand from './commands/build.js'
@@ -24,7 +26,7 @@ export const konfikCliCommand = pipe(
 const cli = CliApp.make({
   name: 'konfik',
   version,
-  summary: CliHelp.text('Scaffold project configuration with a type-safe DSL'),
+  summary: CliHelp.text('Maintain project configuration with a type-safe DSL'),
   command: konfikCliCommand,
   config: { showBanner: false },
 })

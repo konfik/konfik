@@ -3,12 +3,10 @@
   "name": "@konfik/core",
   "type": "module",
   "version": "0.0.13",
+  "sideEffects": false,
   "scripts": {
     "build:ts": "tsc",
     "test": "ava"
-  },
-  "dependencies": {
-    "@konfik/utils": "workspace:*"
   },
   "devDependencies": {
     "ava": "^4.0.1",
@@ -22,6 +20,9 @@
     ".": "./dist/src/index.js"
   },
   "types": "./dist/src/index.d.ts",
+  "dependencies": {
+    "@konfik/utils": "workspace:*"
+  },
   "ava": {
     "files": [
       "dist/tests.js"

@@ -6,6 +6,7 @@ export const version = '0.0.13'
 export const basePackageJson = PackageJsonKonfik({
   type: 'module',
   version,
+  sideEffects: false,
   scripts: {
     'build:ts': 'tsc',
   },

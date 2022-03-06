@@ -66,7 +66,7 @@ export const packageJsonKonfik = PackageJsonKonfik({
   workspaces: ['packages/*', 'packages/@konfik/*', 'plugins/*', 'examples/*', 'generate/*'],
   scripts: {
     postinstall: 'ts-patch install && ts-patch --persist && ./link.mjs',
-    _build: 'yarn build:clean; yarn build:ts; yarn workspace konfik bundle-cli',
+    build: 'turbo run build',
     'build:ts': 'tsc --build tsconfig.all.json',
     'build:clean': "bash -c 'rm -rf packages/*/dist plugins/*/dist generate/*/dist packages/@konfik/*/dist'",
     'build:konfik': 'konfik build --config ./.konfik/index.ts',

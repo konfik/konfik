@@ -19,9 +19,6 @@ export const packageJsonKonfik = PackageJsonKonfik({
     './effect/Tracing': {
       import: './dist/src/effect/Tracing/index.js',
     },
-    './effect/Tracing/Enable': {
-      import: './dist/src/effect/Tracing/Enable.js',
-    },
     './node': {
       import: './dist/src/node/index.js',
     },
@@ -32,11 +29,9 @@ export const packageJsonKonfik = PackageJsonKonfik({
       'package.json': ['./package.json'],
       effect: ['./dist/src/effect'],
       'effect/Tracing': ['./dist/src/effect/Tracing'],
-      'effect/Tracing/Enable': ['./dist/src/effect/Tracing/Enable'],
       node: ['./dist/src/node'],
     },
   },
-  sideEffects: ['./dist/src/effect/Tracing/Enable.js'],
   scripts: {
     ...basePackageJson.scripts,
     test: 'echo No tests yet',
