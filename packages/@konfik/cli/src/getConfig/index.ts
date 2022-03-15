@@ -173,7 +173,7 @@ const getConfigFromResult = ({
  * This esbuild plugin is needed in some cases where users import code that imports from '.konfik/*'
  * (e.g. when co-locating document type definitions with React components).
  */
-const contentlayerGenPlugin = (): esbuild.Plugin => ({
+const _contentlayerGenPlugin = (): esbuild.Plugin => ({
   name: '@konfik-plugin/gen',
   setup(build) {
     build.onResolve({ filter: /^\.konfik\// }, (args) => ({
@@ -188,7 +188,7 @@ const contentlayerGenPlugin = (): esbuild.Plugin => ({
 })
 
 // TODO also take tsconfig.json `paths` mapping into account
-const makeAllPackagesExternalPlugin = (configPath: string): esbuild.Plugin => ({
+const _makeAllPackagesExternalPlugin = (configPath: string): esbuild.Plugin => ({
   name: 'make-all-packages-external',
   setup: (build) => {
     const filter = /^[^.\/]|^\.[^.\/]|^\.\.[^\/]/ // Must not start with "/" or "./" or "../"

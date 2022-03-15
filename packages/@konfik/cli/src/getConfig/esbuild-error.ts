@@ -1,5 +1,5 @@
 import { isNotNull, isNotUndefined } from '@konfik/utils'
-import { Branded, O, T, Tagged } from '@konfik/utils/effect'
+import { Branded, O, Tagged } from '@konfik/utils/effect'
 
 import type { KnownEsbuildError } from './esbuild.js'
 

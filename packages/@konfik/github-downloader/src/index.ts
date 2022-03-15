@@ -7,7 +7,7 @@ export class GitHubData extends Tagged('GitHubData')<{
   readonly branch: string
 }> {}
 
-export const download = (gitHubData: GitHubData, targetDirPath: PosixFilePath) => {
-  const downloadUrl = `https://github.com/${gitHubData.owner}/${gitHubData.repo}/tarball/${gitHubData.branch}`
+export const download = (gitHubData: GitHubData, _targetDirPath: PosixFilePath) => {
+  const _downloadUrl = `https://github.com/${gitHubData.owner}/${gitHubData.repo}/tarball/${gitHubData.branch}`
   // -> some.tar.gz
 }

@@ -8,7 +8,7 @@ export const packageJsonKonfik = PackageJsonKonfik({
   dependencies: {
     ...basePackageJsonPlugin.dependencies,
     '@types/eslint': '^8',
-    eslint: '^8.8.0',
+    eslint: '^8.11.0',
   },
 })
 

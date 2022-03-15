@@ -49,6 +49,11 @@ export const main = GitHubWorkflowKonfik({
     },
   },
   jobs: {
+    lint: {
+      // TODO: fix inference
+      'runs-on': 'ubuntu-latest',
+      steps: [...sharedSteps, { run: 'yarn lint:check' }],
+    },
     build: {
       // TODO: fix inference
       'runs-on': 'ubuntu-latest',
