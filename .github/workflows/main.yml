@@ -1,4 +1,5 @@
 name: Publish CI
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 'on':
   push:
     branches:

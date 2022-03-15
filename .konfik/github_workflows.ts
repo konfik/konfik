@@ -36,6 +36,8 @@ const sharedSteps: Steps = [
 
 export const main = GitHubWorkflowKonfik({
   name: 'Publish CI',
+  // Needed to avoid concurrent changeset PRs
+  concurrency: '${{ github.workflow }}-${{ github.ref }}',
   on: {
     push: {
       // TODO: patch types to get inference on fields such as `branches`.
