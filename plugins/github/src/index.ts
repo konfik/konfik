@@ -11,7 +11,7 @@ export const GitHubWorkflowKonfik = KonfikFactory<WorkflowTypes.Workflow>()({
   brand: GitHubWorkflowKonfikBrand,
   // TODO: investigate whether this consistently handles interpolated vars properly.
   toString: (config) => {
-    const withVarsQuoted = dump(config)
+    const withVarsQuoted = dump(config, { noRefs: true })
     return withVarsQuoted
   },
   fileType: 'yaml',
