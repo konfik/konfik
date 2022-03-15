@@ -47,8 +47,8 @@ export default {
   },
   '.github': {
     workflows: {
-      ['main.yml']: githubWorkflows.main,
-      ['pr.yml']: githubWorkflows.pr,
+      'main.yml': githubWorkflows.main,
+      'pr.yml': githubWorkflows.pr,
     },
   },
   packages,
