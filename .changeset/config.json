@@ -2,7 +2,7 @@
   "$schema": "https://unpkg.com/@changesets/config@1.6.4/schema.json",
   "changelog": "./changeset-changelog-generator.cjs",
   "commit": false,
-  "fixed": [["konfik", "@konfik/*", "!@konfik/cli", "@konfik-plugin/*"]],
+  "fixed": [["konfik", "@konfik/*", "!@konfik/cli", "@konfik-generate/*", "@konfik-plugin/*"]],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
