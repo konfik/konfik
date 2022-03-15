@@ -27,8 +27,6 @@ jobs:
         run: yarn install
         env:
           CI: true
-      - name: Build
-        run: yarn turbo run build
       - run: yarn lint:check
   build:
     runs-on: ubuntu-latest

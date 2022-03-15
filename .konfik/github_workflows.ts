@@ -32,10 +32,6 @@ const sharedSteps: Steps = [
     run: 'yarn install',
     env: { CI: true },
   },
-  {
-    name: 'Build',
-    run: 'yarn turbo run build',
-  },
 ]
 
 export const main = GitHubWorkflowKonfik({
@@ -59,6 +55,10 @@ export const main = GitHubWorkflowKonfik({
       'runs-on': 'ubuntu-latest',
       steps: [
         ...sharedSteps,
+        {
+          name: 'Build',
+          run: 'yarn turbo run build',
+        },
         {
           name: 'Create Release Pull Request or Publish to NPM',
           uses: 'contentlayerdev/action@draft-release-flow',
@@ -87,7 +87,13 @@ export const pr = GitHubWorkflowKonfik({
   jobs: {
     build: {
       'runs-on': 'ubuntu-latest',
-      steps: [...sharedSteps],
+      steps: [
+        ...sharedSteps,
+        {
+          name: 'Build',
+          run: 'yarn turbo run build',
+        },
+      ],
     },
   },
 })
