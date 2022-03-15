@@ -1,6 +1,9 @@
+import type { WorkflowTypes } from '../plugins/github/src'
 import { GitHubWorkflowKonfik } from '../plugins/github/src'
 
-const sharedSteps = [
+type Steps = WorkflowTypes.NormalJob['steps']
+
+const sharedSteps: Steps = [
   {
     uses: 'actions/checkout@v2',
     with: { 'fetch-depth': 0 },
@@ -13,6 +16,17 @@ const sharedSteps = [
       cache: 'yarn',
     },
   },
+  // Needed until fixed: https://github.com/vercel/turborepo/issues/451
+  {
+    name: 'Turbo Cache',
+    id: 'turbo-cache',
+    uses: 'actions/cache@v2',
+    with: {
+      path: 'node_modules/.cache/turbo',
+      key: 'turbo-${{ github.job }}-${{ github.ref_name }}-${{ github.sha }}',
+      'restore-keys': 'turbo-${{ github.job }}-${{ github.ref_name }}-\n',
+    },
+  },
   {
     name: 'Install dependencies',
     run: 'yarn install',
@@ -22,7 +36,7 @@ const sharedSteps = [
     name: 'Build',
     run: 'yarn turbo run build',
   },
-] as const
+]
 
 export const main = GitHubWorkflowKonfik({
   name: 'Publish CI',
