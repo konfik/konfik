@@ -12,7 +12,9 @@ const FactoryPropsLookupKey = Symbol.for('@konfik/core.konfik-factory.FactoryPro
 
 const globalTh = globalThis as any
 
-globalTh[FactoryPropsLookupKey] = new Map<any, AnyKonfikFactoryProps>()
+if (!globalTh[FactoryPropsLookupKey]) {
+  globalTh[FactoryPropsLookupKey] = new Map<any, AnyKonfikFactoryProps>()
+}
 
 // TODO: allow additional constraints to be specified / produce generic factory.
 // This would all ow us to support VSCode extension types.
@@ -31,7 +33,7 @@ export const getFactoryConfig = (supplied: unknown): AnyKonfikFactoryProps => {
   // console.log(globalTh[FactoryPropsLookupKey])
   const factoryProps = globalTh[FactoryPropsLookupKey].get(supplied)
   if (!factoryProps) {
-    throw new Error('TODO: throw this the effect-y way.')
+    throw new Error(`No entry found for "${JSON.stringify(supplied)}"`)
   }
   return factoryProps
 }
